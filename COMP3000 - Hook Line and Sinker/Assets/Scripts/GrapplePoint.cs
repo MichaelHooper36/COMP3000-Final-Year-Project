@@ -6,6 +6,12 @@ public class GrapplePoint : MonoBehaviour
     public SpriteRenderer sprintRenderer;
     public PlayerMovement playerMovement;
 
+    void Awake()
+    {
+        sprintRenderer = GetComponent<SpriteRenderer>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
