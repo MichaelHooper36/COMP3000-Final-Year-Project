@@ -1,9 +1,85 @@
-/Library/
-/Temp/
-/Obj/
-/Build/
-/Logs/
-/UserSettings/
-/MemoryCaptures/
-/Packages/com.unity.collab-proxy/
-/Packages/com.unity.package-manager-ui/
+# ========== Unity-generated folders ==========
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
+[Pp]rofiledData/
+[Cc]ache/
+[Hh]otReload/
+
+# ========== Unity Package Cache ==========
+[Pp]ackages/com.unity.collab-proxy/
+[Pp]ackages/com.unity.package-manager-ui/
+[Pp]ackages/com.unity.test-framework.performance/
+
+# ========== Visual Studio / Rider ==========
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# ========== OS-specific files ==========
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ========== Build artifacts ==========
+*.apk
+*.aab
+*.xcodeproj/
+*.xcworkspace/
+*.app
+*.ipa
+*.exe
+*.dll
+*.mp4
+*.zip
+*.tar
+*.gz
+*.7z
+
+# ========== Crash and profiling logs ==========
+sysinfo.txt
+*.stacktrace
+*.crash
+*.dmp
+
+# ========== JetBrains Rider cache ==========
+.idea/
+*.iml
+
+# ========== Auto-generated files ==========
+*.unitypackage
+*.meta~
+
+# ========== Ignore custom local settings ==========
+*.local
+*.overrideController
+
+# ========== Unity Cloud build artifacts ==========
+[Uu]ser[Ss]ettings/EditorUserSettings.asset
+
+# ========== Collaborate and Plastic SCM ==========
+.collabignore
+PlasticSCM/
+
+# ========== Git merge & backup files ==========
+*.orig
+*.merge
+*.backup
