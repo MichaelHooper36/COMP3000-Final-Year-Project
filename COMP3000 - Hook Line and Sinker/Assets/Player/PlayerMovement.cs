@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             canMove = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
-            //extraJumps++;
+            extraJumps++;
         }
     }
 
