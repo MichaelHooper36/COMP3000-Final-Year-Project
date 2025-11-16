@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
-    public int extraGrappleJumps;
     float movement;
+    float previousMovement;
     public bool canMove;
     public bool canJump;
 
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public DistanceJoint2D distanceJoint;
     public Transform grapplePoint;
     public bool canGrapple;
+    public bool isGrappling;
 
     Rigidbody2D rigidBody;
 
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     void Movement(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>().x;
+        previousMovement = movement;
         if (movement < 0 && !isWallJumping)
         {
             transform.localScale = new Vector2(-1, 1);
@@ -84,10 +86,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
+            else if (extraJumps > 0 && canJump)
+            {
+                rigidBody.linearVelocityY = jumpSpeed;
+                extraJumps--;
+            }
             else if (wallJumpCounter > 0f)
             {
                 isWallJumping = true;
-                rigidBody.linearVelocity = new Vector2(wallJumpDirection * wallJumpSpeed.x, wallJumpSpeed.y);
+                movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
+                rigidBody.linearVelocityY = wallJumpSpeed.y;
                 wallJumpCounter = 0f;
 
                 if (transform.localScale.x != wallJumpDirection)
@@ -96,11 +104,6 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 isWallJumping = false;
-            }
-            else if (extraJumps > 0 && canJump)
-            {
-                rigidBody.linearVelocityY = jumpSpeed;
-                extraJumps--;
             }
         }
     }
@@ -117,18 +120,15 @@ public class PlayerMovement : MonoBehaviour
             lineRenderer.enabled = true;
             canMove = false;
             canJump = false;
+            isGrappling = true;
         }
         else if (context.canceled)
         {
             canMove = true;
             canJump = true;
+            isGrappling = false;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
-            if (extraGrappleJumps > 0 && extraJumps == 0)
-            { 
-                extraJumps++;
-                extraGrappleJumps--;
-            }
         }
     }
 
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             extraJumps = 1;
-            extraGrappleJumps = 1;
+            movement = previousMovement;
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
@@ -162,13 +162,13 @@ public class PlayerMovement : MonoBehaviour
             wallJumpCounter = wallJumpTime;
             rigidBody.linearVelocityY = -wallSlideSpeed;
         }
-        else
+        else if (!isGrappling)
         {
             canJump = true;
             wallJumpCounter -= Time.deltaTime;
         }
 
-        if (canMove && !isWallJumping)
+        if (canMove)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
         }

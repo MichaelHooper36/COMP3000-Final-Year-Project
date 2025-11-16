@@ -795,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5176103721417868209, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
+      propertyPath: wallJumpSpeed.x
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7919093494093407809, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
       propertyPath: m_Name
       value: Player

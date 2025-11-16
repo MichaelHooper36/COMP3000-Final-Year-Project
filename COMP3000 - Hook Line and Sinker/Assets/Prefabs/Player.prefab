@@ -278,7 +278,6 @@ MonoBehaviour:
   moveSpeed: 5
   jumpSpeed: 8
   extraJumps: 1
-  extraGrappleJumps: 0
   canMove: 0
   canJump: 0
   wallSliding: 0
@@ -296,11 +295,12 @@ MonoBehaviour:
   wallJumpTime: 0.2
   wallJumpCounter: 0
   wallJumpDuration: 0.4
-  wallJumpSpeed: {x: 100000, y: 8}
+  wallJumpSpeed: {x: 5, y: 8}
   lineRenderer: {fileID: 6055942291539504646}
   distanceJoint: {fileID: 5041260808299645434}
   grapplePoint: {fileID: 0}
   canGrapple: 0
+  isGrappling: 0
 --- !u!120 &6055942291539504646
 LineRenderer:
   serializedVersion: 2
