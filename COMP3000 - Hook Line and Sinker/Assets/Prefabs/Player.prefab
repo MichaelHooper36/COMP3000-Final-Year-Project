@@ -322,11 +322,14 @@ MonoBehaviour:
   wallCheckTransform: {fileID: 4511479749606911303}
   wallCheckRadius: 0.1
   isGrounded: 0
+  wasGrounded: 0
   isWallJumping: 0
   wallJumpDirection: 0
   wallJumpTime: 0.2
   wallJumpCounter: 0
   wallJumpDuration: 0.4
+  wallJumpCooldown: 0.5
+  wallJumpTimer: 0
   wallJumpSpeed: {x: 5, y: 8}
   firePoint: {fileID: 2347491240478409488}
   projectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}

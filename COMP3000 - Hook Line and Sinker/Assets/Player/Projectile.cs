@@ -18,8 +18,8 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        hitGround = Physics2D.OverlapCircle(transform.position, 0.2f, groundLayer);
-        hitEnemy = Physics2D.OverlapCircle(transform.position, 0.2f, enemyLayer);
+        hitGround = Physics2D.OverlapCircle(transform.position, 0.15f, groundLayer);
+        hitEnemy = Physics2D.OverlapCircle(transform.position, 0.15f, enemyLayer);
         if (hitGround)
         {
             Debug.Log("Projectile hit ground.");
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Destroy the projectile after 5 seconds to prevent memory leaks
-        Destroy(gameObject, 5f);
+        // Destroy the projectile after 3 seconds to prevent memory leaks
+        Destroy(gameObject, 3f);
     }
 }

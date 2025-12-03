@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheckTransform;
     public float wallCheckRadius;
     public bool isGrounded;
+    public bool wasGrounded;
 
     public bool isWallJumping;
     public float wallJumpDirection;
@@ -53,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         inputSystem.Player.Enable();
-        inputSystem.Player.Move.started += Movement;
         inputSystem.Player.Move.performed += Movement;
         inputSystem.Player.Jump.performed += Jumping;
         inputSystem.Player.Swing.performed += Grappling;
@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jumping(InputAction.CallbackContext context)
     {
+        wasGrounded = true;
         if (context.performed)
         {
             if (isGrounded && canJump)
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
                 isWallJumping = false;
             }
-            else if (extraJumps > 0 && canJump)
+            else if (extraJumps > 0 && canJump && !wallSliding)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
                 extraJumps--;
@@ -143,14 +144,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
-            if (previousMovement < 0)
-            {
-                movement = -previousMovement * transform.localScale.x;
-            }
-            else
-            {
-                movement = previousMovement * transform.localScale.x;
-            }
+            movement = Mathf.Abs(previousMovement) * transform.localScale.x;
+            wasGrounded = false;
             canMove = true;
             canJump = true;
             isGrappling = false;
@@ -178,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         canGrapple = false;
         isWallJumping = false;
+        wasGrounded = false;
     }
 
     // Update is called once per frame
