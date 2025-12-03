@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpDuration;
     public Vector2 wallJumpSpeed;
 
+    public Transform firePoint;
+    public GameObject projectile;
+    public float projectileTimer;
+    public float projectileCooldown;
+
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
     public Transform grapplePoint;
@@ -48,13 +53,16 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         inputSystem.Player.Enable();
+        inputSystem.Player.Move.started += Movement;
         inputSystem.Player.Move.performed += Movement;
         inputSystem.Player.Jump.performed += Jumping;
         inputSystem.Player.Swing.performed += Grappling;
+        inputSystem.Player.Attack.performed += Shooting;
 
         inputSystem.Player.Move.canceled += Movement;
         inputSystem.Player.Jump.canceled += Jumping;
         inputSystem.Player.Swing.canceled += Grappling;
+        inputSystem.Player.Attack.canceled += Shooting;
     }
 
     void OnDisable()
@@ -63,19 +71,29 @@ public class PlayerMovement : MonoBehaviour
         inputSystem.Player.Move.performed -= Movement;
         inputSystem.Player.Jump.performed -= Jumping;
         inputSystem.Player.Swing.performed -= Grappling;
+        inputSystem.Player.Attack.performed -= Shooting;
     }
 
     void Movement(InputAction.CallbackContext context)
     {
-        movement = context.ReadValue<Vector2>().x;
-        previousMovement = movement;
-        if (movement < 0 && !isWallJumping)
+        if (context.performed)
         {
-            transform.localScale = new Vector2(-1, 1);
+            movement = context.ReadValue<Vector2>().x;
+            previousMovement = movement;
+            if (movement < 0 && !isWallJumping)
+            {
+                transform.localScale = new Vector2(-1, 1);
+                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed) * -1;
+            }
+            else if (movement > 0 && !isWallJumping)
+            {
+                transform.localScale = new Vector2(1, 1);
+                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+            }
         }
-        else if (movement > 0 && !isWallJumping)
+        else if (context.canceled)
         {
-            transform.localScale = new Vector2(1, 1);
+            movement = 0;
         }
     }
     void Jumping(InputAction.CallbackContext context)
@@ -85,12 +103,6 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && canJump)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
-            }
-            else if (extraJumps > 0 && canJump)
-            {
-                movement = previousMovement;
-                rigidBody.linearVelocityY = jumpSpeed;
-                extraJumps--;
             }
             else if (wallJumpCounter > 0f)
             {
@@ -102,9 +114,15 @@ public class PlayerMovement : MonoBehaviour
                 if (transform.localScale.x != wallJumpDirection)
                 {
                     transform.localScale = new Vector2(1 * wallJumpDirection, 1);
+                    projectile.GetComponent<Projectile>().speed *= -1;
                 }
 
                 isWallJumping = false;
+            }
+            else if (extraJumps > 0 && canJump)
+            {
+                rigidBody.linearVelocityY = jumpSpeed;
+                extraJumps--;
             }
         }
     }
@@ -125,12 +143,29 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
-            movement = previousMovement;
+            if (previousMovement < 0)
+            {
+                movement = -previousMovement * transform.localScale.x;
+            }
+            else
+            {
+                movement = previousMovement * transform.localScale.x;
+            }
             canMove = true;
             canJump = true;
             isGrappling = false;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
+            rigidBody.linearVelocityY += 2;
+        }
+    }
+
+    void Shooting(InputAction.CallbackContext context)
+    {
+        if (context.performed && projectileTimer == 0)
+        {
+            Instantiate(projectile, firePoint.position, firePoint.rotation);
+            projectileTimer = projectileCooldown;
         }
     }
 
@@ -152,11 +187,10 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             extraJumps = 1;
-            movement = previousMovement;
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
-        if (wallSliding && !isGrounded && rigidBody.linearVelocityY < 0)
+        if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 0)
         {
             canJump = false;
             isWallJumping = false;
@@ -178,6 +212,30 @@ public class PlayerMovement : MonoBehaviour
         if (distanceJoint.enabled)
         {
             lineRenderer.SetPosition(1, transform.position);
+
+            if (rigidBody.linearVelocityX > 1)
+            {
+                transform.localScale = new Vector2(1, 1);
+                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+            }
+            else if (rigidBody.linearVelocityX < -1)
+            {
+                transform.localScale = new Vector2(-1, 1);
+                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed) * -1;
+            }
+            else
+            {
+                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+            }
+        }
+
+        if (projectileTimer > 0)
+        {
+            projectileTimer -= Time.deltaTime;
+            if (projectileTimer < 0)
+            {
+                projectileTimer = 0;
+            }
         }
     }
 
