@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (extraJumps > 0 && canJump)
             {
+                movement = previousMovement;
                 rigidBody.linearVelocityY = jumpSpeed;
                 extraJumps--;
             }
@@ -124,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
+            movement = previousMovement;
             canMove = true;
             canJump = true;
             isGrappling = false;
