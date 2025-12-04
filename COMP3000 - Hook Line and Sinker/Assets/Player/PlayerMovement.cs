@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
-            movement = Mathf.Abs(previousMovement) * transform.localScale.x;
+            movement = (Mathf.Abs(previousMovement) * transform.localScale.x);
             wasGrounded = false;
             canMove = true;
             canJump = true;
