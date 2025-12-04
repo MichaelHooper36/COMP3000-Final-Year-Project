@@ -13,7 +13,11 @@ public class PlayerMovement : MonoBehaviour
     float movement;
     float previousMovement;
     public bool canMove;
+    public bool isMoving;
     public bool canJump;
+
+    public float moveTimer;
+    public float moveCooldown;
 
     public bool wallSliding;
     public float wallSlideSpeed;
@@ -25,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallCheckRadius;
     public bool isGrounded;
     public bool wasGrounded;
+    public string currentWall;
+    public string previousWall;
 
     public bool isWallJumping;
     public float wallJumpDirection;
@@ -78,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            isMoving = true;
             movement = context.ReadValue<Vector2>().x;
             previousMovement = movement;
             if (movement < 0 && !isWallJumping)
@@ -94,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         else if (context.canceled)
         {
             movement = 0;
+            isMoving = false;
         }
     }
     void Jumping(InputAction.CallbackContext context)
@@ -105,12 +113,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
-            else if (wallJumpCounter > 0f)
+            else if (wallJumpCounter > 0f && currentWall != previousWall)
             {
+                previousWall = currentWall;
                 isWallJumping = true;
-                movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
                 rigidBody.linearVelocityY = wallJumpSpeed.y;
                 wallJumpCounter = 0f;
+                moveTimer = moveCooldown;
 
                 if (transform.localScale.x != wallJumpDirection)
                 {
@@ -118,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
                     projectile.GetComponent<Projectile>().speed *= -1;
                 }
 
-                isWallJumping = false;
             }
             else if (extraJumps > 0 && canJump && !wallSliding)
             {
@@ -144,14 +152,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
-            movement = (Mathf.Abs(previousMovement) * transform.localScale.x);
             wasGrounded = false;
             canMove = true;
             canJump = true;
-            isGrappling = false;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
             rigidBody.linearVelocityY += 2;
+            moveTimer = moveCooldown;
         }
     }
 
@@ -180,9 +187,32 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
+        if (isGrounded && isGrappling)
+        {
+            isGrappling = false;
+        }
+        if (isGrounded && isWallJumping)
+        {
+            isWallJumping = false;
+        }
         if (isGrounded)
         {
             extraJumps = 1;
+            previousWall = "";
+        }
+        if (moveTimer > 0)
+        {
+            moveTimer -= Time.deltaTime;
+            if (moveTimer < 0)
+            {
+                moveTimer = 0;
+                canMove = true;
+            }
+        }
+        else
+        {
+            isGrappling = false;
+            isWallJumping = false;
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
@@ -200,7 +230,17 @@ public class PlayerMovement : MonoBehaviour
             wallJumpCounter -= Time.deltaTime;
         }
 
-        if (canMove)
+        if (isGrappling && canMove && !isMoving)
+        {
+            movement = (Mathf.Abs(previousMovement) * transform.localScale.x);
+            rigidBody.linearVelocityX = movement * moveSpeed;
+        }
+        else if (isWallJumping && canMove && !isMoving)
+        {
+            movement = (wallJumpDirection * wallJumpSpeed.x);
+            rigidBody.linearVelocityX = movement;
+        }
+        else if (canMove && !isGrappling && !isWallJumping)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
         }
@@ -239,5 +279,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
+    }
+
+    void OnTriggerEnter2D(Collider2D wall)
+    {
+        if (wall.gameObject.CompareTag("Ground"))
+        {
+            currentWall = wall.gameObject.name;
+        }
     }
 }
