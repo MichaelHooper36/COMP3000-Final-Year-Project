@@ -159,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
             lineRenderer.enabled = false;
             rigidBody.linearVelocityY += 2;
             moveTimer = moveCooldown;
+            previousWall = "";
         }
     }
 
