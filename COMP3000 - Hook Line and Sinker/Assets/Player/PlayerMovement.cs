@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
 
+    public int maxHealth;
+    public int currentHealth = 0;
+
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
@@ -51,10 +54,12 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrappling;
 
     Rigidbody2D rigidBody;
+    public Vector2 previousGround;
 
     void Awake()
     {
         inputSystem = new InputSystem_Actions();
+        currentHealth = maxHealth;
     }
 
     void OnEnable()
@@ -182,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         canGrapple = false;
         isWallJumping = false;
         wasGrounded = false;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -200,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
         {
             extraJumps = 1;
             previousWall = "";
+            previousGround = transform.position;
         }
         if (moveTimer > 0)
         {
@@ -238,8 +245,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isWallJumping && canMove && !isMoving)
         {
-            movement = (wallJumpDirection * wallJumpSpeed.x);
-            rigidBody.linearVelocityX = movement;
+            movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
+            rigidBody.linearVelocityX = movement * moveSpeed;
         }
         else if (canMove && !isGrappling && !isWallJumping)
         {
@@ -273,6 +280,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 projectileTimer = 0;
             }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (damage > 0)
+        {
+            currentHealth -= damage;
+            transform.position = previousGround;
+            Debug.Log("Player Health: " + currentHealth);
         }
     }
 

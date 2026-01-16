@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
     public Vector3 offset;
     [Range(1, 10)]
     public float smoothSpeed;
@@ -15,7 +15,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Follow()
     {
-        Vector3 targetPosition = (player.position + offset);
+        Vector3 targetPosition = (player.transform.position + offset);
         Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.fixedDeltaTime);
         transform.position = smoothPosition;
     }
