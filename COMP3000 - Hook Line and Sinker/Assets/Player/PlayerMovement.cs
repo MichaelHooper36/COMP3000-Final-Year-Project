@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
-    float movement;
+    public float movement;
     float previousMovement;
     public bool canMove;
     public bool isMoving;
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canMove)
         {
             isMoving = true;
             movement = context.ReadValue<Vector2>().x;
@@ -122,9 +122,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 previousWall = currentWall;
                 isWallJumping = true;
+                canMove = false;
                 rigidBody.linearVelocityY = wallJumpSpeed.y;
                 wallJumpCounter = 0f;
                 moveTimer = moveCooldown;
+                movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
 
                 if (transform.localScale.x != wallJumpDirection)
                 {
@@ -133,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
-            else if (extraJumps > 0 && canJump && !wallSliding)
+            else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
                 extraJumps--;
@@ -149,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             lineRenderer.SetPosition(0, grapplePoint.position);
             distanceJoint.connectedAnchor = grapplePoint.position;
             distanceJoint.distance = Vector2.Distance(transform.position, grapplePoint.position);
+            distanceJoint.maxDistanceOnly = true;
             distanceJoint.enabled = true;
             lineRenderer.enabled = true;
             canMove = false;
@@ -157,13 +160,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
+            isGrappling = false;
             wasGrounded = false;
             canMove = true;
             canJump = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
+
             rigidBody.linearVelocityY += 2;
-            moveTimer = moveCooldown;
+            rigidBody.linearVelocityX += 2;
+            movement = Mathf.Abs(previousMovement) * transform.localScale.x;
+
             previousWall = "";
         }
     }
@@ -201,6 +208,10 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && isWallJumping)
         {
             isWallJumping = false;
+            if (isMoving)
+            {
+                movement = previousMovement;
+            }
         }
         if (isGrounded)
         {
@@ -214,13 +225,12 @@ public class PlayerMovement : MonoBehaviour
             if (moveTimer < 0)
             {
                 moveTimer = 0;
+            }
+            if (moveTimer == 0)
+            {
                 canMove = true;
             }
-        }
-        else
-        {
-            isGrappling = false;
-            isWallJumping = false;
+
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
@@ -238,17 +248,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumpCounter -= Time.deltaTime;
         }
 
-        if (isGrappling && canMove && !isMoving)
-        {
-            movement = (Mathf.Abs(previousMovement) * transform.localScale.x);
-            rigidBody.linearVelocityX = movement * moveSpeed;
-        }
-        else if (isWallJumping && canMove && !isMoving)
-        {
-            movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
-            rigidBody.linearVelocityX = movement * moveSpeed;
-        }
-        else if (canMove && !isGrappling && !isWallJumping)
+        if (!isGrappling)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
         }
@@ -288,8 +288,12 @@ public class PlayerMovement : MonoBehaviour
         if (damage > 0)
         {
             currentHealth -= damage;
-            transform.position = previousGround;
             Debug.Log("Player Health: " + currentHealth);
+            if (currentHealth <= 0)
+            {
+                Debug.Log("Player Died.");
+                Destroy(gameObject);
+            }
         }
     }
 

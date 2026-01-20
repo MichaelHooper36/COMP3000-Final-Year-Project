@@ -4332,7 +4332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1098779282621046631, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 1
+      value: 631
       objectReference: {fileID: 0}
     - target: {fileID: 5176103721417868209, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
       propertyPath: currentHealth
@@ -4340,7 +4340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6805164029422654327, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
       propertyPath: m_TagString
-      value: EditorOnly
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7919093494093407809, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
       propertyPath: m_Name
@@ -4360,8 +4360,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1830824713}
     m_Modifications:
     - target: {fileID: 5901338164666312901, guid: b3833f4aa3fc6b44abf3c8060e9775c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901338164666312901, guid: b3833f4aa3fc6b44abf3c8060e9775c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5901338164666312901, guid: b3833f4aa3fc6b44abf3c8060e9775c4, type: 3}
       propertyPath: m_LocalPosition.y

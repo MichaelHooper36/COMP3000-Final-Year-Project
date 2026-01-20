@@ -25,6 +25,8 @@ public class DamagePlayer : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.TakeDamage(damage);
+                playerMovement.transform.position = playerMovement.previousGround;
+                playerMovement.movement = 0f;
             }
         }
     }
