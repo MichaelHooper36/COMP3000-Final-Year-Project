@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth;
     public int currentHealth = 0;
 
+    public LayerMask enemyLayer;
+    public float enemyDamageCooldown;
+    public float enemyDamageTimer;
+
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
@@ -39,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpDirection;
     public float wallJumpTime;
     public float wallJumpCounter;
-    public float wallJumpDuration;
     public Vector2 wallJumpSpeed;
 
     public Transform firePoint;
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canGrapple;
     public bool isGrappling;
 
-    Rigidbody2D rigidBody;
+    public Rigidbody2D rigidBody;
     public Vector2 previousGround;
 
     void Awake()
@@ -103,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
                 projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
             }
         }
-        else if (context.canceled)
+        else if (context.canceled && !isWallJumping)
         {
             movement = 0;
             isMoving = false;
@@ -145,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Grappling(InputAction.CallbackContext context)
     {
-        if (context.performed && canGrapple)
+        if (context.performed && canGrapple && grapplePoint != null)
         {
             lineRenderer.SetPosition(1, transform.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
@@ -158,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isGrappling = true;
         }
-        else if (context.canceled)
+        else if (context.canceled && grapplePoint != null)
         {
             isGrappling = false;
             wasGrounded = false;
@@ -166,12 +169,30 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
-
-            rigidBody.linearVelocityY += 2;
-            rigidBody.linearVelocityX += 2;
-            movement = Mathf.Abs(previousMovement) * transform.localScale.x;
-
             previousWall = "";
+
+            if (rigidBody.linearVelocityY > 5)
+            {
+                rigidBody.linearVelocityY += 2;
+            }
+
+            if (rigidBody.linearVelocityX > 5)
+            {
+                rigidBody.linearVelocityX += 2;
+            }
+            else if (rigidBody.linearVelocityX < -5)
+            {
+                rigidBody.linearVelocityX -= 2;
+            }
+
+            if (Mathf.Abs(rigidBody.linearVelocityX) > .5)
+            {
+                movement = Mathf.Abs(previousMovement) * transform.localScale.x;
+            }
+            else
+            {
+                movement = 0;
+            }
         }
     }
 
@@ -200,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
         if (isGrounded && isGrappling)
         {
@@ -231,6 +253,13 @@ public class PlayerMovement : MonoBehaviour
                 canMove = true;
             }
 
+        }
+
+        Collider2D enemyCollider = Physics2D.OverlapCircle(transform.position, 0.6f, enemyLayer);
+        if (enemyCollider != null)
+        {
+            TakeDamage(1);
+            rigidBody.linearVelocityY = jumpSpeed;
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
@@ -281,11 +310,20 @@ public class PlayerMovement : MonoBehaviour
                 projectileTimer = 0;
             }
         }
+
+        if (enemyDamageTimer > 0)
+        {
+            enemyDamageTimer -= Time.deltaTime;
+            if (enemyDamageTimer < 0)
+            {
+                enemyDamageTimer = 0;
+            }
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        if (damage > 0)
+        if (damage > 0 && enemyDamageTimer == 0)
         {
             currentHealth -= damage;
             Debug.Log("Player Health: " + currentHealth);
@@ -294,6 +332,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Player Died.");
                 Destroy(gameObject);
             }
+            enemyDamageTimer = enemyDamageCooldown;
         }
     }
 

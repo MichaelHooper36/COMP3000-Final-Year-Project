@@ -4,12 +4,11 @@ public class DamagePlayer : MonoBehaviour
 {
     public GameObject player;
     public int damage;
-    public PlayerMovement playerMovement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovement = player.GetComponent<PlayerMovement>();
+
     }
 
     // Update is called once per frame
@@ -20,13 +19,17 @@ public class DamagePlayer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player")
+        if (other.name == player.name)
         {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
+                playerMovement.enemyDamageTimer = 0;
                 playerMovement.TakeDamage(damage);
-                playerMovement.transform.position = playerMovement.previousGround;
+                playerMovement.transform.position = new Vector2(playerMovement.previousGround.x, playerMovement.previousGround.y + 1);
                 playerMovement.movement = 0f;
+                playerMovement.rigidBody.linearVelocityX = 0f;
+                playerMovement.rigidBody.linearVelocityY = 0f;
             }
         }
     }

@@ -197,6 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c73fa2e1bd918f41934b1e9cb83ddeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
-  player: {fileID: 0}
+  player: {fileID: 7919093494093407809, guid: f802c24e7ee50664f8152219bb26ec30, type: 3}
   damage: 1
   playerMovement: {fileID: 0}
