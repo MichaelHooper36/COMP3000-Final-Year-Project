@@ -380,12 +380,11 @@ MonoBehaviour:
   wallCheckTransform: {fileID: 4511479749606911303}
   wallCheckRadius: 0.1
   isGrounded: 0
-  wasGrounded: 0
   currentWall: 
   previousWall: 
   isWallJumping: 0
   wallJumpDirection: 0
-  wallJumpTime: 0.1
+  wallJumpTime: 0.05
   wallJumpCounter: 0
   wallJumpSpeed: {x: 5, y: 8}
   firePoint: {fileID: 2347491240478409488}

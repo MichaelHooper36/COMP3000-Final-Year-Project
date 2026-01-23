@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheckTransform;
     public float wallCheckRadius;
     public bool isGrounded;
-    public bool wasGrounded;
     public string currentWall;
     public string previousWall;
 
@@ -114,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jumping(InputAction.CallbackContext context)
     {
-        wasGrounded = true;
         if (context.performed)
         {
             if (isGrounded && canJump)
@@ -148,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Grappling(InputAction.CallbackContext context)
     {
-        if (context.performed && canGrapple && grapplePoint != null)
+        if (context.performed && canGrapple && grapplePoint != null && !isGrappling)
         {
             lineRenderer.SetPosition(1, transform.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
@@ -161,31 +159,25 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isGrappling = true;
         }
-        else if (context.canceled && grapplePoint != null)
+        else if (context.canceled && grapplePoint != null && isGrappling)
         {
             isGrappling = false;
-            wasGrounded = false;
             canMove = true;
             canJump = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
             previousWall = "";
 
-            if (rigidBody.linearVelocityY > 5)
+            if (rigidBody.linearVelocityY > 2)
             {
-                rigidBody.linearVelocityY += 2;
+                rigidBody.linearVelocityY += 1;
             }
 
-            if (rigidBody.linearVelocityX > 5)
+            if (Mathf.Abs(rigidBody.linearVelocityX) > Mathf.Abs(previousMovement) * moveSpeed)
             {
-                rigidBody.linearVelocityX += 2;
+                movement = rigidBody.linearVelocityX / moveSpeed;
             }
-            else if (rigidBody.linearVelocityX < -5)
-            {
-                rigidBody.linearVelocityX -= 2;
-            }
-
-            if (Mathf.Abs(rigidBody.linearVelocityX) > .5)
+            else if (Mathf.Abs(rigidBody.linearVelocityX) > .5)
             {
                 movement = Mathf.Abs(previousMovement) * transform.localScale.x;
             }
@@ -214,7 +206,6 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         canGrapple = false;
         isWallJumping = false;
-        wasGrounded = false;
         currentHealth = maxHealth;
     }
 
@@ -251,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
             if (moveTimer == 0)
             {
                 canMove = true;
+                isWallJumping = false;
             }
 
         }

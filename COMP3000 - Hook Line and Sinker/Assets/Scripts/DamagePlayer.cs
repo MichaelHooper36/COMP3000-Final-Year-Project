@@ -30,6 +30,14 @@ public class DamagePlayer : MonoBehaviour
                 playerMovement.movement = 0f;
                 playerMovement.rigidBody.linearVelocityX = 0f;
                 playerMovement.rigidBody.linearVelocityY = 0f;
+                if (playerMovement.isGrappling)
+                {
+                    playerMovement.canMove = true;
+                    playerMovement.canJump = true;
+                    playerMovement.isGrappling = false;
+                    playerMovement.distanceJoint.enabled = false;
+                    playerMovement.lineRenderer.enabled = false;
+                }
             }
         }
     }
