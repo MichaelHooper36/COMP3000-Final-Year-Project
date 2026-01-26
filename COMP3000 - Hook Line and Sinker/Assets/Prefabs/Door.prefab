@@ -173,7 +173,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1, y: 0}
+  m_Offset: {x: -1.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -197,3 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e5683a63294b64da528d021eb5ea5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CloseDoor
+  doorCollider: {fileID: 6086200614135513773}
+  doorTrigger: {fileID: 6412164461650628222}
+  doorSprite: {fileID: 4972485261008353844}
