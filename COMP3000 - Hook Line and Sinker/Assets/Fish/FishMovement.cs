@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class FishMovement : MonoBehaviour
 {
-    public Transform rayCast;
-    public LayerMask rayCastMask;
-    public float rayCastDistance;
-
     public Transform leftBoundry;
     public Transform rightBoundry;
     public float movementSpeed;
@@ -20,14 +16,15 @@ public class FishMovement : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
-    private RaycastHit2D raycastHit;
-    private Transform target;
+    [HideInInspector] public Transform target;
     private float targetDistance;
-    private bool inRange;
+    [HideInInspector] public bool inRange;
     private bool canMove;
+    public GameObject hotZone;
+    public GameObject triggerArea;
 
     private Animator animator;
-    private bool attacking;
+    public bool attacking;
 
     void Awake()
     {
@@ -60,23 +57,7 @@ public class FishMovement : MonoBehaviour
 
         if (inRange)
         {
-            raycastHit = Physics2D.Raycast(rayCast.position, transform.right * transform.localScale.x, rayCastDistance, rayCastMask);
-            RaycastDebugger();
-        }
-
-        if (raycastHit.collider != null)
-        {
-            canMove = false;
             EnemyLogic();
-        }
-        else if (raycastHit.collider == null)
-        {
-            inRange = false;
-        }
-
-        if (!inRange)
-        {
-            StopAttack();
         }
 
         if (!attacking)
@@ -87,47 +68,6 @@ public class FishMovement : MonoBehaviour
         if (!WithinBorders() && !inRange)
         {
             SelectTarget();
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            target = collider.transform;
-            inRange = true;
-            Flip();
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player" && WithinBorders())
-        {
-            if (transform.localScale.x < 0)
-            {
-                target = leftBoundry;
-            }
-            else
-            {
-                target = rightBoundry;
-            }
-        }
-        else if (collider.gameObject.tag == "Player")
-        {
-            SelectTarget();
-        }
-    }
-
-    void RaycastDebugger()
-    {
-        if (targetDistance > attackDistance)
-        {
-            Debug.DrawRay(rayCast.position, transform.right * rayCastDistance * transform.localScale.x, Color.red);
-        }
-        else if (targetDistance < attackDistance)
-        {
-            Debug.DrawRay(rayCast.position, transform.right * rayCastDistance * transform.localScale.x, Color.green);
         }
     }
 
@@ -193,7 +133,7 @@ public class FishMovement : MonoBehaviour
         return transform.position.x > leftBoundry.position.x && transform.position.x < rightBoundry.position.x;
     }
 
-    private void SelectTarget()
+    public void SelectTarget()
     {
         float distanceToLeft = Vector2.Distance(transform.position, leftBoundry.position);
         float distanceToRight = Vector2.Distance(transform.position, rightBoundry.position);
@@ -214,7 +154,7 @@ public class FishMovement : MonoBehaviour
         Flip();
     }
 
-    void Flip()
+    public void Flip()
     {
         if (transform.position.x > target.position.x)
         {
