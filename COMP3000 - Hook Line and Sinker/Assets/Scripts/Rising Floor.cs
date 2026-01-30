@@ -23,7 +23,7 @@ public class RisingFloor : MonoBehaviour
         }
         else if (isRising)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1f * Time.deltaTime, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1.25f * Time.deltaTime, transform.position.z);
         }
 
         if (transform.position.y >= 53f && boss.phaseThree)

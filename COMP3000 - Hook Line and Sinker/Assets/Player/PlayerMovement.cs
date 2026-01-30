@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth = 0;
+    public HealthBar healthBar;
+    public Vector2 respawnCoordinates;
 
     public LayerMask enemyLayer;
     public float enemyDamageCooldown;
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject projectile;
     public float projectileTimer;
     public float projectileCooldown;
+    public bool isShooting;
 
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
@@ -56,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrappling;
 
     public Rigidbody2D rigidBody;
+    public FollowPlayer followPlayer;
     public Vector2 previousGround;
 
     void Awake()
@@ -129,12 +133,12 @@ public class PlayerMovement : MonoBehaviour
                 if (wallJumpDirection == 1)
                 {
                     transform.eulerAngles = new Vector2(0, 0);
-                    movement = (-wallJumpSpeed.x) / moveSpeed;
+                    movement = (wallJumpSpeed.x) / moveSpeed;
                 }
                 else if (wallJumpDirection == -1)
                 {
                     transform.eulerAngles = new Vector2(0, 180);
-                    movement = (wallJumpSpeed.x) / moveSpeed;
+                    movement = (-wallJumpSpeed.x) / moveSpeed;
                 }
             }
             else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
@@ -178,9 +182,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 movement = rigidBody.linearVelocityX / moveSpeed;
             }
-            else if (Mathf.Abs(rigidBody.linearVelocityX) > .5)
+            else if (rigidBody.linearVelocityX > .5)
             {
-                movement = previousMovement;
+                rigidBody.linearVelocityX += 2;
+            }
+            else if (rigidBody.linearVelocityX < -.5)
+            {
+                rigidBody.linearVelocityX -= 2;
             }
             else
             {
@@ -191,10 +199,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Shooting(InputAction.CallbackContext context)
     {
-        if (context.performed && projectileTimer == 0)
+        if (context.performed)
         {
-            Instantiate(projectile, firePoint.position, firePoint.rotation);
-            projectileTimer = projectileCooldown;
+            isShooting = true;
+        }
+        else if (context.canceled)
+        {
+            isShooting = false;
         }
     }
 
@@ -207,7 +218,12 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         canGrapple = false;
         isWallJumping = false;
+        isShooting = false;
+        followPlayer.player = gameObject;
+
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetCurrentHealth(currentHealth);
     }
 
     // Update is called once per frame
@@ -262,11 +278,11 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = false;
             if (transform.eulerAngles.y == 180)
             {
-                wallJumpDirection = -1;
+                wallJumpDirection = 1;
             }
             else if (transform.eulerAngles.y == 0)
             {
-                wallJumpDirection = 1;
+                wallJumpDirection = -1;
             }
             wallJumpCounter = wallJumpTime;
             rigidBody.linearVelocityY = -wallSlideSpeed;
@@ -296,6 +312,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (isShooting && projectileTimer == 0)
+        {
+            Instantiate(projectile, firePoint.position, firePoint.rotation);
+            projectileTimer = projectileCooldown;
+            Debug.Log("Player fired projectile.");
+        }
+
         if (projectileTimer > 0)
         {
             projectileTimer -= Time.deltaTime;
@@ -320,11 +343,17 @@ public class PlayerMovement : MonoBehaviour
         if (damage > 0 && enemyDamageTimer == 0)
         {
             currentHealth -= damage;
+            healthBar.SetCurrentHealth(currentHealth);
             Debug.Log("Player Health: " + currentHealth);
             if (currentHealth <= 0)
             {
                 Debug.Log("Player Died.");
-                Destroy(gameObject);
+                transform.position = respawnCoordinates;
+                currentHealth = maxHealth;
+                healthBar.SetCurrentHealth(currentHealth);
+                rigidBody.linearVelocityX = 0f;
+                rigidBody.linearVelocityY = 0f;
+                movement = 0f;
             }
             enemyDamageTimer = enemyDamageCooldown;
         }

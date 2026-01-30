@@ -55,9 +55,10 @@ public class Projectile : MonoBehaviour
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
+                Debug.Log("Projectile dealing damage to player.");
                 playerMovement.TakeDamage(playerDamage);
             }
-            Destroy(gameObject);
+                Destroy(gameObject);
         }
     }
 }

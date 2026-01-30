@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     public Transform phaseTwoSpawn;
     public Transform phaseThreeSpawn;
 
-    public int maxHealth = 3;
+    public int maxHealth;
     public int currentHealth;
 
     public bool phaseOne;
@@ -46,16 +46,17 @@ public class Boss : MonoBehaviour
             risingFloor.ceilingSprite.enabled = false;
             risingFloor.isRising = true;
             closeDoor.OpenDoor();
+            Destroy(closeDoor.gameObject);
             Destroy(gameObject);
         }
-        else if (currentHealth == 2)
+        else if (currentHealth == maxHealth * 2 / 3)
         {
             phaseOne = false;
             phaseTwo = true;
             risingFloor.isRising = true;
             transform.position = phaseTwoSpawn.position;
         }
-        else if (currentHealth == 1)
+        else if (currentHealth == maxHealth / 3)
         {
             phaseThree = true;
             phaseTwo = false;

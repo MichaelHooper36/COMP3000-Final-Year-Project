@@ -159,11 +159,11 @@ public class FishMovement : MonoBehaviour
     {
         if (transform.position.x > target.position.x)
         {
-            transform.eulerAngles = new Vector2(0, 0);
+            transform.eulerAngles = new Vector2(0, 180);
         }
         else
         {
-            transform.eulerAngles = new Vector2(0, 180);
+            transform.eulerAngles = new Vector2(0, 0);
         }
     }
 }
