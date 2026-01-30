@@ -2,32 +2,41 @@ using UnityEngine;
 
 public class RisingFloor : MonoBehaviour
 {
-    public CloseDoor closeDoor;
+    public Boss boss;
+
     public bool isRising;
+    public BoxCollider2D ceilingBody;
+    public SpriteRenderer ceilingSprite;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (closeDoor.isClosed)
+        if (isRising && boss.dead)
         {
-            isRising = true;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 5f * Time.deltaTime, transform.position.z);
+        }
+        else if (isRising)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1f * Time.deltaTime, transform.position.z);
         }
 
-        if (isRising)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f * Time.deltaTime, transform.position.z);
-        }
-
-        if (transform.position.y >= 43f)
+        if (transform.position.y >= 53f && boss.phaseThree)
         {
             isRising = false;
-            closeDoor.OpenDoor();
+        }
+        else if (transform.position.y >= 28.5f && boss.phaseTwo)
+        {
+            isRising = false;
+        }
+        else if (transform.position.y <= 2.5f && boss.dead)
+        {
+            isRising = false;
         }
     }
 }

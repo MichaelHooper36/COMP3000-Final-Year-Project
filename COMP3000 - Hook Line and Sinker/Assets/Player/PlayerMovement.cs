@@ -96,13 +96,11 @@ public class PlayerMovement : MonoBehaviour
             previousMovement = movement;
             if (movement < 0 && !isWallJumping)
             {
-                transform.localScale = new Vector2(-1, 1);
-                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed) * -1;
+                transform.eulerAngles = new Vector2(0, 180);
             }
             else if (movement > 0 && !isWallJumping)
             {
-                transform.localScale = new Vector2(1, 1);
-                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+                transform.eulerAngles = new Vector2(0, 0);
             }
         }
         else if (context.canceled && !isWallJumping)
@@ -127,14 +125,17 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityY = wallJumpSpeed.y;
                 wallJumpCounter = 0f;
                 moveTimer = moveCooldown;
-                movement = (wallJumpDirection * wallJumpSpeed.x) / moveSpeed;
 
-                if (transform.localScale.x != wallJumpDirection)
+                if (wallJumpDirection == 1)
                 {
-                    transform.localScale = new Vector2(1 * wallJumpDirection, 1);
-                    projectile.GetComponent<Projectile>().speed *= -1;
+                    transform.eulerAngles = new Vector2(0, 0);
+                    movement = (-wallJumpSpeed.x) / moveSpeed;
                 }
-
+                else if (wallJumpDirection == -1)
+                {
+                    transform.eulerAngles = new Vector2(0, 180);
+                    movement = (wallJumpSpeed.x) / moveSpeed;
+                }
             }
             else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
             {
@@ -179,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Mathf.Abs(rigidBody.linearVelocityX) > .5)
             {
-                movement = Mathf.Abs(previousMovement) * transform.localScale.x;
+                movement = previousMovement;
             }
             else
             {
@@ -259,7 +260,14 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
             isWallJumping = false;
-            wallJumpDirection = -transform.localScale.x;
+            if (transform.eulerAngles.y == 180)
+            {
+                wallJumpDirection = -1;
+            }
+            else if (transform.eulerAngles.y == 0)
+            {
+                wallJumpDirection = 1;
+            }
             wallJumpCounter = wallJumpTime;
             rigidBody.linearVelocityY = -wallSlideSpeed;
         }
@@ -280,17 +288,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (rigidBody.linearVelocityX > 1)
             {
-                transform.localScale = new Vector2(1, 1);
-                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+                transform.eulerAngles = new Vector2(0, 0);
             }
             else if (rigidBody.linearVelocityX < -1)
             {
-                transform.localScale = new Vector2(-1, 1);
-                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed) * -1;
-            }
-            else
-            {
-                projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+                transform.eulerAngles = new Vector2(0, 180);
             }
         }
 

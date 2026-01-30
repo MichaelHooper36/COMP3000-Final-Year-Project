@@ -125,6 +125,7 @@ public class FishMovement : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            Flip();
         }
     }
 
@@ -158,13 +159,11 @@ public class FishMovement : MonoBehaviour
     {
         if (transform.position.x > target.position.x)
         {
-            transform.localScale = new Vector2(-1, 1);
-            projectile.GetComponent<Projectile>().speed = -Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+            transform.eulerAngles = new Vector2(0, 0);
         }
         else
         {
-            transform.localScale = new Vector2(1, 1);
-            projectile.GetComponent<Projectile>().speed = Mathf.Abs(projectile.GetComponent<Projectile>().speed);
+            transform.eulerAngles = new Vector2(0, 180);
         }
     }
 }

@@ -17,6 +17,7 @@ public class FishTriggerCheck : MonoBehaviour
             fishMovement.target = collider.transform;
             fishMovement.inRange = true;
             fishMovement.hotZone.SetActive(true);
+            fishMovement.Flip();
         }
     }
 }

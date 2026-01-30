@@ -4,15 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 5f;
-    public Rigidbody2D rb;
-    
-    public bool hitGround = false;
-    public bool hitEnemy = false;
-    public bool hitPlayer = false;
-    
-    public LayerMask groundLayer;
-    public LayerMask enemyLayer;
-    public LayerMask playerLayer;
+    public Rigidbody2D rigidBody;
 
     public int enemyDamage = 1;
     public int playerDamage = 1;
@@ -20,7 +12,8 @@ public class Projectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb.linearVelocity = transform.right * speed;
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.linearVelocity = transform.right * speed;
 
         // Destroy the projectile after 3 seconds to prevent memory leaks
         Destroy(gameObject, 3f);
@@ -28,30 +21,38 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        hitGround = Physics2D.OverlapCircle(transform.position, 0.15f, groundLayer);
-        if (hitGround)
+        
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Projectile hit ground.");
             Destroy(gameObject);
         }
-        
-        Collider2D enemyCollider = Physics2D.OverlapCircle(transform.position, 0.15f, enemyLayer);
-        if (enemyCollider != null)
+        else if (collider.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Projectile hit enemy.");
-            FishMovement fishMovement = enemyCollider.GetComponent<FishMovement>();
+            FishMovement fishMovement = collider.GetComponent<FishMovement>();
             if (fishMovement != null)
             {
                 fishMovement.TakeDamage(enemyDamage);
             }
+            else
+            {
+                Boss boss = collider.GetComponent<Boss>();
+                if (boss != null)
+                {
+                    boss.TakeDamage(enemyDamage);
+                }
+            }
             Destroy(gameObject);
         }
-
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, 0.15f, playerLayer);
-        if (playerCollider != null)
+        else if (collider.gameObject.CompareTag("Player"))
         {
             Debug.Log("Projectile hit player.");
-            PlayerMovement playerMovement = playerCollider.GetComponent<PlayerMovement>();
+            PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
                 playerMovement.TakeDamage(playerDamage);
