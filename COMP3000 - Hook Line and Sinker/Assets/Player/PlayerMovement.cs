@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheckTransform;
     public float wallCheckRadius;
     public bool isGrounded;
-    public string currentWall;
-    public string previousWall;
 
     public bool isWallJumping;
     public float wallJumpDirection;
@@ -126,9 +125,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
-            else if (wallJumpCounter > 0f && currentWall != previousWall)
+            else if (wallJumpCounter > 0f)
             {
-                previousWall = currentWall;
                 isWallJumping = true;
                 canMove = false;
                 rigidBody.linearVelocityY = wallJumpSpeed.y;
@@ -180,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
-            previousWall = "";
 
             if (rigidBody.linearVelocityY > 2)
             {
@@ -218,6 +215,15 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+
+        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
+        {
+            float respawnX = PlayerPrefs.GetFloat("RespawnX");
+            float respawnY = PlayerPrefs.GetFloat("RespawnY");
+            respawnCoordinates = new Vector2(respawnX, respawnY);
+        }
+
+        transform.position = respawnCoordinates;
         distanceJoint.enabled = false;
         canMove = true;
         canJump = true;
@@ -250,7 +256,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             extraJumps = 1;
-            previousWall = "";
             previousGround = transform.position;
         }
         if (moveTimer > 0)
@@ -299,7 +304,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (reelingIn)
         {
-            distanceJoint.distance -= 0.005f;
+            distanceJoint.distance -= 0.01f;
         }
 
         if (!isGrappling)
@@ -357,13 +362,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Debug.Log("Player Died.");
-                transform.position = respawnCoordinates;
-                currentHealth = maxHealth;
-                healthBar.SetCurrentHealth(currentHealth);
-                rigidBody.linearVelocityX = 0f;
-                rigidBody.linearVelocityY = 0f;
-                movement = 0f;
-                closeDoor.OpenDoor();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             enemyDamageTimer = enemyDamageCooldown;
         }
@@ -373,13 +372,5 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
-    }
-
-    void OnTriggerEnter2D(Collider2D wall)
-    {
-        if (wall.gameObject.CompareTag("Ground"))
-        {
-            currentWall = wall.gameObject.name;
-        }
     }
 }

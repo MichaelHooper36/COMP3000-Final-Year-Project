@@ -358,20 +358,21 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 8560162313952595435, guid: 6f08dd0914ed01a40a0c431b56a5b447, type: 3}
   respawnCoordinates: {x: 0, y: 0}
+  closeDoor: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
   enemyDamageCooldown: 0.5
   enemyDamageTimer: 0.5
   moveSpeed: 5
-  jumpSpeed: 6
+  jumpSpeed: 7
   extraJumps: 1
   movement: 0
   canMove: 0
   isMoving: 0
   canJump: 0
   moveTimer: 0
-  moveCooldown: 0.4
+  moveCooldown: 0.1
   wallSliding: 0
   wallSlideSpeed: 3
   groundCheckTransform: {fileID: 5781999453645310330}
@@ -382,24 +383,23 @@ MonoBehaviour:
   wallCheckTransform: {fileID: 4511479749606911303}
   wallCheckRadius: 0.1
   isGrounded: 0
-  currentWall: 
-  previousWall: 
   isWallJumping: 0
   wallJumpDirection: 0
-  wallJumpTime: 0.02
+  wallJumpTime: 0.5
   wallJumpCounter: 0
   wallJumpSpeed: {x: 5, y: 8}
   firePoint: {fileID: 2347491240478409488}
   projectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
   projectileTimer: 0
   projectileCooldown: 0.5
+  isShooting: 0
   lineRenderer: {fileID: 6055942291539504646}
   distanceJoint: {fileID: 5041260808299645434}
   grapplePoint: {fileID: 0}
   canGrapple: 0
   isGrappling: 0
+  reelingIn: 0
   rigidBody: {fileID: 0}
-  followPlayer: {fileID: 0}
   previousGround: {x: 0, y: 0}
 --- !u!120 &6055942291539504646
 LineRenderer:

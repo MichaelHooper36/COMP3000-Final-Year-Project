@@ -24,7 +24,10 @@ public class RespawnController : MonoBehaviour
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
-                playerMovement.respawnCoordinates = new Vector2(respawnPoint.position.x, respawnPoint.position.y);
+                PlayerPrefs.SetFloat("RespawnX", respawnPoint.position.x);
+                PlayerPrefs.SetFloat("RespawnY", respawnPoint.position.y);
+                PlayerPrefs.Save();
+
                 respawnColour.color = Color.green;
             }
         }

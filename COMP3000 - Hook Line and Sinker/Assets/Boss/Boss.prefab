@@ -187,6 +187,7 @@ MonoBehaviour:
   phaseTwo: 0
   phaseThree: 0
   dead: 0
+  fightTimer: 0.1
   phaseOneSpawns: []
   phaseTwoSpawns: []
   phaseThreeSpawns: []

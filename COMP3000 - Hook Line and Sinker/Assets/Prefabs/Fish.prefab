@@ -310,7 +310,7 @@ MonoBehaviour:
   firePoint: {fileID: 1512287120411275833}
   attackDistance: 4
   attackCooldown: 1
-  maxHealth: 3
+  maxHealth: 5
   currentHealth: 0
   target: {fileID: 0}
   inRange: 0

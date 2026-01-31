@@ -1,4 +1,9 @@
 using UnityEngine;
+using System.Collections;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class EndGame : MonoBehaviour
 {
@@ -12,5 +17,18 @@ public class EndGame : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            PlayerPrefs.DeleteAll();
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
     }
 }
