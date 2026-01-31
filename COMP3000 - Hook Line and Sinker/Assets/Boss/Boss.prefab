@@ -175,17 +175,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 9167687820005254418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ccd487448dd2741be7b5f1ca298f36, type: 3}
+  m_Script: {fileID: 11500000, guid: b04274ad78470694b84672187b8c32d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   rigidBody: {fileID: 7884864142726070294}
-  closeDoor: {fileID: 0}
+  closeDoor: {fileID: 7964849261226601325, guid: 55a4ecb0317e1ef40bdecd8b96735ff1, type: 3}
   risingFloor: {fileID: 0}
-  phaseTwoSpawn: {fileID: 0}
-  phaseThreeSpawn: {fileID: 0}
   maxHealth: 15
   currentHealth: 0
   phaseOne: 0
   phaseTwo: 0
   phaseThree: 0
   dead: 0
+  phaseOneSpawns: []
+  phaseTwoSpawns: []
+  phaseThreeSpawns: []

@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth = 0;
     public HealthBar healthBar;
     public Vector2 respawnCoordinates;
+    public CloseDoor closeDoor;
 
     public LayerMask enemyLayer;
     public float enemyDamageCooldown;
@@ -57,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform grapplePoint;
     public bool canGrapple;
     public bool isGrappling;
+    public bool reelingIn;
 
     public Rigidbody2D rigidBody;
-    public FollowPlayer followPlayer;
     public Vector2 previousGround;
 
     void Awake()
@@ -117,6 +118,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            if (isGrappling)
+            {
+                reelingIn = true;
+            }
             if (isGrounded && canJump)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
@@ -146,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityY = jumpSpeed;
                 extraJumps--;
             }
+        }
+        else if (context.canceled)
+        {
+            reelingIn = false;
         }
     }
 
@@ -190,10 +199,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocityX -= 2;
             }
-            else
-            {
-                movement = 0;
-            }
         }
     }
 
@@ -219,7 +224,6 @@ public class PlayerMovement : MonoBehaviour
         canGrapple = false;
         isWallJumping = false;
         isShooting = false;
-        followPlayer.player = gameObject;
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -293,6 +297,11 @@ public class PlayerMovement : MonoBehaviour
             wallJumpCounter -= Time.deltaTime;
         }
 
+        if (reelingIn)
+        {
+            distanceJoint.distance -= 0.005f;
+        }
+
         if (!isGrappling)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
@@ -354,6 +363,7 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityX = 0f;
                 rigidBody.linearVelocityY = 0f;
                 movement = 0f;
+                closeDoor.OpenDoor();
             }
             enemyDamageTimer = enemyDamageCooldown;
         }

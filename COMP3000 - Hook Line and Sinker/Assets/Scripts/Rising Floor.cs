@@ -3,10 +3,15 @@ using UnityEngine;
 public class RisingFloor : MonoBehaviour
 {
     public Boss boss;
+    public PlayerMovement playerMovement;
 
     public bool isRising;
     public BoxCollider2D ceilingBody;
     public SpriteRenderer ceilingSprite;
+
+    public float phaseOneY = 2.5f;
+    public float phaseTwoY = 28.5f;
+    public float phaseThreeY = 53f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,22 +24,26 @@ public class RisingFloor : MonoBehaviour
     {
         if (isRising && boss.dead)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 5f * Time.deltaTime, transform.position.z);
+            transform.position = new Vector2(transform.position.x, transform.position.y - 10f * Time.deltaTime);
+        }
+        else if (isRising && ((playerMovement.transform.position.y - transform.position.y > 10) || (boss.phaseTwo && playerMovement.transform.position.y >= phaseTwoY + 7) || (boss.phaseThree && playerMovement.transform.position.y >= phaseTwoY + 7)))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 2f * Time.deltaTime);
         }
         else if (isRising)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1.25f * Time.deltaTime, transform.position.z);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1f * Time.deltaTime);
         }
 
-        if (transform.position.y >= 53f && boss.phaseThree)
+        if (transform.position.y >= phaseThreeY && boss.phaseThree)
         {
             isRising = false;
         }
-        else if (transform.position.y >= 28.5f && boss.phaseTwo)
+        else if (transform.position.y >= phaseTwoY && boss.phaseTwo)
         {
             isRising = false;
         }
-        else if (transform.position.y <= 2.5f && boss.dead)
+        else if (transform.position.y <= phaseOneY && boss.dead)
         {
             isRising = false;
         }

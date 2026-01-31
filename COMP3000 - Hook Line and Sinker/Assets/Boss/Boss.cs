@@ -6,8 +6,6 @@ public class Boss : MonoBehaviour
 
     public CloseDoor closeDoor;
     public RisingFloor risingFloor;
-    public Transform phaseTwoSpawn;
-    public Transform phaseThreeSpawn;
 
     public int maxHealth;
     public int currentHealth;
@@ -16,6 +14,10 @@ public class Boss : MonoBehaviour
     public bool phaseTwo;
     public bool phaseThree;
     public bool dead;
+
+    public GameObject[] phaseOneSpawns;
+    public GameObject[] phaseTwoSpawns;
+    public GameObject[] phaseThreeSpawns;
 
     void Awake()
     {
@@ -27,12 +29,17 @@ public class Boss : MonoBehaviour
     {
         currentHealth = maxHealth;
         phaseOne = true;
+        phaseOneSpawns = GameObject.FindGameObjectsWithTag("PhaseOneSpawn");
+        phaseTwoSpawns = GameObject.FindGameObjectsWithTag("PhaseTwoSpawn");
+        phaseThreeSpawns = GameObject.FindGameObjectsWithTag("PhaseThreeSpawn");
+        int randomSpawnOne = Random.Range(0, phaseOneSpawns.Length);
+        transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeDamage(int damage)
@@ -54,14 +61,16 @@ public class Boss : MonoBehaviour
             phaseOne = false;
             phaseTwo = true;
             risingFloor.isRising = true;
-            transform.position = phaseTwoSpawn.position;
+            int randomSpawnTwo = Random.Range(0, phaseOneSpawns.Length);
+            transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
         }
         else if (currentHealth == maxHealth / 3)
         {
             phaseThree = true;
             phaseTwo = false;
             risingFloor.isRising = true;
-            transform.position = phaseThreeSpawn.position;
+            int randomSpawnThree = Random.Range(0, phaseOneSpawns.Length);
+            transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
         }
     }
 }

@@ -24,20 +24,33 @@ public class CloseDoor : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (!doorCollider.enabled)
-            {
-                doorCollider.enabled = true;
-            }
-            if (doorTrigger.enabled)
-            {
-                doorTrigger.enabled = false;
-            }
-            if (!doorSprite.enabled)
-            {
-                doorSprite.enabled = true;
-            }
-            isClosed = true;
+            CloseTheDoor();
         }
+    }
+
+    //public void OnTriggerExit2D(Collider2D collider)
+    //{
+    //    if (collider.gameObject.CompareTag("Player"))
+    //    {
+    //        OpenDoor();
+    //    }
+    //}
+
+    public void CloseTheDoor()
+    {
+        if (!doorCollider.enabled)
+        {
+            doorCollider.enabled = true;
+        }
+        if (doorTrigger.enabled)
+        {
+            doorTrigger.enabled = false;
+        }
+        if (!doorSprite.enabled)
+        {
+            doorSprite.enabled = true;
+        }
+        isClosed = true;
     }
 
     public void OpenDoor()

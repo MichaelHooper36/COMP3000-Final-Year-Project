@@ -141,3 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   sprintRenderer: {fileID: 7354460605022401882}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128

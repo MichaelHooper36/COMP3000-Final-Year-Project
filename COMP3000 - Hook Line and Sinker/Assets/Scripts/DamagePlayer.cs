@@ -30,12 +30,16 @@ public class DamagePlayer : MonoBehaviour
 
                 if (playerMovement.currentHealth == playerMovement.maxHealth)
                 {
+                    if (risingFloor != null)
+                    {
+                        transform.position = new Vector2(transform.position.x, risingFloor.phaseOneY);
+                    }
                     return;
                 }
                 else if (risingFloor != null && risingFloor.isRising)
                 {
                     Transform safeGround = FindSafeGround();
-                    playerMovement.transform.position = new Vector2(safeGround.position.x, safeGround.position.y + (safeGround.localScale.y / 2) + 1);
+                    playerMovement.transform.position = new Vector2(safeGround.position.x, safeGround.position.y + (safeGround.localScale.y / 2) + 2);
                 }
                 else 
                 {
@@ -71,7 +75,7 @@ public class DamagePlayer : MonoBehaviour
             float groundY = ground.transform.position.y;
             float groundX = ground.transform.position.x;
 
-            if (groundY > floorY + (risingFloor.transform.localScale.y / 2) + 1 && groundY < ceilingY && groundX > -45.5f && groundX < -29.5f)
+            if (groundY > floorY + (risingFloor.transform.localScale.y / 2) + 1 && groundY < ceilingY && groundX > -48.5f && groundX < -29.5f)
             {
                 float distance = Mathf.Abs(groundY - player.transform.position.y);
                 if (distance < closestDistance)
