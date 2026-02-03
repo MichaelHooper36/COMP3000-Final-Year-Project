@@ -372,7 +372,7 @@ MonoBehaviour:
   isMoving: 0
   canJump: 0
   moveTimer: 0
-  moveCooldown: 0.05
+  moveCooldown: 0.3
   wallSliding: 0
   wallSlideSpeed: 3
   groundCheckTransform: {fileID: 5781999453645310330}

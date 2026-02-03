@@ -3113,7 +3113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -20.5, y: 5}
-  m_SizeDelta: {x: 50, y: 15}
+  m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &254564356
 MonoBehaviour:
@@ -5907,7 +5907,7 @@ MonoBehaviour:
   bossRoom: {fileID: 1585403709}
   playerOffset: {x: 0, y: 0, z: -10}
   bossRoomOffset: {x: 0, y: 12.5, z: -10}
-  smoothSpeed: 1
+  smoothSpeed: 5
 --- !u!1 &520046055
 GameObject:
   m_ObjectHideFlags: 0
@@ -18414,7 +18414,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "E" while airborne to hook onto a grapple point that is in range.
+  m_text: Press "E" or Right Click while airborne to hook onto a grapple point that
+    is in range.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18869,7 +18870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "Q" to fire a projectile and defeat the enemy
+  m_text: Press "Q" or Left Click to fire a projectile and defeat the enemy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21742,7 +21743,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"WASD" to move and "Space" to Jump'
+  m_text: '"WASD" to move and "Space" to Jump. Jumping while against a wall will
+    execute a wall jump.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

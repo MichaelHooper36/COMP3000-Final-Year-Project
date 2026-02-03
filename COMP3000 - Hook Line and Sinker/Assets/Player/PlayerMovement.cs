@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed;
     public int extraJumps;
     public float movement;
-    float previousMovement;
     public bool canMove;
     public bool isMoving;
     public bool canJump;
@@ -41,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;
 
     public bool isWallJumping;
-    public float wallJumpDirection;
-    public float wallJumpTime;
-    public float wallJumpCounter;
     public Vector2 wallJumpSpeed;
 
     public Transform firePoint;
@@ -97,15 +93,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = true;
             movement = context.ReadValue<Vector2>().x;
-            previousMovement = movement;
-            if (movement < 0 && !isWallJumping)
-            {
-                transform.eulerAngles = new Vector2(0, 180);
-            }
-            else if (movement > 0 && !isWallJumping)
-            {
-                transform.eulerAngles = new Vector2(0, 0);
-            }
         }
         else if (context.canceled && !isWallJumping)
         {
@@ -130,18 +117,17 @@ public class PlayerMovement : MonoBehaviour
                 isWallJumping = true;
                 canMove = false;
                 rigidBody.linearVelocityY = wallJumpSpeed.y;
-                wallJumpCounter = 0f;
                 moveTimer = moveCooldown;
 
-                if (wallJumpDirection == 1)
+                if (transform.eulerAngles.y == 180)
                 {
                     transform.eulerAngles = new Vector2(0, 0);
-                    movement = (wallJumpSpeed.x) / moveSpeed;
+                    rigidBody.linearVelocityX = wallJumpSpeed.x;
                 }
-                else if (wallJumpDirection == -1)
+                else if (transform.eulerAngles.y == 0)
                 {
                     transform.eulerAngles = new Vector2(0, 180);
-                    movement = (-wallJumpSpeed.x) / moveSpeed;
+                    rigidBody.linearVelocityX = -wallJumpSpeed.x;
                 }
             }
             else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
@@ -184,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityY += 1;
             }
 
-            if (Mathf.Abs(rigidBody.linearVelocityX) > Mathf.Abs(previousMovement) * moveSpeed)
+            if (Mathf.Abs(rigidBody.linearVelocityX) > Mathf.Abs(movement) * moveSpeed)
             {
                 movement = rigidBody.linearVelocityX / moveSpeed;
             }
@@ -248,10 +234,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && isWallJumping)
         {
             isWallJumping = false;
-            if (isMoving)
-            {
-                movement = previousMovement;
-            }
         }
         if (isGrounded)
         {
@@ -269,6 +251,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 canMove = true;
                 isWallJumping = false;
+                if (!isMoving)
+                {
+                    movement = rigidBody.linearVelocityX / moveSpeed;
+                }
             }
 
         }
@@ -285,21 +271,11 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
             isWallJumping = false;
-            if (transform.eulerAngles.y == 180)
-            {
-                wallJumpDirection = 1;
-            }
-            else if (transform.eulerAngles.y == 0)
-            {
-                wallJumpDirection = -1;
-            }
-            wallJumpCounter = wallJumpTime;
             rigidBody.linearVelocityY = -wallSlideSpeed;
         }
         else if (!isGrappling)
         {
             canJump = true;
-            wallJumpCounter -= Time.deltaTime;
         }
 
         if (reelingIn)
@@ -307,9 +283,18 @@ public class PlayerMovement : MonoBehaviour
             distanceJoint.distance -= 0.01f;
         }
 
-        if (!isGrappling)
+        if (!isGrappling && !isWallJumping)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
+
+            if (rigidBody.linearVelocityX < 0)
+            {
+                transform.eulerAngles = new Vector2(0, 180);
+            }
+            else if (rigidBody.linearVelocityX > 0)
+            {
+                transform.eulerAngles = new Vector2(0, 0);
+            }
         }
 
         if (distanceJoint.enabled)

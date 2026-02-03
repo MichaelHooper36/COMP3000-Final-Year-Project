@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
+    public HealthBar healthBar;
 
     public bool phaseOne;
     public bool phaseTwo;
@@ -32,6 +33,8 @@ public class Boss : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetCurrentHealth(currentHealth);
         phaseOne = true;
         phaseOneSpawns = GameObject.FindGameObjectsWithTag("PhaseOneSpawn");
         phaseTwoSpawns = GameObject.FindGameObjectsWithTag("PhaseTwoSpawn");
@@ -57,6 +60,7 @@ public class Boss : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetCurrentHealth(currentHealth);
         if (currentHealth <= 0)
         {
             phaseThree = false;
