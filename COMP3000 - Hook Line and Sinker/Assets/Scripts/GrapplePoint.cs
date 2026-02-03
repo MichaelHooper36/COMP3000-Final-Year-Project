@@ -38,6 +38,22 @@ public class GrapplePoint : MonoBehaviour
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
+
+            if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded))
+            {
+                playerMovement.isGrappling = false;
+                playerMovement.canMove = true;
+                playerMovement.canJump = true;
+                playerMovement.distanceJoint.enabled = false;
+                playerMovement.lineRenderer.enabled = false;
+                sprintRenderer.color = Color.white;
+                playerMovement.canGrapple = false;
+                playerMovement.grapplePoint = null;
+            }
+            else if (playerMovement.isGrappling)
+            {
+                sprintRenderer.color = Color.white;
+            }
         }
     }
 

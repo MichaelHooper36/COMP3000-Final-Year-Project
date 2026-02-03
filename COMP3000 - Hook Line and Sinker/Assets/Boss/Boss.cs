@@ -16,6 +16,9 @@ public class Boss : MonoBehaviour
     public bool dead;
 
     public float fightTimer;
+    public float teleportInterval = 4f;
+    public float teleportTimer;
+
     public GameObject[] phaseOneSpawns;
     public GameObject[] phaseTwoSpawns;
     public GameObject[] phaseThreeSpawns;
@@ -41,24 +44,13 @@ public class Boss : MonoBehaviour
         if (closeDoor.isClosed && !dead)
         {
             fightTimer += Time.deltaTime;
-        }
+            teleportTimer -= Time.deltaTime;
 
-        if (phaseOne && fightTimer % 5 == 0)
-        {
-            int randomSpawnOne = Random.Range(0, phaseOneSpawns.Length);
-            transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
-        }
-
-        if (phaseTwo && fightTimer % 5 == 0)
-        {
-            int randomSpawnTwo = Random.Range(0, phaseOneSpawns.Length);
-            transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
-        }
-
-        if (phaseThree && fightTimer % 5 == 0)
-        {
-            int randomSpawnThree = Random.Range(0, phaseOneSpawns.Length);
-            transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
+            if (teleportTimer <= 0f)
+            {
+                Teleport();
+                teleportTimer = teleportInterval;
+            }
         }
     }
 
@@ -90,6 +82,25 @@ public class Boss : MonoBehaviour
             phaseTwo = false;
             risingFloor.isRising = true;
             int randomSpawnThree = Random.Range(0, phaseOneSpawns.Length);
+            transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
+        }
+    }
+
+    public void Teleport()
+    {
+        if (phaseOne)
+        {
+            int randomSpawnOne = Random.Range(0, phaseOneSpawns.Length);
+            transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
+        }
+        else if (phaseTwo)
+        {
+            int randomSpawnTwo = Random.Range(0, phaseTwoSpawns.Length);
+            transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
+        }
+        else if (phaseThree)
+        {
+            int randomSpawnThree = Random.Range(0, phaseThreeSpawns.Length);
             transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
         }
     }

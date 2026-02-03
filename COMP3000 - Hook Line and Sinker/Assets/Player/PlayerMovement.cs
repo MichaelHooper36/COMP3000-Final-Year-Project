@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement(InputAction.CallbackContext context)
     {
-        if (context.performed && canMove)
+        if (context.performed)
         {
             isMoving = true;
             movement = context.ReadValue<Vector2>().x;
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
-            else if (wallJumpCounter > 0f)
+            else if (wallSliding)
             {
                 isWallJumping = true;
                 canMove = false;

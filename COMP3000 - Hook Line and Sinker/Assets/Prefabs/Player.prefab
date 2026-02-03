@@ -365,14 +365,14 @@ MonoBehaviour:
   enemyDamageCooldown: 0.5
   enemyDamageTimer: 0.5
   moveSpeed: 5
-  jumpSpeed: 7
+  jumpSpeed: 6.5
   extraJumps: 1
   movement: 0
   canMove: 0
   isMoving: 0
   canJump: 0
   moveTimer: 0
-  moveCooldown: 0.1
+  moveCooldown: 0.05
   wallSliding: 0
   wallSlideSpeed: 3
   groundCheckTransform: {fileID: 5781999453645310330}
@@ -385,7 +385,7 @@ MonoBehaviour:
   isGrounded: 0
   isWallJumping: 0
   wallJumpDirection: 0
-  wallJumpTime: 0.5
+  wallJumpTime: 10
   wallJumpCounter: 0
   wallJumpSpeed: {x: 5, y: 8}
   firePoint: {fileID: 2347491240478409488}
