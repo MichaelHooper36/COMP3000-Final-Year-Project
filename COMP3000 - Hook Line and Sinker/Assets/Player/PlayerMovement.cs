@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputSystem.Player.Enable();
         inputSystem.Player.Move.performed += Movement;
+        inputSystem.Player.Aim.performed += Aiming;
         inputSystem.Player.Jump.performed += Jumping;
         inputSystem.Player.Swing.performed += Grappling;
         inputSystem.Player.Attack.performed += Shooting;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputSystem.Player.Disable(); 
         inputSystem.Player.Move.performed -= Movement;
+        inputSystem.Player.Aim.performed -= Aiming;
         inputSystem.Player.Jump.performed -= Jumping;
         inputSystem.Player.Swing.performed -= Grappling;
         inputSystem.Player.Attack.performed -= Shooting;
@@ -100,6 +102,35 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
     }
+
+    void Aiming(InputAction.CallbackContext context)
+    {
+        if (!wallSliding)
+        {
+            Vector2 aimInput = context.ReadValue<Vector2>();
+            Vector2 aimDirection;
+
+            // Check if input is from mouse (screen coordinates) or controller (direction vector)
+            if (context.control.device is Pointer)
+            {
+                // Mouse input - convert screen position to direction from player
+                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(aimInput);
+                aimDirection = (mouseWorldPos - (Vector2)transform.position).normalized;
+            }
+            else
+            {
+                // Controller stick input - already a direction vector
+                if (aimInput.sqrMagnitude < 0.1f)
+                    return; // Ignore small stick movements
+                aimDirection = aimInput.normalized;
+            }
+
+            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            firePoint.position = (Vector2)transform.position + aimDirection * 0.75f;
+        }
+    }
+
     void Jumping(InputAction.CallbackContext context)
     {
         if (context.performed)

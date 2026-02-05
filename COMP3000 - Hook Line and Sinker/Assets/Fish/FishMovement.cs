@@ -100,6 +100,11 @@ public class FishMovement : MonoBehaviour
     {
         if (attackCooldown == 0)
         {
+            Vector2 fireDirection = (target.position - transform.position).normalized;
+            float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            firePoint.position = (Vector2)transform.position + fireDirection * 0.75f;
+
             attacking = true;
             Instantiate(projectile, firePoint.position, firePoint.rotation);
             onCooldown = true;

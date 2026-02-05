@@ -30,9 +30,13 @@ public class RisingFloor : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + 2f * Time.deltaTime);
         }
+        else if (isRising && (playerMovement.transform.position.y - transform.position.y > 7.5))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1.5f * Time.deltaTime);
+        }
         else if (isRising)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 0.75f * Time.deltaTime);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1f * Time.deltaTime);
         }
 
         if (transform.position.y >= phaseThreeY && boss.phaseThree)
