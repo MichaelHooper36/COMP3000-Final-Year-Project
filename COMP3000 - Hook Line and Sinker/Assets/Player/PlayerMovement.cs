@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
             float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
             firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            firePoint.position = (Vector2)transform.position + aimDirection * 0.75f;
+            firePoint.position = (Vector2)transform.position + aimDirection * 0.85f;
         }
     }
 

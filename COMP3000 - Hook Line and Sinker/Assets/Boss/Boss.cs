@@ -9,6 +9,8 @@ public class Boss : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
+    public GameObject bossHealth;
+    public GameObject bossName;
     public HealthBar healthBar;
 
     public bool phaseOne;
@@ -27,14 +29,14 @@ public class Boss : MonoBehaviour
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        bossHealth.SetActive(false);
+        bossName.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar.SetCurrentHealth(currentHealth);
         phaseOne = true;
         phaseOneSpawns = GameObject.FindGameObjectsWithTag("PhaseOneSpawn");
         phaseTwoSpawns = GameObject.FindGameObjectsWithTag("PhaseTwoSpawn");
@@ -46,6 +48,11 @@ public class Boss : MonoBehaviour
     {
         if (closeDoor.isClosed && !dead)
         {
+            bossHealth.SetActive(true);
+            bossName.SetActive(true);
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetCurrentHealth(currentHealth);
+
             fightTimer += Time.deltaTime;
             teleportTimer -= Time.deltaTime;
 
@@ -65,8 +72,8 @@ public class Boss : MonoBehaviour
         {
             phaseThree = false;
             dead = true;
-            risingFloor.ceilingBody.enabled = false;
-            risingFloor.ceilingSprite.enabled = false;
+            bossHealth.SetActive(false);
+            bossName.SetActive(false);
             risingFloor.isRising = true;
             closeDoor.OpenDoor();
             Destroy(closeDoor.gameObject);

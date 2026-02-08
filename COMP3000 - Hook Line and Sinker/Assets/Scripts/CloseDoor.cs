@@ -4,7 +4,7 @@ public class CloseDoor : MonoBehaviour
 {
     public BoxCollider2D doorCollider;
     public BoxCollider2D doorTrigger;
-    public SpriteRenderer doorSprite;
+    public GameObject grid;
 
     public bool isClosed;
 
@@ -46,9 +46,9 @@ public class CloseDoor : MonoBehaviour
         {
             doorTrigger.enabled = false;
         }
-        if (!doorSprite.enabled)
+        if (grid != null)
         {
-            doorSprite.enabled = true;
+            grid.SetActive(true);
         }
         isClosed = true;
     }
@@ -63,9 +63,9 @@ public class CloseDoor : MonoBehaviour
         {
             doorTrigger.enabled = true;
         }
-        if (doorSprite.enabled)
+        if (grid != null)
         {
-            doorSprite.enabled = false;
+            grid.SetActive(false);
         }
         isClosed = false;
     }

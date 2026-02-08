@@ -3,9 +3,9 @@ using UnityEngine;
 public class LeftDoor : MonoBehaviour
 {
     public RightDoor rightDoor;
-    public SpriteRenderer leftDoorSprite;
     public BoxCollider2D leftDoorCollider;
     public BoxCollider2D leftDoorTrigger;
+    public GameObject leftGrid;
     public bool leftDoorClosed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,9 +38,9 @@ public class LeftDoor : MonoBehaviour
         {
             leftDoorTrigger.enabled = false;
         }
-        if (!leftDoorSprite.enabled)
+        if (!leftGrid.activeInHierarchy)
         {
-            leftDoorSprite.enabled = true;
+            leftGrid.SetActive(true);
         }
         leftDoorClosed = true;
     }
@@ -55,9 +55,9 @@ public class LeftDoor : MonoBehaviour
         {
             leftDoorTrigger.enabled = true;
         }
-        if (leftDoorSprite.enabled)
+        if (leftGrid.activeInHierarchy)
         {
-            leftDoorSprite.enabled = false;
+            leftGrid.SetActive(false);
         }
         leftDoorClosed = false;
     }

@@ -68,14 +68,13 @@ public class DamagePlayer : MonoBehaviour
         float closestDistance = float.MaxValue;
 
         float floorY = risingFloor.transform.position.y;
-        float ceilingY = risingFloor.ceilingBody.transform.position.y;
 
         foreach (GameObject ground in listOfPlatforms)
         {
             float groundY = ground.transform.position.y;
             float groundX = ground.transform.position.x;
 
-            if (groundY > floorY + (risingFloor.transform.localScale.y / 2) + 1 && groundY < ceilingY && groundX > -48.5f && groundX < -29.5f)
+            if (groundY > floorY + (risingFloor.transform.localScale.y / 2) + 1 && groundX > -48.5f && groundX < -29.5f)
             {
                 float distance = Mathf.Abs(groundY - player.transform.position.y);
                 if (distance < closestDistance)

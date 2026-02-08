@@ -6,8 +6,6 @@ public class RisingFloor : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public bool isRising;
-    public BoxCollider2D ceilingBody;
-    public SpriteRenderer ceilingSprite;
 
     public float phaseOneY = 2.5f;
     public float phaseTwoY = 29f;

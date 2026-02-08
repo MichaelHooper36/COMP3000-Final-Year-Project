@@ -78,7 +78,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -240,7 +240,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   isMoving: 0
   canJump: 0
   moveTimer: 0
-  moveCooldown: 0.2
+  moveCooldown: 0.15
   wallSliding: 0
   wallSlideSpeed: 3
   groundCheckTransform: {fileID: 5781999453645310330}
@@ -443,7 +443,7 @@ MonoBehaviour:
   wallCheckRadius: 0.1
   isGrounded: 0
   isWallJumping: 0
-  wallJumpSpeed: {x: 5, y: 8}
+  wallJumpSpeed: {x: 6, y: 8}
   firePoint: {fileID: 6033303521570165701}
   projectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
   projectileTimer: 0
