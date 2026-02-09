@@ -11,6 +11,11 @@ public class FollowPlayer : MonoBehaviour
     [Range(1, 10)]
     public float smoothSpeed;
 
+    void Start()
+    {
+        Follow(player, playerOffset);
+    }
+
     // Update is called once per frame
     void Update()
     {

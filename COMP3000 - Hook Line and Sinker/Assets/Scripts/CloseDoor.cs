@@ -25,16 +25,14 @@ public class CloseDoor : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             CloseTheDoor();
+            PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.movement = 0;
+                playerMovement.rigidBody.linearVelocityX = 0;
+            }
         }
     }
-
-    //public void OnTriggerExit2D(Collider2D collider)
-    //{
-    //    if (collider.gameObject.CompareTag("Player"))
-    //    {
-    //        OpenDoor();
-    //    }
-    //}
 
     public void CloseTheDoor()
     {

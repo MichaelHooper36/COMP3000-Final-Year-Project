@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isGrappling = true;
         }
-        else if (context.canceled && grapplePoint != null && isGrappling)
+        else if (context.canceled && grapplePoint != null && distanceJoint.enabled)
         {
             isGrappling = false;
             canMove = true;
@@ -258,10 +258,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
-        if (isGrounded && isGrappling)
-        {
-            isGrappling = false;
-        }
         if (isGrounded && isWallJumping)
         {
             isWallJumping = false;
