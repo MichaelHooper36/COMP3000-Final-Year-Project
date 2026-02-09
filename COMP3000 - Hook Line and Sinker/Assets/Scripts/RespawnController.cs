@@ -14,7 +14,14 @@ public class RespawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (respawnPoint.position.x == PlayerPrefs.GetFloat("RespawnX") && respawnPoint.position.y == PlayerPrefs.GetFloat("RespawnY"))
+        {
+            respawnColour.color = Color.green;
+        }
+        else
+        {
+            respawnColour.color = Color.white;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -27,8 +34,6 @@ public class RespawnController : MonoBehaviour
                 PlayerPrefs.SetFloat("RespawnX", respawnPoint.position.x);
                 PlayerPrefs.SetFloat("RespawnY", respawnPoint.position.y);
                 PlayerPrefs.Save();
-
-                respawnColour.color = Color.green;
             }
         }
     }

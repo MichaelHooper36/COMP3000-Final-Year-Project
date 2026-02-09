@@ -144,11 +144,11 @@ public class FishMovement : MonoBehaviour
         float distanceToLeft = Vector2.Distance(transform.position, leftBoundry.position);
         float distanceToRight = Vector2.Distance(transform.position, rightBoundry.position);
 
-        if (distanceToLeft > distanceToRight)
+        if (distanceToLeft >= distanceToRight)
         {
             target = leftBoundry;
         }
-        else if (distanceToRight > distanceToLeft)
+        else if (distanceToRight >= distanceToLeft)
         {
             target = rightBoundry;
         }
