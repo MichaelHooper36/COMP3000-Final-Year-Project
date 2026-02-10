@@ -24,13 +24,13 @@ public class CloseDoor : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            CloseTheDoor();
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
+            if (playerMovement != null && doorTrigger.enabled)
             {
                 playerMovement.movement = 0;
                 playerMovement.rigidBody.linearVelocityX = 0;
             }
+            CloseTheDoor();
         }
     }
 

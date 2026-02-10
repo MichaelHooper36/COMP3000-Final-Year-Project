@@ -1,9 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class EndGame : MonoBehaviour
 {
@@ -24,11 +21,7 @@ public class EndGame : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             PlayerPrefs.DeleteAll();
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            SceneManager.LoadScene("Title Screen");
         }
     }
 }

@@ -25,7 +25,7 @@ public class HiddenPath : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
 
-            if (hit.collider == null)
+            if (hit.collider == null && playerMovement.isGrounded)
             {
                 spriteRenderer.color = Color.black;
                 playerMovement.canGrapple = true;
@@ -77,7 +77,7 @@ public class HiddenPath : MonoBehaviour
                     playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
 
-                if (hit.collider != null)
+                if (hit.collider != null || !playerMovement.isGrounded)
                 {
                     playerMovement.canJump = true;
                     playerMovement.distanceJoint.enabled = false;

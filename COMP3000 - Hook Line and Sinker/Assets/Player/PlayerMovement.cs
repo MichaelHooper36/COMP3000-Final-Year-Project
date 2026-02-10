@@ -101,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
             movement = 0;
             isMoving = false;
         }
+        else if (context.canceled)
+        {
+            isMoving = false;
+        }
     }
 
     void Aiming(InputAction.CallbackContext context)
@@ -153,11 +157,19 @@ public class PlayerMovement : MonoBehaviour
                 if (transform.eulerAngles.y == 180)
                 {
                     transform.eulerAngles = new Vector2(0, 0);
+                    if (!isMoving)
+                    {
+                        movement = wallJumpSpeed.x / moveSpeed;
+                    }                    
                     rigidBody.linearVelocityX = wallJumpSpeed.x;
                 }
                 else if (transform.eulerAngles.y == 0)
                 {
                     transform.eulerAngles = new Vector2(0, 180);
+                    if (!isMoving)
+                    {
+                        movement = -wallJumpSpeed.x / moveSpeed;
+                    }
                     rigidBody.linearVelocityX = -wallJumpSpeed.x;
                 }
             }
@@ -267,6 +279,11 @@ public class PlayerMovement : MonoBehaviour
             extraJumps = 1;
             previousGround = transform.position;
         }
+        if (isGrounded && !isMoving)
+        {
+            movement = 0;
+        }
+
         if (moveTimer > 0)
         {
             moveTimer -= Time.deltaTime;
