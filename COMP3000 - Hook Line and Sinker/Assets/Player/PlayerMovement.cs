@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public HealthBar healthBar;
     public Vector2 respawnCoordinates;
     public CloseDoor closeDoor;
+    public PauseMenu pauseMenu;
 
     public LayerMask enemyLayer;
     public float enemyDamageCooldown;
@@ -391,6 +392,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Debug.Log("Player Died.");
+                PlayerPrefs.SetFloat("Level 1 timer", pauseMenu.elapsedTime);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             enemyDamageTimer = enemyDamageCooldown;

@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 
     public CloseDoor closeDoor;
     public RisingFloor risingFloor;
+    public PauseMenu pauseMenu;
 
     public int maxHealth;
     public int currentHealth;
@@ -72,6 +73,8 @@ public class Boss : MonoBehaviour
         {
             phaseThree = false;
             dead = true;
+            pauseMenu.timerOn = false;
+            PlayerPrefs.SetFloat("Level 1 timer", pauseMenu.elapsedTime);
             bossHealth.SetActive(false);
             bossName.SetActive(false);
             risingFloor.isRising = true;
