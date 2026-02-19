@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 767111717988942447}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 265050883009070605, guid: 64026154124d2f2439aa4b052b1103c0, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,11 +413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b2922f69c0f354e91673ba50bed3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
   maxHealth: 15
   currentHealth: 0
   healthBar: {fileID: 8560162313952595435, guid: 6f08dd0914ed01a40a0c431b56a5b447, type: 3}
   respawnCoordinates: {x: 0, y: 0}
   closeDoor: {fileID: 0}
+  pauseMenu: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -445,7 +447,12 @@ MonoBehaviour:
   isWallJumping: 0
   wallJumpSpeed: {x: 6, y: 8}
   firePoint: {fileID: 6033303521570165701}
-  projectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
+  startingProjectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
+  projectiles:
+  - {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
+  - {fileID: 2928258044019862867, guid: 463c49f9bab9c0140806cf37d89500d7, type: 3}
+  - {fileID: 5189783028909851364, guid: 8617364af9b725447b232f6e13df4031, type: 3}
+  equippedProjectile: {fileID: 0}
   projectileTimer: 0
   projectileCooldown: 0.5
   isShooting: 0

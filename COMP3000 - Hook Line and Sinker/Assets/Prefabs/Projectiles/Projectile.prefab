@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9baa7f6f6e8e8684485f4058ff3c7f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 5
+  speed: 7
   rigidBody: {fileID: 7920794471740636088}
   enemyDamage: 1
   playerDamage: 1

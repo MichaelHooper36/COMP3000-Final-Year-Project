@@ -656,7 +656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &144183061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2436,7 +2436,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.35
+  m_fontSize: 29.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3329,7 +3329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8467104616250152080, guid: 004f6ae355b055d46883d592eae1f0f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3704,7 +3704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1571793191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3860,6 +3860,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617873395}
   m_CullTransparentMesh: 1
+--- !u!1001 &1645445701
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.16263
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.92031
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731159500764617984, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541001473112664175, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+      propertyPath: m_Name
+      value: GameControl
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+--- !u!114 &1645445702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+  m_PrefabInstance: {fileID: 1645445701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71c20044c8fc7345836e0c7d2e79857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameControl
 --- !u!1 &1656195710
 GameObject:
   m_ObjectHideFlags: 0
@@ -5420,6 +5488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2876c7c61c4d05e49a2c46869eee5847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameControl: {fileID: 1645445702}
   mainMenu: {fileID: 144183060}
   levelSelectMenu: {fileID: 1571793190}
   settingsMenu: {fileID: 1983669488}
@@ -5709,3 +5778,4 @@ SceneRoots:
   - {fileID: 2068878842}
   - {fileID: 240528258}
   - {fileID: 1071272340}
+  - {fileID: 1645445701}

@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
+    public GameControl gameControl;
+    private Scene scene;
 
     public int maxHealth;
     public int currentHealth = 0;
@@ -44,7 +47,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 wallJumpSpeed;
 
     public Transform firePoint;
-    public GameObject projectile;
+    public GameObject startingProjectile;
+    public List<GameObject> projectiles;
+    public GameObject equippedProjectile;
     public float projectileTimer;
     public float projectileCooldown;
     public bool isShooting;
@@ -115,18 +120,17 @@ public class PlayerMovement : MonoBehaviour
             Vector2 aimInput = context.ReadValue<Vector2>();
             Vector2 aimDirection;
 
-            // Check if input is from mouse (screen coordinates) or controller (direction vector)
             if (context.control.device is Pointer)
             {
-                // Mouse input - convert screen position to direction from player
                 Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(aimInput);
                 aimDirection = (mouseWorldPos - (Vector2)transform.position).normalized;
             }
             else
             {
-                // Controller stick input - already a direction vector
                 if (aimInput.sqrMagnitude < 0.1f)
-                    return; // Ignore small stick movements
+                {
+                    return;
+                }
                 aimDirection = aimInput.normalized;
             }
 
@@ -244,14 +248,28 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
+        float respawnX = -15;
+        float respawnY = 4;
+        if (scene.name == "levelOne")
         {
-            float respawnX = PlayerPrefs.GetFloat("RespawnX");
-            float respawnY = PlayerPrefs.GetFloat("RespawnY");
-            respawnCoordinates = new Vector2(respawnX, respawnY);
+            respawnX = gameControl.levelOneRespawnX;
+            respawnY = gameControl.levelOneRespawnY;
         }
+        else if (scene.name == "levelTwo")
+        {
+            respawnX = gameControl.levelTwoRespawnX;
+            respawnY = gameControl.levelTwoRespawnY;
+        }
+        else if (scene.name == "levelThree")
+        {
+            respawnX = gameControl.levelThreeRespawnX;
+            respawnY = gameControl.levelThreeRespawnY;
+        }
+
+        respawnCoordinates = new Vector2(respawnX, respawnY);
 
         transform.position = respawnCoordinates;
         distanceJoint.enabled = false;
@@ -264,6 +282,16 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetCurrentHealth(currentHealth);
+
+        int projectileIndex = gameControl.projectileIndex;
+        if (gameControl.projectiles.Contains(projectileIndex))
+        {
+            equippedProjectile = projectiles[projectileIndex];
+        }
+        else
+        {
+            equippedProjectile = startingProjectile;
+        }
     }
 
     // Update is called once per frame
@@ -358,7 +386,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isShooting && projectileTimer == 0)
         {
-            Instantiate(projectile, firePoint.position, firePoint.rotation);
+            Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
             projectileTimer = projectileCooldown;
             Debug.Log("Player fired projectile.");
         }
@@ -392,7 +420,23 @@ public class PlayerMovement : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Debug.Log("Player Died.");
-                PlayerPrefs.SetFloat("Level 1 timer", pauseMenu.elapsedTime);
+
+                if (scene.name == "levelOne")
+                {
+                    gameControl.levelOneTimer = pauseMenu.elapsedTime;
+                    gameControl.Save();
+                }
+                else if (scene.name == "levelTwo")
+                {
+                    gameControl.levelTwoTimer = pauseMenu.elapsedTime;
+                    gameControl.Save();
+                }
+                else if (scene.name == "levelThree")
+                {
+                    gameControl.levelThreeTimer = pauseMenu.elapsedTime;
+                    gameControl.Save();
+                }
+
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             enemyDamageTimer = enemyDamageCooldown;
@@ -403,5 +447,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
+    }
+
+    public void ChangeProjectile(int projectileIndex)
+    {
+        equippedProjectile = projectiles[projectileIndex];
+        gameControl.projectileIndex = projectileIndex;
+        gameControl.Save();
     }
 }

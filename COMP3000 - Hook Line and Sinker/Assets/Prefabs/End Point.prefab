@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb943477dedca584bb3c85d43f6acd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+  scene:
+    m_Handle: 0
 --- !u!70 &520062165441657002
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

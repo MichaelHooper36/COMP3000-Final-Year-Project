@@ -10,6 +10,8 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameControl gameControl;
+
     public GameObject mainMenu;
     public GameObject levelSelectMenu;
     public GameObject settingsMenu;
@@ -38,27 +40,27 @@ public class MainMenu : MonoBehaviour
 
     public void LevelSelect()
     {
-        if (PlayerPrefs.HasKey("Level 1 timer"))
+        if (gameControl.levelOneTimer != 0)
         {
             level1Continue.SetActive(true);
         }
-        if (PlayerPrefs.HasKey("Level 2 timer"))
+        if (gameControl.levelTwoTimer != 0)
         {
             level2Continue.SetActive(true);
         }
-        if (PlayerPrefs.HasKey("Level 3 timer"))
+        if (gameControl.levelThreeTimer != 0)
         {
             level3Continue.SetActive(true);
         }
 
-        if (PlayerPrefs.HasKey("Level 1 PB"))
+        if (gameControl.levelOneBest != 0)
         {
             Debug.Log("Player has PB");
             level1Best.SetActive(true);
             TextMeshProUGUI bestTime = level1Best.transform.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
             if (bestTime != null)
             {
-                float elapsedBestTime = PlayerPrefs.GetFloat("Level 1 PB");
+                float elapsedBestTime = gameControl.levelOneBest;
                 int minutes = Mathf.FloorToInt(elapsedBestTime / 60);
                 int seconds = Mathf.FloorToInt(elapsedBestTime % 60);
                 bestTime.text = ("Personal Best: " + string.Format("{0:00}:{1:00}", minutes, seconds));
@@ -71,18 +73,22 @@ public class MainMenu : MonoBehaviour
 
     public void NewLevelOne()
     {
-        PlayerPrefs.DeleteAll();
-        LoadScene("Level 1");
+        gameControl.levelOneRespawnX = 0;
+        gameControl.levelOneRespawnY = 0;
+        gameControl.Save();
+        LoadScene("levelOne");
     }
 
     public void LevelOne()
     {
-        LoadScene("Level 1");
+        LoadScene("levelOne");
     }
 
     public void NewLevelTwo()
     {
-        PlayerPrefs.DeleteAll();
+        gameControl.levelTwoRespawnX = 0;
+        gameControl.levelTwoRespawnY = 0;
+        gameControl.Save();
         LoadScene("Level 2");
     }
 
@@ -93,7 +99,9 @@ public class MainMenu : MonoBehaviour
 
     public void NewLevelThree()
     {
-        PlayerPrefs.DeleteAll();
+        gameControl.levelThreeRespawnX = 0;
+        gameControl.levelThreeRespawnY = 0;
+        gameControl.Save();
         LoadScene("Level 3");
     }
 

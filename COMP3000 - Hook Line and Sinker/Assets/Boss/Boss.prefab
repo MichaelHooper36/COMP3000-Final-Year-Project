@@ -181,8 +181,12 @@ MonoBehaviour:
   rigidBody: {fileID: 7884864142726070294}
   closeDoor: {fileID: 7964849261226601325, guid: 55a4ecb0317e1ef40bdecd8b96735ff1, type: 3}
   risingFloor: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
   maxHealth: 15
   currentHealth: 0
+  bossHealth: {fileID: 0}
+  bossName: {fileID: 0}
   healthBar: {fileID: 0}
   phaseOne: 0
   phaseTwo: 0
