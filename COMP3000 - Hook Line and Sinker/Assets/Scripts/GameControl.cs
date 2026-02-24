@@ -64,33 +64,34 @@ public class GameControl : MonoBehaviour
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gameInfo.dat");
+        using (FileStream file = File.Create(Application.persistentDataPath + "/gameInfo.dat"))
+        {
+            GameData data = new GameData();
+            data.projectiles = projectiles;
+            data.projectileIndex = projectileIndex;
 
-        GameData data = new GameData();
-        data.projectiles = projectiles;
-        data.projectileIndex = projectileIndex;
+            data.levelOneRespawnX = levelOneRespawnX;
+            data.levelOneRespawnY = levelOneRespawnY;
+            data.levelTwoRespawnX = levelTwoRespawnX;
+            data.levelTwoRespawnY = levelTwoRespawnY;
+            data.levelThreeRespawnX = levelThreeRespawnX;
+            data.levelThreeRespawnY = levelThreeRespawnY;
 
-        data.levelOneRespawnX = levelOneRespawnX;
-        data.levelOneRespawnY = levelOneRespawnY;
-        data.levelTwoRespawnX = levelTwoRespawnX;
-        data.levelTwoRespawnY = levelTwoRespawnY;
-        data.levelThreeRespawnX = levelThreeRespawnX;
-        data.levelThreeRespawnY = levelThreeRespawnY;
-        
-        data.levelOneTimer = levelOneTimer;
-        data.levelTwoTimer = levelTwoTimer;
-        data.levelThreeTimer = levelThreeTimer;
+            data.levelOneTimer = levelOneTimer;
+            data.levelTwoTimer = levelTwoTimer;
+            data.levelThreeTimer = levelThreeTimer;
 
-        data.levelOneBest = levelOneBest;
-        data.levelTwoBest = levelTwoBest;
-        data.levelThreeBest = levelThreeBest;
+            data.levelOneBest = levelOneBest;
+            data.levelTwoBest = levelTwoBest;
+            data.levelThreeBest = levelThreeBest;
 
-        data.timePlayed = timePlayed;
-        data.totalKills = totalKills;
-        data.totalDeaths = totalDeaths;
+            data.timePlayed = timePlayed;
+            data.totalKills = totalKills;
+            data.totalDeaths = totalDeaths;
 
-        bf.Serialize(file, data);
-        file.Close();
+            bf.Serialize(file, data);
+            file.Close();
+        }
     }
 
     public void Load()

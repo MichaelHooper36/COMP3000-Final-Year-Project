@@ -4,7 +4,6 @@ using System.Collections;
 
 public class EndGame : MonoBehaviour
 {
-    public GameControl gameControl;
     public Scene scene;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,54 +24,60 @@ public class EndGame : MonoBehaviour
         {
             if (scene.name == "levelOne")
             {
-                float finalTime = gameControl.levelOneTimer;
-                float personalBest = gameControl.levelOneBest;
+                Debug.Log("Level One Complete!");
+                float finalTime = GameControl.gameControl.levelOneTimer;
+                float personalBest = GameControl.gameControl.levelOneBest;
                 Debug.Log("Previous PB: " + personalBest);
                 Debug.Log("New time: " + finalTime);
                 if ((finalTime < personalBest && finalTime != 0 && personalBest != 0) || (finalTime != 0 && personalBest == 0))
                 {
-                    gameControl.levelOneBest = finalTime;
+                    GameControl.gameControl.levelOneBest = finalTime;
                 }
-                Debug.Log("New PB: " + gameControl.levelOneBest);
+                Debug.Log("New PB: " + GameControl.gameControl.levelOneBest);
 
-                gameControl.levelOneTimer = 0;
-                gameControl.levelOneRespawnX = -16;
-                gameControl.levelOneRespawnY = 3;
-                gameControl.Save();
+                GameControl.gameControl.levelOneTimer = 0;
+                GameControl.gameControl.levelOneRespawnX = -16;
+                GameControl.gameControl.levelOneRespawnY = 3;
+                GameControl.gameControl.Save();
+                GameControl.gameControl.Load();
+                Debug.Log(GameControl.gameControl.levelOneRespawnX);
+                Debug.Log(GameControl.gameControl.levelOneRespawnY);
             }
             else if (scene.name == "levelTwo")
             {
-                float finalTime = gameControl.levelTwoTimer;
-                float personalBest = gameControl.levelTwoBest;
+                float finalTime = GameControl.gameControl.levelTwoTimer;
+                float personalBest = GameControl.gameControl.levelTwoBest;
                 Debug.Log("Previous PB: " + personalBest);
                 Debug.Log("New time: " + finalTime);
                 if ((finalTime < personalBest && finalTime != 0 && personalBest != 0) || (finalTime != 0 && personalBest == 0))
                 {
-                    gameControl.levelTwoBest = finalTime;
+                    GameControl.gameControl.levelTwoBest = finalTime;
                 }
-                Debug.Log("New PB: " + gameControl.levelTwoBest);
+                Debug.Log("New PB: " + GameControl.gameControl.levelTwoBest);
 
-                gameControl.levelTwoTimer = 0;
-                gameControl.levelTwoRespawnX = -16;
-                gameControl.levelTwoRespawnY = 3;
-                gameControl.Save();
+                GameControl.gameControl.levelTwoTimer = 0;
+                GameControl.gameControl.levelTwoRespawnX = -16;
+                GameControl.gameControl.levelTwoRespawnY = 3;
+                GameControl.gameControl.Save();
+                GameControl.gameControl.Load();
             }
-            if (scene.name == "levelThree")
+            else if (scene.name == "levelThree")
             {
-                float finalTime = gameControl.levelThreeTimer;
-                float personalBest = gameControl.levelThreeBest;
+                float finalTime = GameControl.gameControl.levelThreeTimer;
+                float personalBest = GameControl.gameControl.levelThreeBest;
                 Debug.Log("Previous PB: " + personalBest);
                 Debug.Log("New time: " + finalTime);
                 if ((finalTime < personalBest && finalTime != 0 && personalBest != 0) || (finalTime != 0 && personalBest == 0))
                 {
-                    gameControl.levelThreeBest = finalTime;
+                    GameControl.gameControl.levelThreeBest = finalTime;
                 }
-                Debug.Log("New PB: " + gameControl.levelThreeBest);
+                Debug.Log("New PB: " + GameControl.gameControl.levelThreeBest);
 
-                gameControl.levelThreeTimer = 0;
-                gameControl.levelThreeRespawnX = -16;
-                gameControl.levelThreeRespawnY = 3;
-                gameControl.Save();
+                GameControl.gameControl.levelThreeTimer = 0;
+                GameControl.gameControl.levelThreeRespawnX = -16;
+                GameControl.gameControl.levelThreeRespawnY = 3;
+                GameControl.gameControl.Save();
+                GameControl.gameControl.Load();
             }
 
             SceneManager.LoadScene("Title Screen");

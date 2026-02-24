@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameControl
   projectiles: 00000000
   projectileIndex: 0
-  levelOneRespawnX: 32
-  levelOneRespawnY: 3.5
+  levelOneRespawnX: -16
+  levelOneRespawnY: 4
   levelTwoRespawnX: 0
   levelTwoRespawnY: 0
   levelThreeRespawnX: 0

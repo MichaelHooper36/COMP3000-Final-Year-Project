@@ -1,8 +1,7 @@
-#if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-#else
+#if !UNITY_EDITOR
 using System.Diagnostics;
 using System.IO;
 #endif
@@ -12,7 +11,6 @@ using TMPro;
 public class PauseMenu : MonoBehaviour
 {
     public InputSystem_Actions menuInputs;
-    public GameControl gameControl;
     public Scene scene;
 
     public GameObject mainUI;
@@ -58,15 +56,15 @@ public class PauseMenu : MonoBehaviour
 
         if (scene.name == "levelOne")
         {
-            elapsedTime = gameControl.levelOneTimer;
+            elapsedTime = GameControl.gameControl.levelOneTimer;
         }
         else if (scene.name == "levelTwo")
         {
-            elapsedTime = gameControl.levelTwoTimer;
+            elapsedTime = GameControl.gameControl.levelTwoTimer;
         }
         else if (scene.name == "levelThree")
         {
-            elapsedTime= gameControl.levelThreeTimer;
+            elapsedTime= GameControl.gameControl.levelThreeTimer;
         }
 
         timerOn = true;
@@ -120,24 +118,27 @@ public class PauseMenu : MonoBehaviour
 
         if (scene.name == "levelOne")
         {
-            gameControl.levelOneTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelOneTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
         else if (scene.name == "levelTwo")
         {
-            gameControl.levelTwoTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelTwoTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
         else if (scene.name == "levelThree")
         {
-            gameControl.levelThreeTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelThreeTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
 
 #if UNITY_EDITOR
         SceneManager.LoadScene("Title Screen");
 #else
-            string mainMenuPath = Path.Combine(Application.dataPath, "COMP3000 - Hook Line and Sinker.exe")
+        string mainMenuPath = Path.Combine(Application.dataPath, "COMP3000 - Hook Line and Sinker.exe");
         Process.Start(mainMenuPath, "Title Screen");
 #endif
     }
@@ -151,18 +152,21 @@ public class PauseMenu : MonoBehaviour
 
         if (scene.name == "levelOne")
         {
-            gameControl.levelOneTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelOneTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
         else if (scene.name == "levelTwo")
         {
-            gameControl.levelTwoTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelTwoTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
         else if (scene.name == "levelThree")
         {
-            gameControl.levelThreeTimer = elapsedTime;
-            gameControl.Save();
+            GameControl.gameControl.levelThreeTimer = elapsedTime;
+            GameControl.gameControl.Save();
+            GameControl.gameControl.Load();
         }
 
 #if UNITY_EDITOR

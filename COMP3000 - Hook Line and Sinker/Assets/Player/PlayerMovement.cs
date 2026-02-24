@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
-    public GameControl gameControl;
     private Scene scene;
 
     public int maxHealth;
@@ -248,29 +247,31 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log(respawnCoordinates);
         scene = SceneManager.GetActiveScene();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        float respawnX = -15;
-        float respawnY = 4;
+        float respawnX = 0;
+        float respawnY = 0;
         if (scene.name == "levelOne")
         {
-            respawnX = gameControl.levelOneRespawnX;
-            respawnY = gameControl.levelOneRespawnY;
+            respawnX = GameControl.gameControl.levelOneRespawnX;
+            respawnY = GameControl.gameControl.levelOneRespawnY;
         }
         else if (scene.name == "levelTwo")
         {
-            respawnX = gameControl.levelTwoRespawnX;
-            respawnY = gameControl.levelTwoRespawnY;
+            respawnX = GameControl.gameControl.levelTwoRespawnX;
+            respawnY = GameControl.gameControl.levelTwoRespawnY;
         }
         else if (scene.name == "levelThree")
         {
-            respawnX = gameControl.levelThreeRespawnX;
-            respawnY = gameControl.levelThreeRespawnY;
+            respawnX = GameControl.gameControl.levelThreeRespawnX;
+            respawnY = GameControl.gameControl.levelThreeRespawnY;
         }
 
         respawnCoordinates = new Vector2(respawnX, respawnY);
 
+        Debug.Log(respawnCoordinates);
         transform.position = respawnCoordinates;
         distanceJoint.enabled = false;
         canMove = true;
@@ -283,8 +284,8 @@ public class PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetCurrentHealth(currentHealth);
 
-        int projectileIndex = gameControl.projectileIndex;
-        if (gameControl.projectiles.Contains(projectileIndex))
+        int projectileIndex = GameControl.gameControl.projectileIndex;
+        if (GameControl.gameControl.projectiles.Contains(projectileIndex))
         {
             equippedProjectile = projectiles[projectileIndex];
         }
@@ -423,18 +424,21 @@ public class PlayerMovement : MonoBehaviour
 
                 if (scene.name == "levelOne")
                 {
-                    gameControl.levelOneTimer = pauseMenu.elapsedTime;
-                    gameControl.Save();
+                    GameControl.gameControl.levelOneTimer = pauseMenu.elapsedTime;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
                 }
                 else if (scene.name == "levelTwo")
                 {
-                    gameControl.levelTwoTimer = pauseMenu.elapsedTime;
-                    gameControl.Save();
+                    GameControl.gameControl.levelTwoTimer = pauseMenu.elapsedTime;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
                 }
                 else if (scene.name == "levelThree")
                 {
-                    gameControl.levelThreeTimer = pauseMenu.elapsedTime;
-                    gameControl.Save();
+                    GameControl.gameControl.levelThreeTimer = pauseMenu.elapsedTime;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
                 }
 
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -452,7 +456,8 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeProjectile(int projectileIndex)
     {
         equippedProjectile = projectiles[projectileIndex];
-        gameControl.projectileIndex = projectileIndex;
-        gameControl.Save();
+        GameControl.gameControl.projectileIndex = projectileIndex;
+        GameControl.gameControl.Save();
+        GameControl.gameControl.Load();
     }
 }

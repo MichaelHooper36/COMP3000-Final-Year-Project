@@ -1,8 +1,7 @@
-#if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-#else
+#if !UNITY_EDITOR
 using System.Diagnostics;
 using System.IO;
 #endif
@@ -10,8 +9,6 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameControl gameControl;
-
     public GameObject mainMenu;
     public GameObject levelSelectMenu;
     public GameObject settingsMenu;
@@ -40,27 +37,27 @@ public class MainMenu : MonoBehaviour
 
     public void LevelSelect()
     {
-        if (gameControl.levelOneTimer != 0)
+        if (GameControl.gameControl.levelOneTimer != 0)
         {
             level1Continue.SetActive(true);
         }
-        if (gameControl.levelTwoTimer != 0)
+        if (GameControl.gameControl.levelTwoTimer != 0)
         {
             level2Continue.SetActive(true);
         }
-        if (gameControl.levelThreeTimer != 0)
+        if (GameControl.gameControl.levelThreeTimer != 0)
         {
             level3Continue.SetActive(true);
         }
 
-        if (gameControl.levelOneBest != 0)
+        if (GameControl.gameControl.levelOneBest != 0)
         {
             Debug.Log("Player has PB");
             level1Best.SetActive(true);
             TextMeshProUGUI bestTime = level1Best.transform.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
             if (bestTime != null)
             {
-                float elapsedBestTime = gameControl.levelOneBest;
+                float elapsedBestTime = GameControl.gameControl.levelOneBest;
                 int minutes = Mathf.FloorToInt(elapsedBestTime / 60);
                 int seconds = Mathf.FloorToInt(elapsedBestTime % 60);
                 bestTime.text = ("Personal Best: " + string.Format("{0:00}:{1:00}", minutes, seconds));
@@ -73,9 +70,13 @@ public class MainMenu : MonoBehaviour
 
     public void NewLevelOne()
     {
-        gameControl.levelOneRespawnX = 0;
-        gameControl.levelOneRespawnY = 0;
-        gameControl.Save();
+        GameControl.gameControl.levelOneRespawnX = -16;
+        GameControl.gameControl.levelOneRespawnY = 3;
+        GameControl.gameControl.levelOneTimer = 0;
+        GameControl.gameControl.Save();
+        GameControl.gameControl.Load();
+        Debug.Log(GameControl.gameControl.levelOneRespawnX);
+        Debug.Log(GameControl.gameControl.levelOneRespawnY);
         LoadScene("levelOne");
     }
 
@@ -86,9 +87,11 @@ public class MainMenu : MonoBehaviour
 
     public void NewLevelTwo()
     {
-        gameControl.levelTwoRespawnX = 0;
-        gameControl.levelTwoRespawnY = 0;
-        gameControl.Save();
+        GameControl.gameControl.levelTwoRespawnX = 0;
+        GameControl.gameControl.levelTwoRespawnY = 0;
+        GameControl.gameControl.levelTwoTimer = 0;
+        GameControl.gameControl.Save();
+        GameControl.gameControl.Load();
         LoadScene("Level 2");
     }
 
@@ -99,9 +102,11 @@ public class MainMenu : MonoBehaviour
 
     public void NewLevelThree()
     {
-        gameControl.levelThreeRespawnX = 0;
-        gameControl.levelThreeRespawnY = 0;
-        gameControl.Save();
+        GameControl.gameControl.levelThreeRespawnX = 0;
+        GameControl.gameControl.levelThreeRespawnY = 0;
+        GameControl.gameControl.levelThreeTimer = 0;
+        GameControl.gameControl.Save();
+        GameControl.gameControl.Load();
         LoadScene("Level 3");
     }
 

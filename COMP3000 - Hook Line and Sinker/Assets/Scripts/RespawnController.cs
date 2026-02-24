@@ -13,7 +13,6 @@ public class RespawnController : MonoBehaviour
     public bool inventoryPointActive = false;
 
     private PlayerMovement playerMovement;
-    public GameControl gameControl;
     private Scene scene;
 
     void Awake()
@@ -57,7 +56,7 @@ public class RespawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (scene.name == "levelOne" && respawnPoint.position.x == gameControl.levelOneRespawnX && respawnPoint.position.y == gameControl.levelOneRespawnY)
+        if (scene.name == "levelOne" && respawnPoint.position.x == GameControl.gameControl.levelOneRespawnX && respawnPoint.position.y == GameControl.gameControl.levelOneRespawnY)
         {
             respawnColour.color = Color.green;
         }
@@ -76,9 +75,24 @@ public class RespawnController : MonoBehaviour
             {
                 if (scene.name == "levelOne")
                 {
-                    gameControl.levelOneRespawnX = respawnPoint.position.x;
-                    gameControl.levelOneRespawnY = respawnPoint.position.y;
-                    gameControl.Save();
+                    GameControl.gameControl.levelOneRespawnX = respawnPoint.position.x;
+                    GameControl.gameControl.levelOneRespawnY = respawnPoint.position.y;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
+                }
+                else if (scene.name == "levelTwo")
+                {
+                    GameControl.gameControl.levelTwoRespawnX = respawnPoint.position.x;
+                    GameControl.gameControl.levelTwoRespawnY = respawnPoint.position.y;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
+                }
+                else if (scene.name == "levelThree")
+                {
+                    GameControl.gameControl.levelThreeRespawnX = respawnPoint.position.x;
+                    GameControl.gameControl.levelThreeRespawnY = respawnPoint.position.y;
+                    GameControl.gameControl.Save();
+                    GameControl.gameControl.Load();
                 }
             }
 
