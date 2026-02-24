@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour
 {
-    public SpriteRenderer sprintRenderer;
+    public SpriteRenderer spriteRenderer;
     public LayerMask groundLayer;
     private PlayerMovement playerMovement;
     private bool playerInRange;
 
     void Awake()
     {
-        sprintRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,13 +28,13 @@ public class GrapplePoint : MonoBehaviour
 
             if (hit.collider == null && !playerMovement.isGrounded)
             {
-                sprintRenderer.color = Color.black;
+                spriteRenderer.color = Color.black;
                 playerMovement.canGrapple = true;
                 playerMovement.grapplePoint = transform;
             }
             else
             {
-                sprintRenderer.color = Color.white;
+                spriteRenderer.color = Color.white;
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
@@ -46,13 +46,14 @@ public class GrapplePoint : MonoBehaviour
                 playerMovement.canJump = true;
                 playerMovement.distanceJoint.enabled = false;
                 playerMovement.lineRenderer.enabled = false;
-                sprintRenderer.color = Color.white;
+                spriteRenderer.color = Color.white;
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
             else if (playerMovement.isGrappling)
             {
-                sprintRenderer.color = Color.white;
+                spriteRenderer.color = Color.white;
+                playerMovement.grapplePoint = transform;
             }
         }
     }
@@ -61,10 +62,10 @@ public class GrapplePoint : MonoBehaviour
     {
         if (collider.name == "Player")
         {
-            PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
+            playerMovement = collider.GetComponent<PlayerMovement>();
             playerMovement.grapplePoint = null;
             playerMovement.canGrapple = false;
-            sprintRenderer.color = Color.white;
+            spriteRenderer.color = Color.white;
             playerInRange = false;
             playerMovement = null;
         }

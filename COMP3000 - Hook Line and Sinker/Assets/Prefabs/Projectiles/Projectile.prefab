@@ -169,6 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 7
-  rigidBody: {fileID: 7920794471740636088}
-  enemyDamage: 1
-  playerDamage: 1
+  enemyDamage: 10
+  playerDamage: 10

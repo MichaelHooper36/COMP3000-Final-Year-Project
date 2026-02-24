@@ -92,12 +92,12 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelTwoTimer = 0;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
-        LoadScene("Level 2");
+        LoadScene("levelTwo");
     }
 
     public void LevelTwo()
     {
-        LoadScene("Level 2");
+        LoadScene("levelTwo");
     }
 
     public void NewLevelThree()
@@ -107,12 +107,12 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelThreeTimer = 0;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
-        LoadScene("Level 3");
+        LoadScene("levelThree");
     }
 
     public void LevelThree()
     {
-        LoadScene("Level 3");
+        LoadScene("levelThree");
     }
 
     public void LoadScene(string sceneName)

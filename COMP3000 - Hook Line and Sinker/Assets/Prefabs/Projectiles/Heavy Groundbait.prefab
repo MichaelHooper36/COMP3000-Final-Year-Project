@@ -169,6 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 6
-  rigidBody: {fileID: 4947381650149361716}
-  enemyDamage: 2
-  playerDamage: 2
+  enemyDamage: 20
+  playerDamage: 20

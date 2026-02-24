@@ -4,15 +4,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 5f;
-    public Rigidbody2D rigidBody;
+    protected Rigidbody2D rigidBody;
 
     public int enemyDamage = 1;
     public int playerDamage = 1;
 
+    private GameObject projectileOrigin;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.linearVelocity = transform.right * speed;
 
         // Destroy the projectile after 3 seconds to prevent memory leaks
@@ -24,8 +26,18 @@ public class Projectile : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter2D(Collider2D collider)
+    public virtual void SetOrigin(GameObject projectileOrigin)
     {
+        this.projectileOrigin = projectileOrigin;
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject == projectileOrigin)
+        {
+            return; // Ignore collision with the object that fired the projectile
+        }
+
         if (collider.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Projectile hit ground.");

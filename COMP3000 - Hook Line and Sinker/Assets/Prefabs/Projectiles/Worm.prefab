@@ -168,10 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f569d5e891d0640824114f35ee0bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 5
-  rigidBody: {fileID: 6180969242582831514}
-  enemyDamage: 1
-  playerDamage: 1
+  speed: 6
+  enemyDamage: 8
+  playerDamage: 8
   minUp: -4
   maxUp: 4
-  alternationSpeed: 7
+  alternationSpeed: 8

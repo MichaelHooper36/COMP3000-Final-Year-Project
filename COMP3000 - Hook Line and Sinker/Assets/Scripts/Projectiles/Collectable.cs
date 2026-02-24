@@ -30,7 +30,10 @@ public class WormCollectable : MonoBehaviour
 
             if (playerMovement.projectiles[projectileIndex] == projectile)
             {
-                GameControl.gameControl.projectiles.Add(projectileIndex);
+                if (!GameControl.gameControl.projectiles.Contains(projectileIndex))
+                {
+                    GameControl.gameControl.projectiles.Add(projectileIndex);
+                }
                 GameControl.gameControl.Save();
                 GameControl.gameControl.Load();
                 playerMovement.ChangeProjectile(projectileIndex);

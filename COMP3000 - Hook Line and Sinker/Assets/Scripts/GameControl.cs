@@ -27,6 +27,10 @@ public class GameControl : MonoBehaviour
     public float levelTwoBest;
     public float levelThreeBest;
 
+    public bool levelOneClear;
+    public bool levelTwoClear;
+    public bool levelThreeClear;
+
     public float timePlayed;
     public float totalKills;
     public float totalDeaths;
@@ -42,12 +46,13 @@ public class GameControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Load();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Load();
+
     }
 
     // Update is called once per frame
@@ -85,6 +90,10 @@ public class GameControl : MonoBehaviour
             data.levelTwoBest = levelTwoBest;
             data.levelThreeBest = levelThreeBest;
 
+            data.levelOneClear = levelOneClear;
+            data.levelTwoClear = levelTwoClear;
+            data.levelThreeClear = levelThreeClear;
+
             data.timePlayed = timePlayed;
             data.totalKills = totalKills;
             data.totalDeaths = totalDeaths;
@@ -121,6 +130,10 @@ public class GameControl : MonoBehaviour
             levelOneBest = data.levelOneBest;
             levelTwoBest = data.levelTwoBest;
             levelThreeBest = data.levelThreeBest;
+
+            levelOneClear = data.levelOneClear;
+            levelTwoClear = data.levelTwoClear;
+            levelThreeClear = data.levelThreeClear;
             
             timePlayed = data.timePlayed;
             totalKills = data.totalKills;
@@ -149,6 +162,10 @@ class GameData
     public float levelOneBest;
     public float levelTwoBest;
     public float levelThreeBest;
+
+    public bool levelOneClear;
+    public bool levelTwoClear;
+    public bool levelThreeClear;
 
     public float timePlayed;
     public float totalKills;

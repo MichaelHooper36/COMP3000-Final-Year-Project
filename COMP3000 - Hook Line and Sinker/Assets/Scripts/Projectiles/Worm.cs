@@ -19,6 +19,13 @@ public class Worm : Projectile
     {
         elapsedTime += Time.deltaTime;
         float offset = Mathf.Lerp(minUp, maxUp, (Mathf.Sin(elapsedTime * alternationSpeed) + 1) / 2);
-        rigidBody.linearVelocity = (Vector2)(transform.right * speed) + (Vector2)(transform.up * offset);
+        if (rigidBody.linearVelocityX < 0)
+        {
+            rigidBody.linearVelocity = (Vector2)(transform.right * speed) + (Vector2)(-transform.up * offset);
+        }
+        else
+        {
+            rigidBody.linearVelocity = (Vector2)(transform.right * speed) + (Vector2)(transform.up * offset);
+        }
     }
 }

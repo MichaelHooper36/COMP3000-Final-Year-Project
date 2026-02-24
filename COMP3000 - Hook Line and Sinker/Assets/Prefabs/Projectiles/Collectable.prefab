@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8065628756917658332}
   - component: {fileID: 1528853687856318996}
   - component: {fileID: 3151386019662330122}
-  - component: {fileID: 8477555610932109091}
+  - component: {fileID: 7427020615213770925}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
@@ -128,7 +128,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &8477555610932109091
+--- !u!114 &7427020615213770925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,6 +139,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5610bc6116c8fc746a476b0bf6a2af7b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::WormCollectable
   projectile: {fileID: 0}
+  projectileIndex: 0

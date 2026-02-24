@@ -413,8 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b2922f69c0f354e91673ba50bed3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
-  maxHealth: 15
+  maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 8560162313952595435, guid: 6f08dd0914ed01a40a0c431b56a5b447, type: 3}
   respawnCoordinates: {x: 0, y: 0}
@@ -452,6 +451,7 @@ MonoBehaviour:
   - {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
   - {fileID: 2928258044019862867, guid: 463c49f9bab9c0140806cf37d89500d7, type: 3}
   - {fileID: 5189783028909851364, guid: 8617364af9b725447b232f6e13df4031, type: 3}
+  - {fileID: 2633350448534736947, guid: 19c126327307b1040ba482f83e36865f, type: 3}
   equippedProjectile: {fileID: 0}
   projectileTimer: 0
   projectileCooldown: 0.5

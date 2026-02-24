@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     public float projectileTimer;
     public float projectileCooldown;
     public bool isShooting;
+    private Vector2 aimingInput;
+    private bool usingMouse;
 
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
@@ -114,28 +116,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Aiming(InputAction.CallbackContext context)
     {
-        if (!wallSliding)
+        if(context.performed)
         {
-            Vector2 aimInput = context.ReadValue<Vector2>();
-            Vector2 aimDirection;
-
-            if (context.control.device is Pointer)
-            {
-                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(aimInput);
-                aimDirection = (mouseWorldPos - (Vector2)transform.position).normalized;
-            }
-            else
-            {
-                if (aimInput.sqrMagnitude < 0.1f)
-                {
-                    return;
-                }
-                aimDirection = aimInput.normalized;
-            }
-
-            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            firePoint.position = (Vector2)transform.position + aimDirection * 0.85f;
+            aimingInput = context.ReadValue<Vector2>();
+            usingMouse = context.control.device is Pointer;
+        }
+        if (context.canceled && !usingMouse)
+        {
+            aimingInput = Vector2.zero;
         }
     }
 
@@ -298,6 +286,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateAim();
 
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
         if (isGrounded && isWallJumping)
@@ -387,7 +376,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (isShooting && projectileTimer == 0)
         {
-            Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
+            GameObject firedProjectile = Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
+            firedProjectile.GetComponent<Projectile>().SetOrigin(gameObject);
             projectileTimer = projectileCooldown;
             Debug.Log("Player fired projectile.");
         }
@@ -409,6 +399,39 @@ public class PlayerMovement : MonoBehaviour
                 enemyDamageTimer = 0;
             }
         }
+
+        if (isGrappling)
+        {
+            lineRenderer.SetPosition(0, grapplePoint.position);
+        }
+    }
+
+    void UpdateAim()
+    {
+        if (wallSliding)
+        {
+            return;
+        }
+
+        Vector2 aimDirection;
+
+        if(usingMouse)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(aimingInput);
+            aimDirection = (mousePosition - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            if (aimingInput.sqrMagnitude < 0.01f)
+            {
+                return;
+            }
+            aimDirection = aimingInput.normalized;
+        }
+
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        firePoint.position = (Vector2)transform.position + (aimDirection * 0.85f);
     }
 
     public void TakeDamage(int damage)
