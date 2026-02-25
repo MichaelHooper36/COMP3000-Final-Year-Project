@@ -106,7 +106,7 @@ public class HiddenPath : MonoBehaviour
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
 
-            if (transform.position.x > originalPosition.x + 1.0f || transform.position.x < originalPosition.x - 1.0f || transform.position.y < originalPosition.y - 1.0f)
+            if (transform.position.x > originalPosition.x + 0.5f || transform.position.x < originalPosition.x - 0.5f || transform.position.y < originalPosition.y - 0.5f)
             {
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.None;
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;

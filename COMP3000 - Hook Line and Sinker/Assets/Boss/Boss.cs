@@ -12,7 +12,6 @@ public class Boss : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public GameObject bossHealth;
-    public GameObject bossName;
     public HealthBar healthBar;
 
     public bool phaseOne;
@@ -32,7 +31,6 @@ public class Boss : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         bossHealth.SetActive(false);
-        bossName.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,7 +49,6 @@ public class Boss : MonoBehaviour
         if (closeDoor.isClosed && !dead)
         {
             bossHealth.SetActive(true);
-            bossName.SetActive(true);
             healthBar.SetMaxHealth(maxHealth);
             healthBar.SetCurrentHealth(currentHealth);
 
@@ -78,7 +75,6 @@ public class Boss : MonoBehaviour
             gameControl.levelOneTimer = pauseMenu.elapsedTime;
             gameControl.Save();
             bossHealth.SetActive(false);
-            bossName.SetActive(false);
             risingFloor.isRising = true;
             closeDoor.OpenDoor();
             Destroy(closeDoor.gameObject);

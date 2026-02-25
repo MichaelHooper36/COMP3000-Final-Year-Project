@@ -13,4 +13,47 @@ public class ProjectileDamage : Projectile
     {
         
     }
+
+    public override void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject == projectileOrigin)
+        {
+            return; // Ignore collision with the object that fired the projectile
+        }
+
+        if (collider.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("Projectile hit ground.");
+            Destroy(transform.parent.gameObject);
+        }
+        else if (collider.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Projectile hit enemy.");
+            FishMovement fishMovement = collider.GetComponent<FishMovement>();
+            if (fishMovement != null)
+            {
+                fishMovement.TakeDamage(enemyDamage);
+            }
+            else
+            {
+                Boss boss = collider.GetComponent<Boss>();
+                if (boss != null)
+                {
+                    boss.TakeDamage(enemyDamage);
+                }
+            }
+            Destroy(transform.parent.gameObject);
+        }
+        else if (collider.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Projectile hit player.");
+            PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                Debug.Log("Projectile dealing damage to player.");
+                playerMovement.TakeDamage(playerDamage);
+            }
+            Destroy(transform.parent.gameObject);
+        }
+    }
 }

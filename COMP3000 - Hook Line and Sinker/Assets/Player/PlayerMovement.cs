@@ -325,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
         Collider2D enemyCollider = Physics2D.OverlapCircle(transform.position, 0.6f, enemyLayer);
         if (enemyCollider != null)
         {
-            TakeDamage(1);
+            TakeDamage(10);
             rigidBody.linearVelocityY = jumpSpeed;
         }
 

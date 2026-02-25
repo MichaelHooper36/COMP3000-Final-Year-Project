@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public int enemyDamage = 1;
     public int playerDamage = 1;
 
-    private GameObject projectileOrigin;
+    protected GameObject projectileOrigin;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

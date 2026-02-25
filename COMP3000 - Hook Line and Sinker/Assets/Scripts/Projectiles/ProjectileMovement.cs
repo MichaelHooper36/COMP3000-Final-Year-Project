@@ -7,15 +7,22 @@ public class ProjectileMovement : Projectile
     private PlayerMovement playerMovement;
     private bool playerInRange;
 
+    private float elapsedTime;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
-        base.Start();
+        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.linearVelocity = transform.right * speed;
+
+        elapsedTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        elapsedTime += Time.deltaTime;
+
         if (playerInRange && playerMovement != null)
         {
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
@@ -33,7 +40,7 @@ public class ProjectileMovement : Projectile
                 playerMovement.grapplePoint = null;
             }
 
-            if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded))
+            if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded || elapsedTime >= 3f))
             {
                 playerMovement.isGrappling = false;
                 playerMovement.canMove = true;
@@ -43,6 +50,11 @@ public class ProjectileMovement : Projectile
                 spriteRenderer.color = Color.white;
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
+
+                if (elapsedTime >=3)
+                {
+                    Destroy(gameObject);
+                }
             }
             else if (playerMovement.isGrappling)
             {

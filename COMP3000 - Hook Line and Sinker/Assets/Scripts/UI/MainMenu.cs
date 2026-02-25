@@ -73,10 +73,9 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelOneRespawnX = -16;
         GameControl.gameControl.levelOneRespawnY = 3;
         GameControl.gameControl.levelOneTimer = 0;
+        GameControl.gameControl.projectileIndex = 0;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
-        Debug.Log(GameControl.gameControl.levelOneRespawnX);
-        Debug.Log(GameControl.gameControl.levelOneRespawnY);
         LoadScene("levelOne");
     }
 
@@ -90,6 +89,7 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelTwoRespawnX = 0;
         GameControl.gameControl.levelTwoRespawnY = 0;
         GameControl.gameControl.levelTwoTimer = 0;
+        GameControl.gameControl.projectileIndex = 0;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
         LoadScene("levelTwo");
@@ -105,6 +105,7 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelThreeRespawnX = 0;
         GameControl.gameControl.levelThreeRespawnY = 0;
         GameControl.gameControl.levelThreeTimer = 0;
+        GameControl.gameControl.projectileIndex = 0;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
         LoadScene("levelThree");
