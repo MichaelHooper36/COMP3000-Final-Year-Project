@@ -11,6 +11,7 @@ public class RespawnController : MonoBehaviour
 
     public GameObject inventoryPoint;
     public bool inventoryPointActive = false;
+    public PauseMenu pauseMenu;
 
     private PlayerMovement playerMovement;
     private Scene scene;
@@ -36,14 +37,7 @@ public class RespawnController : MonoBehaviour
     {
         if (context.performed && inventoryPointActive)
         {
-            if (Time.timeScale == 1f)
-            {
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-            }
+            pauseMenu.Projectile();
         }
     }
 

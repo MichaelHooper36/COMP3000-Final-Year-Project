@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject mainUI;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject projectileMenu;
 
     public TextMeshProUGUI timer;
     public float elapsedTime;
@@ -94,6 +95,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1f;
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false);
+            projectileMenu.SetActive(false);
         }
     }
 
@@ -101,6 +103,20 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
+    }
+
+    public void Projectile()
+    {
+        if (Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+            projectileMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            projectileMenu.SetActive(false);
+        }
     }
 
     public void Back()
