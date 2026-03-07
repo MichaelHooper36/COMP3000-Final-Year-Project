@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 7f00fce4ea0c69d4d823a17d6891518a
+guid: 4bee1953ea25da341b3e976cd8632e35
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5182369892215404823
-    second: FishermanIdle_0
+      213: 1980650708424409756
+    second: FishermanRun_0
   - first:
-      213: 3007125775158916297
-    second: FishermanIdle_1
+      213: 7889977349528327431
+    second: FishermanRun_1
   - first:
-      213: -6914986217876664237
-    second: FishermanIdle_2
+      213: -4501453306352949709
+    second: FishermanRun_2
   - first:
-      213: 1495326449214228030
-    second: FishermanIdle_3
+      213: -6489933349665381093
+    second: FishermanRun_3
+  - first:
+      213: -1835965265611408261
+    second: FishermanRun_4
+  - first:
+      213: 4538657468900607052
+    second: FishermanRun_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 450
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FishermanIdle_0
+      name: FishermanRun_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1330
-        width: 587
-        height: 560
+        x: 51
+        y: 1291
+        width: 530
+        height: 610
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e642d75a068418b0800000000000000
-      internalID: -5182369892215404823
+      spriteID: c9243cb435fac7b10800000000000000
+      internalID: 1980650708424409756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishermanIdle_1
+      name: FishermanRun_1
       rect:
         serializedVersion: 2
-        x: 681
-        y: 1331
-        width: 569
-        height: 549
+        x: 690
+        y: 1290
+        width: 531
+        height: 601
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c4b447c5f47bb920800000000000000
-      internalID: 3007125775158916297
+      spriteID: 7059384b894de7d60800000000000000
+      internalID: 7889977349528327431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishermanIdle_2
+      name: FishermanRun_2
       rect:
         serializedVersion: 2
-        x: 1322
-        y: 1330
-        width: 568
-        height: 540
+        x: 66
+        y: 651
+        width: 515
+        height: 620
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3505db80ca80900a0800000000000000
-      internalID: -6914986217876664237
+      spriteID: 33623dd4110a781c0800000000000000
+      internalID: -4501453306352949709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishermanIdle_3
+      name: FishermanRun_3
       rect:
         serializedVersion: 2
-        x: 41
-        y: 690
-        width: 569
-        height: 550
+        x: 699
+        y: 653
+        width: 532
+        height: 608
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,96 +196,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3609a4ab7770c410800000000000000
-      internalID: 1495326449214228030
+      spriteID: b15eb3de0002fe5a0800000000000000
+      internalID: -6489933349665381093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishermanIdle_4
+      name: FishermanRun_4
       rect:
         serializedVersion: 2
-        x: 672
-        y: 691
-        width: 588
-        height: 559
+        x: 71
+        y: 10
+        width: 510
+        height: 601
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5c77d86f0e735b0498b536bbbe68d5a8
-      internalID: 809058687
+      spriteID: b7cb64b71575586e0800000000000000
+      internalID: -1835965265611408261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FishermanIdle_5
+      name: FishermanRun_5
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 690
-        width: 610
-        height: 550
+        x: 709
+        y: 10
+        width: 512
+        height: 621
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9159b7afe29d4f14b924e0db18263533
-      internalID: 2143705317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FishermanIdle_6
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 51
-        width: 631
-        height: 539
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da2975014fec316488dd937d2536738a
-      internalID: 1362649999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FishermanIdle_7
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 51
-        width: 610
-        height: 549
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 438fd7afe3a85b24a986ce7305bd7e78
-      internalID: 2000237816
+      spriteID: c448efecbec8cfe30800000000000000
+      internalID: 4538657468900607052
       vertices: []
       indices: 
       edges: []
@@ -288,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 99f3cd79678d0254b9d4ba617afa5fe9
+    spriteID: 68b2fec5d8fc0b947b799a46a3332847
     internalID: 0
     vertices: []
     indices: 
@@ -296,18 +258,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      FishermanIdle_0: -5182369892215404823
-      FishermanIdle_1: 3007125775158916297
-      FishermanIdle_2: -6914986217876664237
-      FishermanIdle_3: 1495326449214228030
-      FishermanIdle_4: 809058687
-      FishermanIdle_5: 2143705317
-      FishermanIdle_6: 1362649999
-      FishermanIdle_7: 2000237816
+      FishermanRun_0: 1980650708424409756
+      FishermanRun_1: 7889977349528327431
+      FishermanRun_2: -4501453306352949709
+      FishermanRun_3: -6489933349665381093
+      FishermanRun_4: -1835965265611408261
+      FishermanRun_5: 4538657468900607052
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
