@@ -3,15 +3,10 @@ using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
     public LayerMask groundLayer;
     private PlayerMovement playerMovement;
     private bool playerInRange;
-
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,13 +23,13 @@ public class GrapplePoint : MonoBehaviour
 
             if (hit.collider == null && !playerMovement.isGrounded)
             {
-                spriteRenderer.color = Color.black;
+                animator.SetBool("inRange", true);
                 playerMovement.canGrapple = true;
                 playerMovement.grapplePoint = transform;
             }
             else
             {
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
@@ -46,13 +41,13 @@ public class GrapplePoint : MonoBehaviour
                 playerMovement.canJump = true;
                 playerMovement.distanceJoint.enabled = false;
                 playerMovement.lineRenderer.enabled = false;
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
             else if (playerMovement.isGrappling)
             {
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement.grapplePoint = transform;
             }
         }
@@ -65,7 +60,7 @@ public class GrapplePoint : MonoBehaviour
             playerMovement = collider.GetComponent<PlayerMovement>();
             playerMovement.grapplePoint = null;
             playerMovement.canGrapple = false;
-            spriteRenderer.color = Color.white;
+            animator.SetBool("inRange", false);
             playerInRange = false;
             playerMovement = null;
         }

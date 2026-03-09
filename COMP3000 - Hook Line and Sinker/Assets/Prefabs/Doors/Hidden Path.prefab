@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4919993347427455705}
   - component: {fileID: 2419597194932023603}
   - component: {fileID: 4130639132655014798}
+  - component: {fileID: 8905987750701290269}
   m_Layer: 0
   m_Name: Grapple Point
   m_TagString: Untagged
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 3671436768321249919, guid: 2bc0b12872bafeb4b99ae3f8889cd2d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,12 +141,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab7d97ca4c3be54b849ff2ce1c3b5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spriteRenderer: {fileID: 4919993347427455705}
+  animator: {fileID: 8905987750701290269}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   tileMap: {fileID: 0}
   debris: []
+--- !u!95 &8905987750701290269
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755475508723802818}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a3d9f806df0d16d4e8ae7ef19d77d69d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2282254040624582900
 GameObject:
   m_ObjectHideFlags: 0

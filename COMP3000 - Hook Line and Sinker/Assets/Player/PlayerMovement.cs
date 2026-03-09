@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
+    [SerializeField] private Animator animator;
     private Scene scene;
 
     public int maxHealth;
@@ -101,16 +102,19 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             isMoving = true;
+            animator.SetBool("isMoving", true);
             movement = context.ReadValue<Vector2>().x;
         }
         else if (context.canceled && !isWallJumping)
         {
             movement = 0;
             isMoving = false;
+            animator.SetBool("isMoving", false);
         }
         else if (context.canceled)
         {
             isMoving = false;
+            animator.SetBool("isMoving", false);
         }
     }
 
@@ -293,11 +297,31 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallJumping = false;
         }
+
         if (isGrounded)
         {
             extraJumps = 1;
             previousGround = transform.position;
+            animator.SetBool("isGrounded", true);
         }
+        else
+        {
+            animator.SetBool("isGrounded", false);
+
+            if (rigidBody.linearVelocityY > 1)
+            {
+                animator.SetFloat("yVelocity", 1);
+            }
+            else if (rigidBody.linearVelocityY < -1)
+            {
+                animator.SetFloat("yVelocity", -1);
+            }
+            else
+            {
+                animator.SetFloat("yVelocity", 0);
+            }
+        }
+
         if (isGrounded && !isMoving)
         {
             movement = 0;

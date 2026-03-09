@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HiddenPath : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
     public LayerMask groundLayer;
     private PlayerMovement playerMovement;
     private bool playerInRange;
@@ -27,20 +27,20 @@ public class HiddenPath : MonoBehaviour
 
             if (hit.collider == null && playerMovement.isGrounded)
             {
-                spriteRenderer.color = Color.black;
+                animator.SetBool("inRange", true);
                 playerMovement.canGrapple = true;
                 playerMovement.grapplePoint = transform;
             }
             else
             {
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
             }
 
             if (playerMovement.distanceJoint.enabled)
             {
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 Rigidbody2D rigidBody = transform.parent.GetComponent<Rigidbody2D>();
                 rigidBody.constraints = RigidbodyConstraints2D.None;
 
@@ -82,7 +82,7 @@ public class HiddenPath : MonoBehaviour
                     playerMovement.canJump = true;
                     playerMovement.distanceJoint.enabled = false;
                     playerMovement.lineRenderer.enabled = false;
-                    spriteRenderer.color = Color.white;
+                    animator.SetBool("inRange", false);
                     playerMovement.canGrapple = false;
                     playerMovement.grapplePoint = null;
                     rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -115,7 +115,7 @@ public class HiddenPath : MonoBehaviour
                 playerMovement.canJump = true;
                 playerMovement.distanceJoint.enabled = false;
                 playerMovement.lineRenderer.enabled = false;
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
 
@@ -148,7 +148,7 @@ public class HiddenPath : MonoBehaviour
             if (playerMovement != null)
             {
                 playerInRange = false;
-                spriteRenderer.color = Color.white;
+                animator.SetBool("inRange", false);
                 playerMovement = null;
             }
         }
