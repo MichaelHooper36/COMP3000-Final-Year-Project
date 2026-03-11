@@ -387,7 +387,7 @@ MonoBehaviour:
   isMoving: 0
   canJump: 0
   moveTimer: 0
-  moveCooldown: 0.15
+  moveCooldown: 0.2
   wallSliding: 0
   wallSlideSpeed: 3
   groundCheckTransform: {fileID: 5781999453645310330}
@@ -445,7 +445,8 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12ea13c7eae428e478b5cddc8fe522b4, type: 2}
+  - {fileID: 2100000, guid: da81e438c76a912449b9c4e8c8ed8308, type: 2}
+  - {fileID: 2100000, guid: cb152695ab6f64546b6e01e8982d08d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,7 +467,7 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -478,7 +479,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.12982368
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -521,7 +522,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0

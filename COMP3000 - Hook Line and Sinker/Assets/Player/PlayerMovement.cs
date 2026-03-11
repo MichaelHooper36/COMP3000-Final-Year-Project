@@ -354,7 +354,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
-        if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 0)
+        if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 2.5)
         {
             animator.SetBool("isWallSliding", true);
             canJump = false;
