@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 755d7012e7e118d49b7078f6a61b30fc
+guid: 8fda9cea766e12a4c938cb957cfb51e2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8139473923724519928
-    second: Reticule_0
-  - first:
-      213: -4756536373830600105
-    second: Reticule_1
-  - first:
-      213: 6034697422657061676
-    second: Reticule_2
-  - first:
-      213: -5421452834655796726
-    second: Reticule_3
+      213: 4117879819687600679
+    second: BubbleCrosshair_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Reticule_0
+      name: BubbleCrosshair_0
       rect:
         serializedVersion: 2
-        x: 239
-        y: 889
-        width: 152
-        height: 152
+        x: 189
+        y: 199
+        width: 262
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f9a72aa86835f070800000000000000
-      internalID: 8139473923724519928
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reticule_1
-      rect:
-        serializedVersion: 2
-        x: 869
-        y: 879
-        width: 172
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75a3a948e536dfdb0800000000000000
-      internalID: -4756536373830600105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reticule_2
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 229
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c23807c255d8fb350800000000000000
-      internalID: 6034697422657061676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reticule_3
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 219
-        width: 212
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a028ec7fe5123c4b0800000000000000
-      internalID: -5421452834655796726
+      spriteID: 722aa38e0e5a52930800000000000000
+      internalID: 4117879819687600679
       vertices: []
       indices: 
       edges: []
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Reticule_0: 8139473923724519928
-      Reticule_1: -4756536373830600105
-      Reticule_2: 6034697422657061676
-      Reticule_3: -5421452834655796726
+      BubbleCrosshair_0: 4117879819687600679
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

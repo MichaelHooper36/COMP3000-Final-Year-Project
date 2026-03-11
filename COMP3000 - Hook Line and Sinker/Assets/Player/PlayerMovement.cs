@@ -356,12 +356,14 @@ public class PlayerMovement : MonoBehaviour
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
         if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 0)
         {
+            animator.SetBool("isWallSliding", true);
             canJump = false;
             isWallJumping = false;
             rigidBody.linearVelocityY = -wallSlideSpeed;
         }
         else if (!isGrappling)
         {
+            animator.SetBool("isWallSliding", false);
             canJump = true;
         }
 
@@ -387,6 +389,7 @@ public class PlayerMovement : MonoBehaviour
         if (distanceJoint.enabled)
         {
             lineRenderer.SetPosition(1, transform.position);
+            lineRenderer.SetPosition(0, grapplePoint.position);
 
             if (rigidBody.linearVelocityX > 1)
             {
@@ -422,11 +425,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 enemyDamageTimer = 0;
             }
-        }
-
-        if (isGrappling)
-        {
-            lineRenderer.SetPosition(0, grapplePoint.position);
         }
     }
 
