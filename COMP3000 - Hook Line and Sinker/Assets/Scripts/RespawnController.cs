@@ -6,8 +6,9 @@ public class RespawnController : MonoBehaviour
 {
     public InputSystem_Actions menuInputs;
 
+    public Animator animator;
+
     public Transform respawnPoint;
-    public SpriteRenderer respawnColour;
 
     public GameObject inventoryPoint;
     public bool inventoryPointActive = false;
@@ -52,11 +53,11 @@ public class RespawnController : MonoBehaviour
     {
         if (scene.name == "levelOne" && respawnPoint.position.x == GameControl.gameControl.levelOneRespawnX && respawnPoint.position.y == GameControl.gameControl.levelOneRespawnY)
         {
-            respawnColour.color = Color.green;
+            animator.SetBool("isActive", true);
         }
         else
         {
-            respawnColour.color = Color.white;
+            animator.SetBool("isActive", false);
         }
     }
 

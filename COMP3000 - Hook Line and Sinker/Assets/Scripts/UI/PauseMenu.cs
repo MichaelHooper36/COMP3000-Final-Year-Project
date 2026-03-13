@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     public InputSystem_Actions menuInputs;
     public Scene scene;
 
+    public Texture2D crosshair;
+    public Texture2D chopsticks;
+
     public GameObject mainUI;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
@@ -51,6 +54,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene();
+        ChangerCursor(crosshair);
         mainUI.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -83,16 +87,31 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void ChangerCursor(Texture2D texture)
+    {
+        if (texture == crosshair)
+        {
+            Vector2 hotspot = new Vector2(texture.width / 2, texture.height / 2);
+            Cursor.SetCursor(texture, hotspot, CursorMode.Auto);
+        }
+        else
+        {
+             Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
     public void Pause()
     {
         if (Time.timeScale == 1f)
         {
             Time.timeScale = 0f;
+            ChangerCursor(chopsticks);
             pauseMenu.SetActive(true);
         }
         else
         {
             Time.timeScale = 1f;
+            ChangerCursor(crosshair);
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false);
             projectileMenu.SetActive(false);
@@ -110,11 +129,13 @@ public class PauseMenu : MonoBehaviour
         if (Time.timeScale == 1f)
         {
             Time.timeScale = 0f;
+            ChangerCursor(chopsticks);
             projectileMenu.SetActive(true);
         }
         else
         {
             Time.timeScale = 1f;
+            ChangerCursor(crosshair);
             projectileMenu.SetActive(false);
         }
     }

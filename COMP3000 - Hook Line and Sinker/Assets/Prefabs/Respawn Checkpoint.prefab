@@ -113,7 +113,8 @@ GameObject:
   - component: {fileID: 7348584841791756832}
   - component: {fileID: 2045867936421230619}
   - component: {fileID: 8129022964514895505}
-  - component: {fileID: 7360222553342685489}
+  - component: {fileID: 2359988576014264521}
+  - component: {fileID: 5397832461230671496}
   m_Layer: 0
   m_Name: Respawn Checkpoint
   m_TagString: Untagged
@@ -184,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -3448120935943364757, guid: df7005120c4418b4ab67081ce05bd307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -207,13 +208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f94a6fbb5b9674ba4d5e822de26e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  animator: {fileID: 5397832461230671496}
   respawnPoint: {fileID: 7348584841791756832}
   respawnColour: {fileID: 2045867936421230619}
   inventoryPoint: {fileID: 1401609484878018806}
   inventoryPointActive: 0
-  gameControl: {fileID: 5909372174646865936, guid: 1f7abd30a75c7dd4bae2ca3cebb08039, type: 3}
---- !u!70 &7360222553342685489
-CapsuleCollider2D:
+  pauseMenu: {fileID: 0}
+--- !u!61 &2359988576014264521
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -246,9 +248,40 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 2.5}
-  m_Direction: 0
+  m_Offset: {x: 0, y: -0.5596101}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.87, y: 1.4007797}
+  m_EdgeRadius: 0
+--- !u!95 &5397832461230671496
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315007109088410098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9460d1b3bccaeca49a303b04bc780b91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5791010165870288496
 GameObject:
   m_ObjectHideFlags: 0

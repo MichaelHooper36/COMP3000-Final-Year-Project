@@ -306,7 +306,7 @@ MonoBehaviour:
   leftBoundry: {fileID: 0}
   rightBoundry: {fileID: 0}
   movementSpeed: 2
-  projectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
+  projectile: {fileID: 641419237439083857, guid: 36972d0693cbad64b8b4d41298f37a95, type: 3}
   firePoint: {fileID: 1512287120411275833}
   attackDistance: 4
   attackCooldown: 1
