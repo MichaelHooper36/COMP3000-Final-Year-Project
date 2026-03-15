@@ -44,6 +44,7 @@ public class GrapplePoint : MonoBehaviour
                 animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
+                playerMovement.animator.SetBool("isGrappling", false);
             }
             else if (playerMovement.isGrappling)
             {

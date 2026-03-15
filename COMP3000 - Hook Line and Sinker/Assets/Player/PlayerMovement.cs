@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
-    [SerializeField] private Animator animator;
+    [SerializeField] public Animator animator;
     private Scene scene;
 
     public int maxHealth;
@@ -191,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
             distanceJoint.distance = Vector2.Distance(transform.position, grapplePoint.position);
             distanceJoint.maxDistanceOnly = true;
             distanceJoint.enabled = true;
+            animator.SetBool("isGrappling", true);
             lineRenderer.enabled = true;
             canMove = false;
             canJump = false;
@@ -203,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
+            animator.SetBool("isGrappling", false);
 
             if (rigidBody.linearVelocityY > 2)
             {
@@ -391,13 +393,59 @@ public class PlayerMovement : MonoBehaviour
             lineRenderer.SetPosition(1, transform.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
 
+            float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
+
             if (rigidBody.linearVelocityX > 1)
             {
-                transform.eulerAngles = new Vector2(0, 0);
+                if (rigidBody.linearVelocity.magnitude < 1)
+                {
+                    if (angle < 22.5 && angle >= -22.5)
+                    {
+                        animator.SetFloat("swingDirection", -1);
+                        transform.eulerAngles = new Vector3(0, 0, angle);
+                    }
+                    else if (angle <= 67.5 && angle >= 22.5)
+                    {
+                        animator.SetFloat("swingDirection", 0f);
+                        transform.eulerAngles = new Vector3(0, 0, angle - 45);
+                    }
+                    else
+                    {
+                        animator.SetFloat("swingDirection", 1);
+                        transform.eulerAngles = new Vector3(0, 0, angle - 90);
+                    }
+                }
+                else
+                {
+                    animator.SetFloat("swingDirection", 1);
+                    transform.eulerAngles = new Vector3(0, 0, angle - 90);
+                }
             }
             else if (rigidBody.linearVelocityX < -1)
             {
-                transform.eulerAngles = new Vector2(0, 180);
+                if (rigidBody.linearVelocity.magnitude > -1)
+                {
+                    if (angle <= -157.5 && angle > 157.5)
+                    {
+                        animator.SetFloat("swingDirection", -1);
+                        transform.eulerAngles = new Vector3(0, 180, -angle);
+                    }
+                    else if (angle >= 112.5 && angle <= 157.5)
+                    {
+                        animator.SetFloat("swingDirection", 0f);
+                        transform.eulerAngles = new Vector3(0, 180, -(angle - 45));
+                    }
+                    else
+                    {
+                        animator.SetFloat("swingDirection", 1);
+                        transform.eulerAngles = new Vector3(0, 180, -(angle - 90));
+                    }
+                }
+                else
+                {
+                    animator.SetFloat("swingDirection", 1);
+                    transform.eulerAngles = new Vector3(0, 180, -(angle - 90));
+                }
             }
         }
 
