@@ -38,6 +38,7 @@ public class RespawnController : MonoBehaviour
     {
         if (context.performed && inventoryPointActive)
         {
+            pauseMenu.playerMovement = playerMovement;
             pauseMenu.Projectile();
         }
     }
@@ -89,10 +90,9 @@ public class RespawnController : MonoBehaviour
                     GameControl.gameControl.Save();
                     GameControl.gameControl.Load();
                 }
+                inventoryPoint.SetActive(true);
+                inventoryPointActive = true;
             }
-
-            inventoryPoint.SetActive(true);
-            inventoryPointActive = true;
         }
     }
 

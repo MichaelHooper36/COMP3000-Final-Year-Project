@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
+    public Transform rendererPoint;
     public Transform grapplePoint;
     public bool canGrapple;
     public bool isGrappling;
@@ -185,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && canGrapple && grapplePoint != null && !isGrappling)
         {
-            lineRenderer.SetPosition(1, transform.position);
+            lineRenderer.SetPosition(1, rendererPoint.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
             distanceJoint.connectedAnchor = grapplePoint.position;
             distanceJoint.distance = Vector2.Distance(transform.position, grapplePoint.position);
@@ -390,61 +391,48 @@ public class PlayerMovement : MonoBehaviour
 
         if (distanceJoint.enabled)
         {
-            lineRenderer.SetPosition(1, transform.position);
+            lineRenderer.SetPosition(1, rendererPoint.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
 
-            float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
-
-            if (rigidBody.linearVelocityX > 1)
+            if (isGrappling)
             {
-                if (rigidBody.linearVelocity.magnitude < 1)
+                float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
+
+                if ((rigidBody.linearVelocityX > 0 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
                 {
                     if (angle < 22.5 && angle >= -22.5)
                     {
-                        animator.SetFloat("swingDirection", -1);
+                        animator.SetFloat("swingDirection", -1f);
                         transform.eulerAngles = new Vector3(0, 0, angle);
                     }
                     else if (angle <= 67.5 && angle >= 22.5)
                     {
                         animator.SetFloat("swingDirection", 0f);
-                        transform.eulerAngles = new Vector3(0, 0, angle - 45);
+                        transform.eulerAngles = new Vector3(0, 0, angle - 45f);
                     }
                     else
                     {
-                        animator.SetFloat("swingDirection", 1);
-                        transform.eulerAngles = new Vector3(0, 0, angle - 90);
+                        animator.SetFloat("swingDirection", 1f);
+                        transform.eulerAngles = new Vector3(0, 0, angle - 90f);
                     }
                 }
-                else
+                else if ((rigidBody.linearVelocityX < 0 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX > 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x > grapplePoint.position.x))
                 {
-                    animator.SetFloat("swingDirection", 1);
-                    transform.eulerAngles = new Vector3(0, 0, angle - 90);
-                }
-            }
-            else if (rigidBody.linearVelocityX < -1)
-            {
-                if (rigidBody.linearVelocity.magnitude > -1)
-                {
-                    if (angle <= -157.5 && angle > 157.5)
+                    if (angle <= -157.5 || angle > 157.5)
                     {
-                        animator.SetFloat("swingDirection", -1);
-                        transform.eulerAngles = new Vector3(0, 180, -angle);
+                        animator.SetFloat("swingDirection", -1f);
+                        transform.eulerAngles = new Vector3(0, 180, -(angle + 180));
                     }
                     else if (angle >= 112.5 && angle <= 157.5)
                     {
                         animator.SetFloat("swingDirection", 0f);
-                        transform.eulerAngles = new Vector3(0, 180, -(angle - 45));
+                        transform.eulerAngles = new Vector3(0, 180, -(angle - 135f));
                     }
                     else
                     {
-                        animator.SetFloat("swingDirection", 1);
-                        transform.eulerAngles = new Vector3(0, 180, -(angle - 90));
+                        animator.SetFloat("swingDirection", 1f);
+                        transform.eulerAngles = new Vector3(0, 180, -(angle - 90f));
                     }
-                }
-                else
-                {
-                    animator.SetFloat("swingDirection", 1);
-                    transform.eulerAngles = new Vector3(0, 180, -(angle - 90));
                 }
             }
         }

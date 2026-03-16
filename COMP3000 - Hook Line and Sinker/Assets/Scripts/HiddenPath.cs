@@ -69,7 +69,7 @@ public class HiddenPath : MonoBehaviour
 
                 if (playerMovement.isGrounded)
                 {
-                    playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezePositionY;
+                    playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
                 }
                 else
                 {
@@ -87,6 +87,7 @@ public class HiddenPath : MonoBehaviour
                     playerMovement.grapplePoint = null;
                     rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                     rigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
+                    playerMovement.animator.SetBool("isGrappling", false);
 
                     foreach (GameObject debrisPiece in debris)
                     {
@@ -118,6 +119,7 @@ public class HiddenPath : MonoBehaviour
                 animator.SetBool("inRange", false);
                 playerMovement.canGrapple = false;
                 playerMovement.grapplePoint = null;
+                playerMovement.animator.SetBool("isGrappling", false);
 
                 disappear = tileMap.GetComponent<Disappear>();
                 if (disappear != null)

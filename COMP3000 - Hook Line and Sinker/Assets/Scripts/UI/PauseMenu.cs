@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 {
     public InputSystem_Actions menuInputs;
     public Scene scene;
+    public PlayerMovement playerMovement;
 
     public Texture2D crosshair;
     public Texture2D chopsticks;
@@ -20,6 +21,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject projectileMenu;
+    public GameObject projectiles;
+    public int currentProjectile;
 
     public TextMeshProUGUI timer;
     public float elapsedTime;
@@ -58,6 +61,7 @@ public class PauseMenu : MonoBehaviour
         mainUI.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        projectileMenu.SetActive(false);
 
         if (scene.name == "levelOne")
         {
@@ -126,10 +130,23 @@ public class PauseMenu : MonoBehaviour
 
     public void Projectile()
     {
-        if (Time.timeScale == 1f)
+        if (Time.timeScale == 1)
         {
-            Time.timeScale = 0f;
             ChangerCursor(chopsticks);
+            Time.timeScale = 0f;
+
+            for (int i = 0; i < projectiles.transform.childCount; i++)
+            {
+                if (GameControl.gameControl.projectiles.Contains(i))
+                {
+                    projectiles.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    projectiles.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+
             projectileMenu.SetActive(true);
         }
         else
@@ -137,6 +154,15 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1f;
             ChangerCursor(crosshair);
             projectileMenu.SetActive(false);
+        }
+    }
+
+    public void EquipProjectile(int newProjectile)
+    {
+        if (playerMovement != null && newProjectile != currentProjectile)
+        {
+            playerMovement.ChangeProjectile(newProjectile);
+            currentProjectile = newProjectile;
         }
     }
 

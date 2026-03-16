@@ -56,6 +56,7 @@ public class DamagePlayer : MonoBehaviour
                     playerMovement.isGrappling = false;
                     playerMovement.distanceJoint.enabled = false;
                     playerMovement.lineRenderer.enabled = false;
+                    playerMovement.animator.SetBool("isGrappling", false);
                 }
             }
         }

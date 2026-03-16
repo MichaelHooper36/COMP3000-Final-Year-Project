@@ -24,9 +24,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetCurrentHealth(int health)
     {
-        Debug.Log("HealthBar setting current health to: " + health);
         slider.value = health;
         Canvas.ForceUpdateCanvases();
-        Debug.Log("HealthBar current health is now: " + slider.value);
     }
 }

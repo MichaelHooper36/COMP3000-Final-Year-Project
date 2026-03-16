@@ -112,9 +112,9 @@ TextureImporter:
       name: FishermanIdle_0
       rect:
         serializedVersion: 2
-        x: 33
+        x: 10
         y: 1330
-        width: 587
+        width: 630
         height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -134,10 +134,10 @@ TextureImporter:
       name: FishermanIdle_1
       rect:
         serializedVersion: 2
-        x: 681
-        y: 1331
-        width: 569
-        height: 549
+        x: 650
+        y: 1330
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: FishermanIdle_2
       rect:
         serializedVersion: 2
-        x: 1322
+        x: 1290
         y: 1330
-        width: 568
-        height: 540
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: FishermanIdle_3
       rect:
         serializedVersion: 2
-        x: 41
+        x: 10
         y: 690
-        width: 569
-        height: 550
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: FishermanIdle_4
       rect:
         serializedVersion: 2
-        x: 672
+        x: 650
         y: 691
-        width: 588
-        height: 559
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,10 +222,10 @@ TextureImporter:
       name: FishermanIdle_5
       rect:
         serializedVersion: 2
-        x: 1300
+        x: 1290
         y: 690
-        width: 610
-        height: 550
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: FishermanIdle_6
       rect:
         serializedVersion: 2
-        x: 9
-        y: 51
-        width: 631
-        height: 539
+        x: 10
+        y: 50
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,10 +266,10 @@ TextureImporter:
       name: FishermanIdle_7
       rect:
         serializedVersion: 2
-        x: 660
-        y: 51
-        width: 610
-        height: 549
+        x: 650
+        y: 50
+        width: 630
+        height: 560
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

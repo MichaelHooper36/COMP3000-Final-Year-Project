@@ -1,0 +1,584 @@
+fileFormatVersion: 2
+guid: 49aee8ee45c2caa44a298587be7aac67
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -332369442744884267
+    second: EndLevelTransition_0
+  - first:
+      213: -4434449965457186580
+    second: EndLevelTransition_1
+  - first:
+      213: -1465239269784794904
+    second: EndLevelTransition_2
+  - first:
+      213: -68654306205444272
+    second: EndLevelTransition_3
+  - first:
+      213: -5755332817257307025
+    second: EndLevelTransition_4
+  - first:
+      213: -978870066014453911
+    second: EndLevelTransition_5
+  - first:
+      213: -1418534773426751133
+    second: EndLevelTransition_6
+  - first:
+      213: -1293908077186678779
+    second: EndLevelTransition_7
+  - first:
+      213: -2042574341545874786
+    second: EndLevelTransition_8
+  - first:
+      213: -970311352879038974
+    second: EndLevelTransition_9
+  - first:
+      213: -6791909497408393674
+    second: EndLevelTransition_10
+  - first:
+      213: -995308719819708640
+    second: EndLevelTransition_11
+  - first:
+      213: 4983317228720515748
+    second: EndLevelTransition_12
+  - first:
+      213: -5225810942906769706
+    second: EndLevelTransition_13
+  - first:
+      213: -3309692484072286841
+    second: EndLevelTransition_14
+  - first:
+      213: 5225771158748284134
+    second: EndLevelTransition_15
+  - first:
+      213: 4527374933830018914
+    second: EndLevelTransition_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 125
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EndLevelTransition_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2561
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d32ff6b0cf236bf0800000000000000
+      internalID: -332369442744884267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 2561
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce06eaa404ba572c0800000000000000
+      internalID: -4434449965457186580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2561
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e84685b5ac6aabe0800000000000000
+      internalID: -1465239269784794904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 2561
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 057d252b5471c0ff0800000000000000
+      internalID: -68654306205444272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1921
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64ea37bb43f020b0800000000000000
+      internalID: -5755332817257307025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1921
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ff1f97cda5a62f0800000000000000
+      internalID: -978870066014453911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_6
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1921
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369fb58a32a505ce0800000000000000
+      internalID: -1418534773426751133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_7
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1921
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500874f857d1b0ee0800000000000000
+      internalID: -1293908077186678779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1281
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9aa4d8557157a3e0800000000000000
+      internalID: -2042574341545874786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_9
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1281
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ebd1a27f2c882f0800000000000000
+      internalID: -970311352879038974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1281
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63eee541c4a4eb1a0800000000000000
+      internalID: -6791909497408393674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_11
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1281
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0272c412ef3ff22f0800000000000000
+      internalID: -995308719819708640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 641
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04dd45812b4dffe49b7b635ad9d25f99
+      internalID: 4983317228720515748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 641
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa3476c4dbcaff4a842b52f488d3509
+      internalID: -5225810942906769706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_14
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 641
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6542c0956e1f643bee5b6ac03c21e7
+      internalID: -3309692484072286841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_15
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 641
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec74b072fa61f748af323a206e81f78
+      internalID: 5225771158748284134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33934a1b33d98b48b53b31463905798
+      internalID: 4527374933830018914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EndLevelTransition_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1
+        width: 639
+        height: 639
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2b3da07b08f0b4b970d726361537cd
+      internalID: 1737892075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 047cb2e77bb584948b4d91730031870a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":639.0,"y":639.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":1.0},"pivot":{"x":0.5,"y":0.05000000074505806},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      EndLevelTransition_0: -332369442744884267
+      EndLevelTransition_1: -4434449965457186580
+      EndLevelTransition_10: -6791909497408393674
+      EndLevelTransition_11: -995308719819708640
+      EndLevelTransition_12: 4983317228720515748
+      EndLevelTransition_13: -5225810942906769706
+      EndLevelTransition_14: -3309692484072286841
+      EndLevelTransition_15: 5225771158748284134
+      EndLevelTransition_16: 4527374933830018914
+      EndLevelTransition_17: 1737892075
+      EndLevelTransition_2: -1465239269784794904
+      EndLevelTransition_3: -68654306205444272
+      EndLevelTransition_4: -5755332817257307025
+      EndLevelTransition_5: -978870066014453911
+      EndLevelTransition_6: -1418534773426751133
+      EndLevelTransition_7: -1293908077186678779
+      EndLevelTransition_8: -2042574341545874786
+      EndLevelTransition_9: -970311352879038974
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
