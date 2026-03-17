@@ -12,8 +12,8 @@ public class GameControl : MonoBehaviour
     public List<int> projectiles = new List<int> { 0 };
     public int projectileIndex;
 
-    public float levelOneRespawnX = -16;
-    public float levelOneRespawnY = 3;
+    public float levelOneRespawnX;
+    public float levelOneRespawnY;
     public float levelTwoRespawnX;
     public float levelTwoRespawnY;
     public float levelThreeRespawnX;

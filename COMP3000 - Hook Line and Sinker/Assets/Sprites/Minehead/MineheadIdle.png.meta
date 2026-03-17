@@ -1,0 +1,423 @@
+fileFormatVersion: 2
+guid: f9ffe8567a5f6f14796d7dea285bd7c4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4950085706749832460
+    second: MineheadIdle_0
+  - first:
+      213: -3602913313461477421
+    second: MineheadIdle_1
+  - first:
+      213: -1434639983243413005
+    second: MineheadIdle_2
+  - first:
+      213: -8111075375404117463
+    second: MineheadIdle_3
+  - first:
+      213: -7047797292923914746
+    second: MineheadIdle_4
+  - first:
+      213: -540534789316885283
+    second: MineheadIdle_5
+  - first:
+      213: 4387669298889327367
+    second: MineheadIdle_6
+  - first:
+      213: -7236295566163003079
+    second: MineheadIdle_7
+  - first:
+      213: 1538627948737062715
+    second: MineheadIdle_8
+  - first:
+      213: 8905273820315663018
+    second: MineheadIdle_9
+  - first:
+      213: 3944498891803698908
+    second: MineheadIdle_10
+  - first:
+      213: 655890814946043937
+    second: MineheadIdle_11
+  - first:
+      213: -7653564324654042364
+    second: MineheadIdle_12
+  - first:
+      213: 6567965247219917482
+    second: MineheadIdle_13
+  - first:
+      213: -140650407395354457
+    second: MineheadIdle_14
+  - first:
+      213: 8416932628204385490
+    second: MineheadIdle_15
+  - first:
+      213: 5574888665319778778
+    second: MineheadIdle_16
+  - first:
+      213: 7888035637731355006
+    second: MineheadIdle_17
+  - first:
+      213: 2667091688235845327
+    second: MineheadIdle_18
+  - first:
+      213: 1008625696219010954
+    second: MineheadIdle_19
+  - first:
+      213: -1378501809534414599
+    second: MineheadIdle_20
+  - first:
+      213: -8363995401016856995
+    second: MineheadIdle_21
+  - first:
+      213: -3659250138577513751
+    second: MineheadIdle_22
+  - first:
+      213: -4427676792011670039
+    second: MineheadIdle_23
+  - first:
+      213: 4110120671973061872
+    second: MineheadIdle_24
+  - first:
+      213: -2138425703363909992
+    second: MineheadIdle_25
+  - first:
+      213: 1104008982100450193
+    second: MineheadIdle_26
+  - first:
+      213: -810992897920878164
+    second: MineheadIdle_27
+  - first:
+      213: -8953000612272265768
+    second: MineheadIdle_28
+  - first:
+      213: -4726236072366628384
+    second: MineheadIdle_29
+  - first:
+      213: 7436322789068316760
+    second: MineheadIdle_30
+  - first:
+      213: 912095402723427508
+    second: MineheadIdle_31
+  - first:
+      213: 3609118373795348310
+    second: MineheadIdle_32
+  - first:
+      213: 6229367580729126034
+    second: MineheadIdle_33
+  - first:
+      213: -953035229965321633
+    second: MineheadIdle_34
+  - first:
+      213: -1934487642912180126
+    second: MineheadIdle_35
+  - first:
+      213: 4559874827665903962
+    second: MineheadIdle_36
+  - first:
+      213: 1609416403514069169
+    second: MineheadIdle_37
+  - first:
+      213: -3713199151714451983
+    second: MineheadIdle_38
+  - first:
+      213: -2158345200357775808
+    second: MineheadIdle_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MineheadIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0def8e39bc32b440800000000000000
+      internalID: 4950085706749832460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3df5a923e61effdc0800000000000000
+      internalID: -3602913313461477421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f9343a4982271ce0800000000000000
+      internalID: -1434639983243413005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9229e9e9bebaf6f80800000000000000
+      internalID: -8111075375404117463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6067f42f3b1313e90800000000000000
+      internalID: -7047797292923914746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd4c6061972af78f0800000000000000
+      internalID: -540534789316885283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7038f200bf124ec30800000000000000
+      internalID: 4387669298889327367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadIdle_7
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939be19a583839b90800000000000000
+      internalID: -7236295566163003079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 41551c115e22314458c9a5d4d5bd9a51
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":320.0,"y":320.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MineheadIdle_0: 4950085706749832460
+      MineheadIdle_1: -3602913313461477421
+      MineheadIdle_2: -1434639983243413005
+      MineheadIdle_3: -8111075375404117463
+      MineheadIdle_4: -7047797292923914746
+      MineheadIdle_5: -540534789316885283
+      MineheadIdle_6: 4387669298889327367
+      MineheadIdle_7: -7236295566163003079
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

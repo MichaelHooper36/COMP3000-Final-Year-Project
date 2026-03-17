@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: a3495d3756de9c24badcc30a50f17bf2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3716892390020885534
+    second: SeaMineExplode_0
+  - first:
+      213: -1162976156564110676
+    second: SeaMineExplode_1
+  - first:
+      213: 5340043166353198913
+    second: SeaMineExplode_2
+  - first:
+      213: -3534339096313423305
+    second: SeaMineExplode_3
+  - first:
+      213: 5205862462916910125
+    second: SeaMineExplode_4
+  - first:
+      213: 9189823220840186640
+    second: SeaMineExplode_5
+  - first:
+      213: -7082914571046267379
+    second: SeaMineExplode_6
+  - first:
+      213: 2313321368076469779
+    second: SeaMineExplode_7
+  - first:
+      213: -4730026334479980067
+    second: SeaMineExplode_8
+  - first:
+      213: -3399621955005906990
+    second: SeaMineExplode_9
+  - first:
+      213: -7788404145087002414
+    second: SeaMineExplode_10
+  - first:
+      213: 950361524199571572
+    second: SeaMineExplode_11
+  - first:
+      213: 9082593720863020843
+    second: SeaMineExplode_12
+  - first:
+      213: -8063341866787093497
+    second: SeaMineExplode_13
+  - first:
+      213: 4403845131823673213
+    second: SeaMineExplode_14
+  - first:
+      213: 7186759024804875127
+    second: SeaMineExplode_15
+  - first:
+      213: -8507011671552603717
+    second: SeaMineExplode_16
+  - first:
+      213: 7907893631573245403
+    second: SeaMineExplode_17
+  - first:
+      213: -467259399139632628
+    second: SeaMineExplode_18
+  - first:
+      213: -7957821406348598218
+    second: SeaMineExplode_19
+  - first:
+      213: 6524337197587317153
+    second: SeaMineExplode_20
+  - first:
+      213: 1837943421659729111
+    second: SeaMineExplode_21
+  - first:
+      213: 9132735673448311713
+    second: SeaMineExplode_22
+  - first:
+      213: -8392772654873332611
+    second: SeaMineExplode_23
+  - first:
+      213: 4636878021757051308
+    second: SeaMineExplode_24
+  - first:
+      213: -3946245695407711295
+    second: SeaMineExplode_25
+  - first:
+      213: -1892576847070315438
+    second: SeaMineExplode_26
+  - first:
+      213: -7539155044244613689
+    second: SeaMineExplode_27
+  - first:
+      213: -2507632361496588481
+    second: SeaMineExplode_28
+  - first:
+      213: 5842713800903473844
+    second: SeaMineExplode_29
+  - first:
+      213: 8333754756197363250
+    second: SeaMineExplode_30
+  - first:
+      213: -2045890438044987243
+    second: SeaMineExplode_31
+  - first:
+      213: 5414053070061329072
+    second: SeaMineExplode_32
+  - first:
+      213: 6932864493777096253
+    second: SeaMineExplode_33
+  - first:
+      213: 194504036027769105
+    second: SeaMineExplode_34
+  - first:
+      213: 1892641731271124027
+    second: SeaMineExplode_35
+  - first:
+      213: -7049244652595315100
+    second: SeaMineExplode_36
+  - first:
+      213: 1773451518984173600
+    second: SeaMineExplode_37
+  - first:
+      213: 2399381134616234809
+    second: SeaMineExplode_38
+  - first:
+      213: -8356725020512769376
+    second: SeaMineExplode_39
+  - first:
+      213: 2170060742076372512
+    second: SeaMineExplode_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SeaMineExplode_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 964
+        width: 312
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c2c8f8fed059330800000000000000
+      internalID: 3716892390020885534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_1
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 964
+        width: 312
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca24fb9e8574cdfe0800000000000000
+      internalID: -1162976156564110676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_2
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 964
+        width: 312
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14f0cbf87f4ab1a40800000000000000
+      internalID: 5340043166353198913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 644
+        width: 312
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73a9670515183fec0800000000000000
+      internalID: -3534339096313423305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_4
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 689
+        width: 262
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2cd3b30450fe3840800000000000000
+      internalID: 5205862462916910125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_5
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 689
+        width: 262
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013c0d2978fc88f70800000000000000
+      internalID: 9189823220840186640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 369
+        width: 262
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06595a79be64bd90800000000000000
+      internalID: -7082914571046267379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_7
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 509
+        width: 177
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316c48b17819a1020800000000000000
+      internalID: 2313321368076469779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_8
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 534
+        width: 97
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9e31b0c129b5eb0800000000000000
+      internalID: -4730026334479980067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_9
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 529
+        width: 87
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dff04908dd12d0d0800000000000000
+      internalID: -3399621955005906990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_10
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 434
+        width: 77
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8c8ecd1b70ae390800000000000000
+      internalID: -7788404145087002414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_11
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 389
+        width: 127
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4704d1265cc503d00800000000000000
+      internalID: 950361524199571572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_12
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 414
+        width: 67
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b27db331edadb0e70800000000000000
+      internalID: 9082593720863020843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_13
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 454
+        width: 67
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704ce972b41491090800000000000000
+      internalID: -8063341866787093497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_14
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 379
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7fee2890d99d1d30800000000000000
+      internalID: 4403845131823673213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_15
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 429
+        width: 57
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77bc3d7814f7cb360800000000000000
+      internalID: 7186759024804875127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_16
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 369
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb94101f4f501f980800000000000000
+      internalID: -8507011671552603717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_17
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 274
+        width: 87
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdd3f7f2c5b7ebd60800000000000000
+      internalID: 7907893631573245403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_18
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 289
+        width: 72
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ad1585d06f389f0800000000000000
+      internalID: -467259399139632628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_19
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 289
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 634a790e793209190800000000000000
+      internalID: -7957821406348598218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_20
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 219
+        width: 77
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a14f012d1a1b8a50800000000000000
+      internalID: 6524337197587317153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 229
+        width: 62
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc4b4dddcfa18910800000000000000
+      internalID: 1837943421659729111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_22
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 224
+        width: 57
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1abac6b25befdbe70800000000000000
+      internalID: 9132735673448311713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_23
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 244
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74b9a9bcb1e68b80800000000000000
+      internalID: -8392772654873332611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_24
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 239
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca125a95eff795040800000000000000
+      internalID: 4636878021757051308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_25
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 249
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cb1fc8b27e1c39c0800000000000000
+      internalID: -3946245695407711295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_26
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 144
+        width: 52
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25cbe3882673cb5e0800000000000000
+      internalID: -1892576847070315438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_27
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 119
+        width: 47
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c594317e6a8f5790800000000000000
+      internalID: -7539155044244613689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_28
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 149
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3fc8b937a9133dd0800000000000000
+      internalID: -2507632361496588481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_29
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 134
+        width: 27
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4babf13fe3d751150800000000000000
+      internalID: 5842713800903473844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_30
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 159
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23ead50fbc177a370800000000000000
+      internalID: 8333754756197363250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_31
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 149
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 590d5f67c798b93e0800000000000000
+      internalID: -2045890438044987243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_32
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 104
+        width: 47
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ba5e141594922b40800000000000000
+      internalID: 5414053070061329072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_33
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 104
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e8083768b763060800000000000000
+      internalID: 6932864493777096253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_34
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 104
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 111a0d6e36403b200800000000000000
+      internalID: 194504036027769105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_35
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 49
+        width: 37
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b34ee7f70a3044a10800000000000000
+      internalID: 1892641731271124027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_36
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 49
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46efb33465d0c2e90800000000000000
+      internalID: -7049244652595315100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_37
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 49
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028bd67a2c09c9810800000000000000
+      internalID: 1773451518984173600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_38
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 44
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b0391fd605c4120800000000000000
+      internalID: 2399381134616234809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_39
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 54
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aaa7b2aed2f60c80800000000000000
+      internalID: -8356725020512769376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaMineExplode_40
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 44
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0269b785fba9d1e10800000000000000
+      internalID: 2170060742076372512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SeaMineExplode_0: 3716892390020885534
+      SeaMineExplode_1: -1162976156564110676
+      SeaMineExplode_10: -7788404145087002414
+      SeaMineExplode_11: 950361524199571572
+      SeaMineExplode_12: 9082593720863020843
+      SeaMineExplode_13: -8063341866787093497
+      SeaMineExplode_14: 4403845131823673213
+      SeaMineExplode_15: 7186759024804875127
+      SeaMineExplode_16: -8507011671552603717
+      SeaMineExplode_17: 7907893631573245403
+      SeaMineExplode_18: -467259399139632628
+      SeaMineExplode_19: -7957821406348598218
+      SeaMineExplode_2: 5340043166353198913
+      SeaMineExplode_20: 6524337197587317153
+      SeaMineExplode_21: 1837943421659729111
+      SeaMineExplode_22: 9132735673448311713
+      SeaMineExplode_23: -8392772654873332611
+      SeaMineExplode_24: 4636878021757051308
+      SeaMineExplode_25: -3946245695407711295
+      SeaMineExplode_26: -1892576847070315438
+      SeaMineExplode_27: -7539155044244613689
+      SeaMineExplode_28: -2507632361496588481
+      SeaMineExplode_29: 5842713800903473844
+      SeaMineExplode_3: -3534339096313423305
+      SeaMineExplode_30: 8333754756197363250
+      SeaMineExplode_31: -2045890438044987243
+      SeaMineExplode_32: 5414053070061329072
+      SeaMineExplode_33: 6932864493777096253
+      SeaMineExplode_34: 194504036027769105
+      SeaMineExplode_35: 1892641731271124027
+      SeaMineExplode_36: -7049244652595315100
+      SeaMineExplode_37: 1773451518984173600
+      SeaMineExplode_38: 2399381134616234809
+      SeaMineExplode_39: -8356725020512769376
+      SeaMineExplode_4: 5205862462916910125
+      SeaMineExplode_40: 2170060742076372512
+      SeaMineExplode_5: 9189823220840186640
+      SeaMineExplode_6: -7082914571046267379
+      SeaMineExplode_7: 2313321368076469779
+      SeaMineExplode_8: -4730026334479980067
+      SeaMineExplode_9: -3399621955005906990
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
