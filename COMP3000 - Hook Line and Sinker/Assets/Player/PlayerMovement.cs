@@ -372,7 +372,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (reelingIn)
         {
-            distanceJoint.distance -= 0.01f;
+            distanceJoint.distance -= 4f * Time.deltaTime;
         }
 
         if (!isGrappling && !isWallJumping)

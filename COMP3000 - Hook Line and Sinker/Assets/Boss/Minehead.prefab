@@ -88,7 +88,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -158,9 +158,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.6}
     oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -183,6 +183,12 @@ MonoBehaviour:
   closeDoor: {fileID: 7964849261226601325, guid: 55a4ecb0317e1ef40bdecd8b96735ff1, type: 3}
   risingFloor: {fileID: 0}
   pauseMenu: {fileID: 0}
+  animator: {fileID: 6076285999005306583}
+  player: {fileID: 0}
+  mine: {fileID: 4310521429191626376, guid: 532a4a2c0541388418f91326c037cb1f, type: 3}
+  phaseOneMineLocations: []
+  phaseTwoMineLocations: []
+  phaseThreeMineLocations: []
   maxHealth: 150
   currentHealth: 0
   bossHealth: {fileID: 0}
@@ -191,12 +197,14 @@ MonoBehaviour:
   phaseTwo: 0
   phaseThree: 0
   dead: 0
-  fightTimer: 0
-  teleportInterval: 3
+  teleportInterval: 5
   teleportTimer: 0
   phaseOneSpawns: []
+  phaseOneAttackZone: {fileID: 0}
   phaseTwoSpawns: []
+  phaseTwoAttackZone: {fileID: 0}
   phaseThreeSpawns: []
+  phaseThreeAttackZone: {fileID: 0}
 --- !u!95 &6076285999005306583
 Animator:
   serializedVersion: 7

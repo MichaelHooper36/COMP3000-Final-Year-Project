@@ -6,8 +6,8 @@ public class Projectile : MonoBehaviour
     public float speed = 5f;
     protected Rigidbody2D rigidBody;
 
-    public int enemyDamage = 1;
-    public int playerDamage = 1;
+    public int enemyDamage = 10;
+    public int playerDamage = 10;
 
     protected GameObject projectileOrigin;
 

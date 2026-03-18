@@ -5,6 +5,7 @@ public class CloseDoor : MonoBehaviour
     public BoxCollider2D doorCollider;
     public BoxCollider2D doorTrigger;
     public GameObject grid;
+    public Boss boss;
 
     public bool isClosed;
 
@@ -30,6 +31,7 @@ public class CloseDoor : MonoBehaviour
                 playerMovement.movement = 0;
                 playerMovement.rigidBody.linearVelocityX = 0;
             }
+            boss.player = collider.gameObject;
             CloseTheDoor();
         }
     }

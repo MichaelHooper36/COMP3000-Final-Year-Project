@@ -184,7 +184,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: -3448120935943364757, guid: df7005120c4418b4ab67081ce05bd307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -210,7 +210,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   animator: {fileID: 5397832461230671496}
   respawnPoint: {fileID: 7348584841791756832}
-  respawnColour: {fileID: 2045867936421230619}
   inventoryPoint: {fileID: 1401609484878018806}
   inventoryPointActive: 0
   pauseMenu: {fileID: 0}
@@ -251,7 +250,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.5596101}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.55, y: 0.39}
     oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5

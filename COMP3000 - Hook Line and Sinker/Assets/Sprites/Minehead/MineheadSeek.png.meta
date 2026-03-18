@@ -1,0 +1,486 @@
+fileFormatVersion: 2
+guid: 14d450f98c7d840449ce858f8f8c93aa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5783653377378441997
+    second: MineheadSeek_0
+  - first:
+      213: -1951572222410792969
+    second: MineheadSeek_1
+  - first:
+      213: -6384799340456834195
+    second: MineheadSeek_2
+  - first:
+      213: 210428760693520684
+    second: MineheadSeek_3
+  - first:
+      213: -602371780371250574
+    second: MineheadSeek_4
+  - first:
+      213: -8362021340261066527
+    second: MineheadSeek_5
+  - first:
+      213: -2009079980401865020
+    second: MineheadSeek_6
+  - first:
+      213: -1858726899846810487
+    second: MineheadSeek_7
+  - first:
+      213: -2372798414113578595
+    second: MineheadSeek_8
+  - first:
+      213: -6668666717541013136
+    second: MineheadSeek_9
+  - first:
+      213: -6781083310060514335
+    second: MineheadSeek_10
+  - first:
+      213: 4387490314515937609
+    second: MineheadSeek_11
+  - first:
+      213: 7217307619678380598
+    second: MineheadSeek_12
+  - first:
+      213: -1711013770452014998
+    second: MineheadSeek_13
+  - first:
+      213: -1061979733121494156
+    second: MineheadSeek_14
+  - first:
+      213: -4456637339114432870
+    second: MineheadSeek_15
+  - first:
+      213: -2726800210115134316
+    second: MineheadSeek_16
+  - first:
+      213: -381767897464920963
+    second: MineheadSeek_17
+  - first:
+      213: -3777362725447144711
+    second: MineheadSeek_18
+  - first:
+      213: 1821587934337034953
+    second: MineheadSeek_19
+  - first:
+      213: -5732291643885957200
+    second: MineheadSeek_20
+  - first:
+      213: -526934152586146450
+    second: MineheadSeek_21
+  - first:
+      213: 4151663448339845146
+    second: MineheadSeek_22
+  - first:
+      213: -687212990946598398
+    second: MineheadSeek_23
+  - first:
+      213: 2259481637588552161
+    second: MineheadSeek_24
+  - first:
+      213: -7311485706402693665
+    second: MineheadSeek_25
+  - first:
+      213: 7722893755773920221
+    second: MineheadSeek_26
+  - first:
+      213: 4904226585871566251
+    second: MineheadSeek_27
+  - first:
+      213: -5155489452958411748
+    second: MineheadSeek_28
+  - first:
+      213: 5433620190592522729
+    second: MineheadSeek_29
+  - first:
+      213: -6327689731996253714
+    second: MineheadSeek_30
+  - first:
+      213: -9047840770565625781
+    second: MineheadSeek_31
+  - first:
+      213: 8880848005859060201
+    second: MineheadSeek_32
+  - first:
+      213: -7431702451930270534
+    second: MineheadSeek_33
+  - first:
+      213: 222673939220964536
+    second: MineheadSeek_34
+  - first:
+      213: 6862077567103414406
+    second: MineheadSeek_35
+  - first:
+      213: -6165129694115887852
+    second: MineheadSeek_36
+  - first:
+      213: -7034506513827623494
+    second: MineheadSeek_37
+  - first:
+      213: 4385433942227117983
+    second: MineheadSeek_38
+  - first:
+      213: -1974637134205916676
+    second: MineheadSeek_39
+  - first:
+      213: 701799939666246966
+    second: MineheadSeek_40
+  - first:
+      213: -3653518362458535031
+    second: MineheadSeek_41
+  - first:
+      213: 6255358138157952339
+    second: MineheadSeek_42
+  - first:
+      213: -6419594569171229198
+    second: MineheadSeek_43
+  - first:
+      213: -4471094119589961265
+    second: MineheadSeek_44
+  - first:
+      213: -2508623430531709738
+    second: MineheadSeek_45
+  - first:
+      213: -6251174066395849127
+    second: MineheadSeek_46
+  - first:
+      213: -4182744579930049604
+    second: MineheadSeek_47
+  - first:
+      213: 8440573491987817291
+    second: MineheadSeek_48
+  - first:
+      213: 3361070413111918292
+    second: MineheadSeek_49
+  - first:
+      213: -5764153953351861110
+    second: MineheadSeek_50
+  - first:
+      213: 4402595631256004280
+    second: MineheadSeek_51
+  - first:
+      213: -7086616238993621042
+    second: MineheadSeek_52
+  - first:
+      213: 7952602562379591040
+    second: MineheadSeek_53
+  - first:
+      213: -166577632913601104
+    second: MineheadSeek_54
+  - first:
+      213: 5716339774435292726
+    second: MineheadSeek_55
+  - first:
+      213: 8312233359088867520
+    second: MineheadSeek_56
+  - first:
+      213: -2186529003112615308
+    second: MineheadSeek_57
+  - first:
+      213: -614500640058198756
+    second: MineheadSeek_58
+  - first:
+      213: 2320268630053374150
+    second: MineheadSeek_59
+  - first:
+      213: 2822526055667224813
+    second: MineheadSeek_60
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MineheadSeek_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4ae5975e55cbfa0800000000000000
+      internalID: -5783653377378441997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ff5fa1576f9ae4e0800000000000000
+      internalID: -1951572222410792969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b0ce5f3d2a467a0800000000000000
+      internalID: -6384799340456834195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c29b9abc7d79be200800000000000000
+      internalID: 210428760693520684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2728048ae02f3a7f0800000000000000
+      internalID: -602371780371250574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8d08915e124fb80800000000000000
+      internalID: -8362021340261066527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce4cc207605e14e0800000000000000
+      internalID: -2009079980401865020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MineheadSeek_7
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 984fa288bb97436e0800000000000000
+      internalID: -1858726899846810487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a4fe6cafb3f2fe546800ca601cd54e7b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":320.0,"y":320.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MineheadSeek_0: -5783653377378441997
+      MineheadSeek_1: -1951572222410792969
+      MineheadSeek_2: -6384799340456834195
+      MineheadSeek_3: 210428760693520684
+      MineheadSeek_4: -602371780371250574
+      MineheadSeek_5: -8362021340261066527
+      MineheadSeek_6: -2009079980401865020
+      MineheadSeek_7: -1858726899846810487
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
