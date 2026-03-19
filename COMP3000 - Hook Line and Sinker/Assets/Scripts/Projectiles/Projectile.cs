@@ -72,5 +72,14 @@ public class Projectile : MonoBehaviour
             }
                 Destroy(gameObject);
         }
+        else if (collider.gameObject.CompareTag("Mine"))
+        {
+            Debug.Log("Projectile hit mine.");
+            Mine mine = collider.GetComponent<Mine>();
+            if (mine != null)
+            {
+                mine.mineAnim.SetBool("isDestroyed", true);
+            }
+        }
     }
 }

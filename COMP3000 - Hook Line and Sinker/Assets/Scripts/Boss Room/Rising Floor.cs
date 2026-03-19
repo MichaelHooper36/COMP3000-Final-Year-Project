@@ -24,7 +24,11 @@ public class RisingFloor : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - 10f * Time.deltaTime);
         }
-        else if (isRising && ((playerMovement.transform.position.y - transform.position.y > 10) || (boss.phaseTwo && playerMovement.transform.position.y >= phaseTwoY + 7) || (boss.phaseThree && playerMovement.transform.position.y >= phaseThreeY + 7)))
+        else if (isRising && ((boss.phaseTwo && playerMovement.transform.position.y >= phaseTwoY && playerMovement.isGrounded) || (boss.phaseThree && playerMovement.transform.position.y >= phaseThreeY && playerMovement.isGrounded)))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 10f * Time.deltaTime);
+        }
+        else if (isRising && playerMovement.transform.position.y - transform.position.y > 12.5)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + 2f * Time.deltaTime);
         }

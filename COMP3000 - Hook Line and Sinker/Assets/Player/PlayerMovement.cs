@@ -437,7 +437,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (isShooting && projectileTimer == 0)
+        if (isShooting && projectileTimer == 0 && !wallSliding)
         {
             GameObject firedProjectile = Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
             firedProjectile.GetComponent<Projectile>().SetOrigin(gameObject);

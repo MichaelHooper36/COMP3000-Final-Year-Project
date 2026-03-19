@@ -155,17 +155,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.6}
-    oldSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 1.6}
+  m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &3952072291912697047
 MonoBehaviour:
@@ -193,12 +193,16 @@ MonoBehaviour:
   currentHealth: 0
   bossHealth: {fileID: 0}
   healthBar: {fileID: 0}
+  invulnerable: 0
   phaseOne: 0
   phaseTwo: 0
   phaseThree: 0
   dead: 0
-  teleportInterval: 5
+  teleportInterval: 4
   teleportTimer: 0
+  attacking: 0
+  disappearDuration: 1.5
+  reappearDuration: 1.5
   phaseOneSpawns: []
   phaseOneAttackZone: {fileID: 0}
   phaseTwoSpawns: []

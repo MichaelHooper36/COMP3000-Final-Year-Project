@@ -6,9 +6,11 @@ public class Mine : MonoBehaviour
     protected Rigidbody2D rigidBody;
 
     public int damage = 20;
+    public float elapsedTime = 0f;
 
     private PlayerMovement playerMovement;
     private GameObject target;
+    public LayerMask playerLayer;
     private bool inRange = false;
 
     public Animator mineAnim;
@@ -28,29 +30,23 @@ public class Mine : MonoBehaviour
             Vector2 direction = (target.transform.position - transform.position).normalized;
             rigidBody.linearVelocity = direction * speed.magnitude;
         }
+
+        inRange = Physics2D.OverlapCircle(transform.position, 3f, playerLayer);
+        if (inRange)
+        {
+            radiusAnim.SetBool("inRange", true);
+        }
+
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= 5f)
+        {
+            mineAnim.SetBool("isDestroyed", true);
+        }
     }
 
     public void SetTarget(GameObject target)
     {
         this.target = target;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject == target)
-        {
-            inRange = true;
-            playerMovement = collider.GetComponent<PlayerMovement>();
-            radiusAnim.SetBool("inRange", true);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.gameObject == target)
-        {
-            inRange = false;
-        }
     }
 
     public void Explode()

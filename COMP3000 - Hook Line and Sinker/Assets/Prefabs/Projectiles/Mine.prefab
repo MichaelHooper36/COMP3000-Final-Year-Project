@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6304622643511325149}
   m_Layer: 0
   m_Name: Mine
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3
+  m_Radius: 0.5
 --- !u!114 &6304622643511325149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: {x: 0.5, y: 0.25}
   damage: 20
+  elapsedTime: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   mineAnim: {fileID: 2336703040087858149}
   radiusAnim: {fileID: 8874594886194307965}
 --- !u!1 &6247058175675366887

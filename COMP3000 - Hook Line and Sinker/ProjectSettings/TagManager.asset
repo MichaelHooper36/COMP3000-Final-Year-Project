@@ -9,6 +9,7 @@ TagManager:
   - PhaseOneSpawn
   - PhaseTwoSpawn
   - PhaseThreeSpawn
+  - Mine
   layers:
   - Default
   - TransparentFX

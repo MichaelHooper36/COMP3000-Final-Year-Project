@@ -55,5 +55,14 @@ public class ProjectileDamage : Projectile
             }
             Destroy(transform.parent.gameObject);
         }
+        else if (collider.gameObject.CompareTag("Mine"))
+        {
+            Debug.Log("Projectile hit mine.");
+            Mine mine = collider.GetComponent<Mine>();
+            if (mine != null)
+            {
+                mine.mineAnim.SetBool("isDestroyed", true);
+            }
+        }
     }
 }

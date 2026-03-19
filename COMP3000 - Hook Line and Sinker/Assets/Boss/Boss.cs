@@ -21,6 +21,7 @@ public class Boss : MonoBehaviour
     public int currentHealth;
     public GameObject bossHealth;
     public HealthBar healthBar;
+    public bool invulnerable;
 
     public bool phaseOne;
     public bool phaseTwo;
@@ -30,8 +31,8 @@ public class Boss : MonoBehaviour
     public float teleportInterval = 4f;
     public float teleportTimer;
     public bool attacking;
-    public float disappearDuration = 1.5f;
-    public float reappearDuration = 1.5f;
+    public float disappearDuration = 2f;
+    public float reappearDuration = 2f;
 
     public GameObject[] phaseOneSpawns;
     public GameObject phaseOneAttackZone;
@@ -52,6 +53,7 @@ public class Boss : MonoBehaviour
         currentHealth = maxHealth;
         phaseOne = true;
         attacking = false;
+        invulnerable = false;
     }
 
     // Update is called once per frame
@@ -82,39 +84,43 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetCurrentHealth(currentHealth);
-        if (currentHealth <= 0)
+        if (!invulnerable)
         {
-            phaseThree = false;
-            dead = true;
-            pauseMenu.timerOn = false;
-            GameControl.gameControl.levelOneTimer = pauseMenu.elapsedTime;
-            GameControl.gameControl.Save();
-            bossHealth.SetActive(false);
-            risingFloor.isRising = true;
-            closeDoor.OpenDoor();
-            Destroy(closeDoor.gameObject);
-            Destroy(gameObject);
-        }
-        else if (currentHealth <= maxHealth / 3)
-        {
-            phaseThree = true;
-            phaseTwo = false;
-            risingFloor.isRising = true;
-            StartCoroutine(PhaseTransition(phaseThreeAttackZone.transform));
-        }
-        else if (currentHealth <= maxHealth * 2 / 3)
-        {
-            phaseOne = false;
-            phaseTwo = true;
-            risingFloor.isRising = true;
-            StartCoroutine(PhaseTransition(phaseTwoAttackZone.transform));
+            currentHealth -= damage;
+            healthBar.SetCurrentHealth(currentHealth);
+            if (currentHealth <= 0)
+            {
+                phaseThree = false;
+                dead = true;
+                pauseMenu.timerOn = false;
+                GameControl.gameControl.levelOneTimer = pauseMenu.elapsedTime;
+                GameControl.gameControl.Save();
+                bossHealth.SetActive(false);
+                risingFloor.isRising = true;
+                closeDoor.OpenDoor();
+                Destroy(closeDoor.gameObject);
+                Destroy(gameObject);
+            }
+            else if (currentHealth <= maxHealth / 3 && phaseTwo)
+            {
+                phaseThree = true;
+                phaseTwo = false;
+                risingFloor.isRising = true;
+                StartCoroutine(PhaseTransition(phaseThreeAttackZone.transform));
+            }
+            else if (currentHealth <= maxHealth * 2 / 3 && phaseOne)
+            {
+                phaseOne = false;
+                phaseTwo = true;
+                risingFloor.isRising = true;
+                StartCoroutine(PhaseTransition(phaseTwoAttackZone.transform));
+            }
         }
     }
 
     private IEnumerator PhaseTransition(Transform newPosition)
     {
+        invulnerable = true;
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearDuration);
         
@@ -124,10 +130,12 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(reappearDuration);
 
         animator.SetTrigger("idle");
+        invulnerable = false;
     }
 
     private IEnumerator MineSpawner()
     {
+        invulnerable = true;
         if (phaseOne && transform.position != phaseOneAttackZone.transform.position)
         {
             animator.SetTrigger("disappear");
@@ -158,7 +166,7 @@ public class Boss : MonoBehaviour
             animator.SetTrigger("reappear");
             yield return new WaitForSeconds(reappearDuration);
         }
-
+        invulnerable = false;
         animator.SetTrigger("summonMines");
     }
     public void Teleport()
@@ -168,6 +176,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Teleportation()
     {
+        invulnerable = true;
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearDuration);
 
@@ -190,6 +199,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(reappearDuration);
 
         animator.SetTrigger("idle");
+        invulnerable = false;
         attacking = false;
     }
 
