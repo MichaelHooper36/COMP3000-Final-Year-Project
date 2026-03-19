@@ -20,7 +20,7 @@ public class DamagePlayer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == player.name)
+        if (other.gameObject.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null)
@@ -59,6 +59,10 @@ public class DamagePlayer : MonoBehaviour
                     playerMovement.animator.SetBool("isGrappling", false);
                 }
             }
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
         }
     }
 

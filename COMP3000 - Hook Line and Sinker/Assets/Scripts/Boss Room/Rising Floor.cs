@@ -6,6 +6,7 @@ public class RisingFloor : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public bool isRising;
+    public bool playerAtNextPhase;
 
     public float phaseOneY = 2.5f;
     public float phaseTwoY = 29f;
@@ -20,13 +21,18 @@ public class RisingFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((boss.phaseTwo && playerMovement.transform.position.y >= phaseTwoY && playerMovement.isGrounded) || (boss.phaseThree && playerMovement.transform.position.y >= phaseThreeY && playerMovement.isGrounded))
+        {
+            playerAtNextPhase = true;
+        }
+
         if (isRising && boss.dead)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - 10f * Time.deltaTime);
         }
-        else if (isRising && ((boss.phaseTwo && playerMovement.transform.position.y >= phaseTwoY && playerMovement.isGrounded) || (boss.phaseThree && playerMovement.transform.position.y >= phaseThreeY && playerMovement.isGrounded)))
+        else if (isRising && playerAtNextPhase)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 10f * Time.deltaTime);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 15f * Time.deltaTime);
         }
         else if (isRising && playerMovement.transform.position.y - transform.position.y > 12.5)
         {

@@ -212,7 +212,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 7348584841791756832}
   inventoryPoint: {fileID: 1401609484878018806}
   inventoryPointActive: 0
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 5901854222843535766, guid: f3054af91a6574d44b22194c6b57a07c, type: 3}
 --- !u!61 &2359988576014264521
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -439,9 +439,9 @@ MonoBehaviour:
   - {fileID: 2928258044019862867, guid: 463c49f9bab9c0140806cf37d89500d7, type: 3}
   - {fileID: 5189783028909851364, guid: 8617364af9b725447b232f6e13df4031, type: 3}
   - {fileID: 2633350448534736947, guid: 19c126327307b1040ba482f83e36865f, type: 3}
-  equippedProjectile: {fileID: 0}
+  equippedProjectile: {fileID: 6223217940023158905, guid: 583b876b96d711841a93b1f3e7210588, type: 3}
   projectileTimer: 0
-  projectileCooldown: 0.5
+  projectileCooldown: 0.75
   isShooting: 0
   lineRenderer: {fileID: 6055942291539504646}
   distanceJoint: {fileID: 5041260808299645434}

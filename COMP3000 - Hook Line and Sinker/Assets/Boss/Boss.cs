@@ -106,6 +106,11 @@ public class Boss : MonoBehaviour
                 phaseThree = true;
                 phaseTwo = false;
                 risingFloor.isRising = true;
+                risingFloor.playerAtNextPhase = false;
+
+                StopAllCoroutines();
+                attacking = false;
+
                 StartCoroutine(PhaseTransition(phaseThreeAttackZone.transform));
             }
             else if (currentHealth <= maxHealth * 2 / 3 && phaseOne)
@@ -113,6 +118,11 @@ public class Boss : MonoBehaviour
                 phaseOne = false;
                 phaseTwo = true;
                 risingFloor.isRising = true;
+                risingFloor.playerAtNextPhase = false;
+
+                StopAllCoroutines();
+                attacking = false;
+
                 StartCoroutine(PhaseTransition(phaseTwoAttackZone.transform));
             }
         }
@@ -183,17 +193,26 @@ public class Boss : MonoBehaviour
         if (phaseOne)
         {
             int randomSpawnOne = Random.Range(0, phaseOneSpawns.Length);
-            transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
+            if (phaseOneSpawns[randomSpawnOne] != null)
+            {
+                transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
+            }
         }
         else if (phaseTwo)
         {
             int randomSpawnTwo = Random.Range(0, phaseTwoSpawns.Length);
-            transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
+            if (phaseTwoSpawns[randomSpawnTwo] != null)
+            {
+                transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
+            }
         }
         else if (phaseThree)
         {
             int randomSpawnThree = Random.Range(0, phaseThreeSpawns.Length);
-            transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
+            if (phaseThreeSpawns[randomSpawnThree] != null)
+            {
+                transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
+            }
         }
         animator.SetTrigger("reappear");
         yield return new WaitForSeconds(reappearDuration);

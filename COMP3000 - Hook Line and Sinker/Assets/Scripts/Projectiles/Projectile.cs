@@ -50,6 +50,15 @@ public class Projectile : MonoBehaviour
             if (fishMovement != null)
             {
                 fishMovement.TakeDamage(enemyDamage);
+
+                if (fishMovement.triggerArea.activeInHierarchy && projectileOrigin.CompareTag("Player"))
+                {
+                    fishMovement.triggerArea.SetActive(false);
+                    fishMovement.target = projectileOrigin.transform;
+                    fishMovement.inRange = true;
+                    fishMovement.hotZone.SetActive(true);
+                    fishMovement.Flip();
+                }
             }
             else
             {
@@ -70,7 +79,7 @@ public class Projectile : MonoBehaviour
                 Debug.Log("Projectile dealing damage to player.");
                 playerMovement.TakeDamage(playerDamage);
             }
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
         else if (collider.gameObject.CompareTag("Mine"))
         {
@@ -80,6 +89,7 @@ public class Projectile : MonoBehaviour
             {
                 mine.mineAnim.SetBool("isDestroyed", true);
             }
+            Destroy(gameObject);
         }
     }
 }

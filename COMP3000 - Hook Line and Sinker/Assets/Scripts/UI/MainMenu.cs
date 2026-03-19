@@ -9,6 +9,8 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+    public Texture2D chopsticks;
+
     public GameObject mainMenu;
     public GameObject levelSelectMenu;
     public GameObject settingsMenu;
@@ -24,6 +26,7 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ChangeCursor(chopsticks);
         mainMenu.SetActive(true);
         levelSelectMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -33,6 +36,11 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeCursor(Texture2D texture)
+    {
+        Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
     }
 
     public void LevelSelect()

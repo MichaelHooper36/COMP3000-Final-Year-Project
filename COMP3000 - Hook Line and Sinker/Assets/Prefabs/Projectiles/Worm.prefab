@@ -172,8 +172,8 @@ MonoBehaviour:
   speed: 6
   enemyDamage: 8
   playerDamage: 8
-  minUp: -4
-  maxUp: 4
+  minUp: -3
+  maxUp: 3
   alternationSpeed: 8
 --- !u!95 &3097972092594433290
 Animator:
