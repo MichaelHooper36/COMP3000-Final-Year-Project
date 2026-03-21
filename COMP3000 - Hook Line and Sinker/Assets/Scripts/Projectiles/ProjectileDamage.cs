@@ -24,6 +24,17 @@ public class ProjectileDamage : Projectile
         if (collider.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Projectile hit ground.");
+            PlayerMovement playerMovement = projectileOrigin.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.isGrappling = false;
+                playerMovement.canMove = true;
+                playerMovement.canJump = true;
+                playerMovement.distanceJoint.enabled = false;
+                playerMovement.lineRenderer.enabled = false;
+                playerMovement.canGrapple = false;
+                playerMovement.grapplePoint = null;
+            }
             Destroy(transform.parent.gameObject);
         }
         else if (collider.gameObject.CompareTag("Enemy"))

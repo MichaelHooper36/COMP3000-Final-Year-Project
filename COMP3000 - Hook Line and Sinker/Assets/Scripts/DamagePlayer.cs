@@ -46,6 +46,14 @@ public class DamagePlayer : MonoBehaviour
                     playerMovement.transform.position = new Vector2(playerMovement.previousGround.x, playerMovement.previousGround.y + 1);
                 }
 
+                if (playerMovement.transform.rotation.y == 180)
+                {
+                    playerMovement.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else
+                {
+                    playerMovement.transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
                 playerMovement.movement = 0f;
                 playerMovement.rigidBody.linearVelocityX = 0f;
                 playerMovement.rigidBody.linearVelocityY = 0f;

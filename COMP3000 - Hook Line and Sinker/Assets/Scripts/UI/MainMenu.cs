@@ -98,6 +98,7 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelTwoRespawnY = 0;
         GameControl.gameControl.levelTwoTimer = 0;
         GameControl.gameControl.projectileIndex = 0;
+        GameControl.gameControl.projectiles.Remove(3);
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
         LoadScene("levelTwo");

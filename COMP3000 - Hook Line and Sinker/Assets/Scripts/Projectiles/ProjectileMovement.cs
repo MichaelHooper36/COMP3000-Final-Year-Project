@@ -5,6 +5,7 @@ public class ProjectileMovement : Projectile
     public Animator animator;
     public LayerMask groundLayer;
     private PlayerMovement playerMovement;
+    public ProjectileDamage projectileDamage;
     private bool playerInRange;
 
     private float elapsedTime;
@@ -53,6 +54,7 @@ public class ProjectileMovement : Projectile
 
                 if (elapsedTime >=3)
                 {
+                    playerMovement.animator.SetBool("isGrappling", false);
                     Destroy(gameObject);
                 }
             }
@@ -66,23 +68,15 @@ public class ProjectileMovement : Projectile
         }
     }
 
-    //public override void SetOrigin(GameObject projectileOrigin)
-    //{
-    //    base.SetOrigin(projectileOrigin);
+    public override void SetOrigin(GameObject projectileOrigin)
+    {
+        base.SetOrigin(projectileOrigin);
 
-    //    playerMovement.canGrapple = true;
-    //    playerMovement.grapplePoint = transform;
-    //    playerMovement.lineRenderer.SetPosition(1, playerMovement.transform.position);
-    //    playerMovement.lineRenderer.SetPosition(0, transform.position);
-    //    playerMovement.distanceJoint.connectedAnchor = transform.position;
-    //    playerMovement.distanceJoint.distance = Vector2.Distance(playerMovement.transform.position, transform.position);
-    //    playerMovement.distanceJoint.maxDistanceOnly = true;
-    //    playerMovement.distanceJoint.enabled = true;
-    //    playerMovement.lineRenderer.enabled = true;
-    //    playerMovement.canMove = false;
-    //    playerMovement.canJump = false;
-    //    playerMovement.isGrappling = true;
-    //}
+        if (projectileDamage != null)
+        {
+            projectileDamage.SetOrigin(projectileOrigin);
+        }
+    }
 
     public override void OnTriggerEnter2D(Collider2D collider)
     {

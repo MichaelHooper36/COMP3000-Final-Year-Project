@@ -22,7 +22,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject projectileMenu;
     public GameObject projectiles;
-    public int currentProjectile;
 
     public TextMeshProUGUI timer;
     public float elapsedTime;
@@ -159,10 +158,9 @@ public class PauseMenu : MonoBehaviour
 
     public void EquipProjectile(int newProjectile)
     {
-        if (playerMovement != null && newProjectile != currentProjectile)
+        if (playerMovement != null && newProjectile != GameControl.gameControl.projectileIndex)
         {
             playerMovement.ChangeProjectile(newProjectile);
-            currentProjectile = newProjectile;
         }
     }
 

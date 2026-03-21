@@ -198,7 +198,7 @@ MonoBehaviour:
   phaseTwo: 0
   phaseThree: 0
   dead: 0
-  teleportInterval: 4
+  teleportInterval: 1.5
   teleportTimer: 0
   attacking: 0
   disappearDuration: 1.5

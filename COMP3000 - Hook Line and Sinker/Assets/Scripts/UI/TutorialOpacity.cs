@@ -23,21 +23,33 @@ public class TutorialOpacity : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(player.transform.position, transform.position);
-        float alpha = Mathf.InverseLerp(maxDistance, minDistance, distance);
+        float alpha = Mathf.InverseLerp(maxDistance, minDistance, distance);        
 
         if (alpha == 1f)
         {
             readByPlayer = true;
         }
 
-        if (image != null)
+        if (image != null && alpha >= 0.85f)
+        {
+            Color imageColour = image.color;
+            imageColour.a = 0.85f;
+            image.color = imageColour;
+        }
+        else if (image != null && alpha < 0.85f)
         {
             Color imageColour = image.color;
             imageColour.a = alpha;
             image.color = imageColour;
         }
 
-        if (text != null)
+        if (text != null && alpha >= 0.85f)
+        {
+            Color textcolour = text.color;
+            textcolour.a = 0.85f;
+            text.color = textcolour;
+        }
+        else if (text != null && alpha < 0.85f)
         {
             Color textColour = text.color;
             textColour.a = alpha;

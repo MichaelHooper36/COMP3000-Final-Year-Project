@@ -34,8 +34,6 @@ public class WormCollectable : MonoBehaviour
                 {
                     GameControl.gameControl.projectiles.Add(projectileIndex);
                 }
-                GameControl.gameControl.Save();
-                GameControl.gameControl.Load();
                 playerMovement.ChangeProjectile(projectileIndex);
             }
             Destroy(gameObject);

@@ -242,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Time.timeScale = 0.5f;
         Debug.Log(respawnCoordinates);
         scene = SceneManager.GetActiveScene();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -389,7 +390,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (distanceJoint.enabled)
+        if (distanceJoint.enabled && grapplePoint != null)
         {
             lineRenderer.SetPosition(1, rendererPoint.position);
             lineRenderer.SetPosition(0, grapplePoint.position);

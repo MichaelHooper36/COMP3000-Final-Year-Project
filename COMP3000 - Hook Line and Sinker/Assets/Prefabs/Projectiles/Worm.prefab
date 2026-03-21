@@ -169,11 +169,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f569d5e891d0640824114f35ee0bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 6
-  enemyDamage: 8
-  playerDamage: 8
-  minUp: -3
-  maxUp: 3
+  speed: 8
+  enemyDamage: 10
+  playerDamage: 10
+  minUp: -2.5
+  maxUp: 2.5
   alternationSpeed: 8
 --- !u!95 &3097972092594433290
 Animator:

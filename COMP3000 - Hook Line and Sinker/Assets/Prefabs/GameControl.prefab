@@ -52,12 +52,15 @@ MonoBehaviour:
   levelTwoRespawnY: 0
   levelThreeRespawnX: 0
   levelThreeRespawnY: 0
-  levelOneTimer: 52.13482
+  levelOneTimer: 0
   levelTwoTimer: 0
   levelThreeTimer: 0
   levelOneBest: 0
   levelTwoBest: 0
   levelThreeBest: 0
+  levelOneClear: 0
+  levelTwoClear: 0
+  levelThreeClear: 0
   timePlayed: 0
   totalKills: 0
   totalDeaths: 0

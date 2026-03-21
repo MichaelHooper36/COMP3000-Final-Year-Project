@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 7
-  enemyDamage: 10
-  playerDamage: 10
+  enemyDamage: 15
+  playerDamage: 15
 --- !u!95 &4140644113701773715
 Animator:
   serializedVersion: 7

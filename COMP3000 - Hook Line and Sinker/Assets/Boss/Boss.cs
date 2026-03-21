@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -146,7 +147,7 @@ public class Boss : MonoBehaviour
     private IEnumerator MineSpawner()
     {
         invulnerable = true;
-        if (phaseOne && transform.position != phaseOneAttackZone.transform.position)
+        if (phaseOne && Vector2.Distance(transform.position, phaseOneAttackZone.transform.position) > 2f)
         {
             animator.SetTrigger("disappear");
             yield return new WaitForSeconds(disappearDuration);
@@ -156,7 +157,7 @@ public class Boss : MonoBehaviour
             animator.SetTrigger("reappear");
             yield return new WaitForSeconds(reappearDuration);
         }
-        else if (phaseTwo && transform.position != phaseTwoAttackZone.transform.position)
+        else if (phaseTwo && Vector2.Distance(transform.position, phaseTwoAttackZone.transform.position) > 2f)
         {
             animator.SetTrigger("disappear");
             yield return new WaitForSeconds(disappearDuration);
@@ -166,7 +167,7 @@ public class Boss : MonoBehaviour
             animator.SetTrigger("reappear");
             yield return new WaitForSeconds(reappearDuration);
         }
-        else if (phaseThree && transform.position != phaseThreeAttackZone.transform.position)
+        else if (phaseThree && Vector2.Distance(transform.position, phaseThreeAttackZone.transform.position) > 2f)
         {
             animator.SetTrigger("disappear");
             yield return new WaitForSeconds(disappearDuration);
@@ -190,30 +191,114 @@ public class Boss : MonoBehaviour
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearDuration);
 
-        if (phaseOne)
+        if (phaseThree)
         {
-            int randomSpawnOne = Random.Range(0, phaseOneSpawns.Length);
-            if (phaseOneSpawns[randomSpawnOne] != null)
+            Vector3 closestSpawn = Vector3.zero;
+            foreach (GameObject spawnLocation in phaseThreeSpawns)
             {
-                transform.position = phaseOneSpawns[randomSpawnOne].transform.position;
+                if (spawnLocation != null)
+                {
+                    Vector2 spawnPosition = spawnLocation.transform.position;
+                    Vector2 playerPosition = player.transform.position;
+                    float distance = Vector2.Distance(spawnPosition, playerPosition);
+                    if (distance < Vector2.Distance(closestSpawn, playerPosition))
+                    {
+                        closestSpawn = spawnPosition;
+                    }
+                }
+            }
+            List<GameObject> validSpawns = new List<GameObject>();
+            foreach (GameObject spawnLocation in phaseThreeSpawns)
+            {
+                if (spawnLocation.transform.position != closestSpawn)
+                {
+                    validSpawns.Add(spawnLocation);
+                }
+            }
+            if (validSpawns.Count > 0)
+            {
+                GameObject selectedSpawn = validSpawns[Random.Range(0, validSpawns.Count)];
+                transform.position = selectedSpawn.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("No valid spawn locations found in phaseThreeSpawns.");
+                transform.position = closestSpawn;
             }
         }
         else if (phaseTwo)
         {
-            int randomSpawnTwo = Random.Range(0, phaseTwoSpawns.Length);
-            if (phaseTwoSpawns[randomSpawnTwo] != null)
+            Vector3 closestSpawn = Vector3.zero;
+            foreach (GameObject spawnLocation in phaseTwoSpawns)
             {
-                transform.position = phaseTwoSpawns[randomSpawnTwo].transform.position;
+                if (spawnLocation != null)
+                {
+                    Vector2 spawnPosition = spawnLocation.transform.position;
+                    Vector2 playerPosition = player.transform.position;
+                    float distance = Vector2.Distance(spawnPosition, playerPosition);
+                    if (distance < Vector2.Distance(closestSpawn, playerPosition))
+                    {
+                        closestSpawn = spawnPosition;
+                    }
+                }
+            }
+
+            List<GameObject> validSpawns = new List<GameObject>();
+            foreach (GameObject spawnLocation in phaseTwoSpawns)
+            {
+                if (spawnLocation.transform.position != closestSpawn)
+                {
+                    validSpawns.Add(spawnLocation);
+                }
+            }
+
+            if (validSpawns.Count > 0)
+            {
+                GameObject selectedSpawn = validSpawns[Random.Range(0, validSpawns.Count)];
+                transform.position = selectedSpawn.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("No valid spawn locations found in phaseTwoSpawns.");
+                transform.position = closestSpawn;
             }
         }
-        else if (phaseThree)
+        else
         {
-            int randomSpawnThree = Random.Range(0, phaseThreeSpawns.Length);
-            if (phaseThreeSpawns[randomSpawnThree] != null)
+            Vector3 closestSpawn = Vector3.zero;
+            foreach (GameObject spawnLocation in phaseOneSpawns)
             {
-                transform.position = phaseThreeSpawns[randomSpawnThree].transform.position;
+                if (spawnLocation != null)
+                {
+                    Vector2 spawnPosition = spawnLocation.transform.position;
+                    Vector2 playerPosition = player.transform.position;
+                    float distance = Vector2.Distance(spawnPosition, playerPosition);
+                    if (distance < Vector2.Distance(closestSpawn, playerPosition))
+                    {
+                        closestSpawn = spawnPosition;
+                    }
+                }
+            }
+            List<GameObject> validSpawns = new List<GameObject>();
+            foreach (GameObject spawnLocation in phaseOneSpawns)
+            {
+                if (spawnLocation.transform.position != closestSpawn)
+                {
+                    validSpawns.Add(spawnLocation);
+                }
+            }
+            if (validSpawns.Count > 0)
+            {
+                GameObject selectedSpawn = validSpawns[Random.Range(0, validSpawns.Count)];
+                transform.position = selectedSpawn.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("No valid spawn locations found in phaseOneSpawns.");
+                transform.position = closestSpawn;
             }
         }
+
         animator.SetTrigger("reappear");
         yield return new WaitForSeconds(reappearDuration);
 

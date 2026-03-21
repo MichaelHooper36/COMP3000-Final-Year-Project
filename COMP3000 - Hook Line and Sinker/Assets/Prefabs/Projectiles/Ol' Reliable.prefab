@@ -134,13 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7eb87fe19edc94eaa248db254aa195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 6
-  enemyDamage: 2
-  playerDamage: 2
+  speed: 5
+  enemyDamage: 5
+  playerDamage: 5
   animator: {fileID: 7822258385433984074}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  projectileDamage: {fileID: 6647828689722664114}
 --- !u!58 &4711575704174102872
 CircleCollider2D:
   m_ObjectHideFlags: 0
