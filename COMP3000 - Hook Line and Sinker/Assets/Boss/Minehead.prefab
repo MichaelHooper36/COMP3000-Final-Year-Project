@@ -189,7 +189,7 @@ MonoBehaviour:
   phaseOneMineLocations: []
   phaseTwoMineLocations: []
   phaseThreeMineLocations: []
-  maxHealth: 150
+  maxHealth: 180
   currentHealth: 0
   bossHealth: {fileID: 0}
   healthBar: {fileID: 0}

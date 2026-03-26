@@ -177,7 +177,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 10
+  m_Radius: 12
 --- !u!95 &7822258385433984074
 Animator:
   serializedVersion: 7
@@ -268,7 +268,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 3
 --- !u!114 &6647828689722664114
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         ChangeCursor(chopsticks);
+        Cursor.visible = true;
         mainMenu.SetActive(true);
         levelSelectMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -60,7 +61,6 @@ public class MainMenu : MonoBehaviour
 
         if (GameControl.gameControl.levelOneBest != 0)
         {
-            Debug.Log("Player has PB");
             level1Best.SetActive(true);
             TextMeshProUGUI bestTime = level1Best.transform.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
             if (bestTime != null)
@@ -82,6 +82,7 @@ public class MainMenu : MonoBehaviour
         GameControl.gameControl.levelOneRespawnY = 3;
         GameControl.gameControl.levelOneTimer = 0;
         GameControl.gameControl.projectileIndex = 0;
+        GameControl.gameControl.projectiles.Remove(1);
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
         LoadScene("levelOne");
@@ -127,12 +128,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-#if UNITY_EDITOR
         SceneManager.LoadScene(sceneName);
-#else
-        string executablePath = Path.Combine(Application.dataPath, "COMP3000 - Hook Line and Sinker.exe");
-        Process.Start(executablePath, sceneName);
-#endif
     }
 
     public void Settings()

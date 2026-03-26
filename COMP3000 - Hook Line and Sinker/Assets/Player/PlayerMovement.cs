@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public CloseDoor closeDoor;
     public PauseMenu pauseMenu;
 
+    // interaction with enemies and damage invulnerability frames
     public LayerMask enemyLayer;
     public float enemyDamageCooldown;
     public float enemyDamageTimer;
 
+    // movement and jumping
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
@@ -33,9 +36,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveTimer;
     public float moveCooldown;
 
+    // wallsliding
     public bool wallSliding;
     public float wallSlideSpeed;
+    public float wallSlideTimer;
+    public float wallSlideCooldown;
+    public bool hangOnWall;
 
+    // wall jump and grounded detection
     public Transform groundCheckTransform;
     public float groundCheckRadius;
     public LayerMask groundCheckLayer;
@@ -46,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallJumping;
     public Vector2 wallJumpSpeed;
 
+    // bait
     public Transform firePoint;
     public GameObject startingProjectile;
     public List<GameObject> projectiles;
@@ -53,9 +62,16 @@ public class PlayerMovement : MonoBehaviour
     public float projectileTimer;
     public float projectileCooldown;
     public bool isShooting;
-    private Vector2 aimingInput;
-    private bool usingMouse;
 
+    // determining aim direction and source
+    private Vector2 aimingInput;
+    public Vector2 lastMouseScreenPos;
+    public bool mouseMovedLast;
+    public enum AimSource { Mouse, Joystick };
+    private AimSource aimSource;
+    public float stickDeadzone = 0.2f;
+
+    // grappling
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
     public Transform rendererPoint;
@@ -83,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         inputSystem.Player.Attack.performed += Shooting;
 
         inputSystem.Player.Move.canceled += Movement;
+        inputSystem.Player.Aim.canceled += Aiming;
         inputSystem.Player.Jump.canceled += Jumping;
         inputSystem.Player.Swing.canceled += Grappling;
         inputSystem.Player.Attack.canceled += Shooting;
@@ -100,12 +117,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        // if movement has been inputted, this will determine the direction and speed of the player's movement
+        if (context.performed && Mathf.Abs(rigidBody.linearVelocityX) <= wallJumpSpeed.x)
         {
             isMoving = true;
             animator.SetBool("isMoving", true);
             movement = context.ReadValue<Vector2>().x;
         }
+        // if movement is cancelled, player movement will stop and running animation will stop
         else if (context.canceled && !isWallJumping)
         {
             movement = 0;
@@ -121,14 +140,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Aiming(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        // determining aiming input for devices that aren't the mouse
+        if (context.performed)
         {
-            aimingInput = context.ReadValue<Vector2>();
-            usingMouse = context.control.device is Pointer;
+            Vector2 input = context.ReadValue<Vector2>();
+
+            if (input.sqrMagnitude >= stickDeadzone * stickDeadzone)
+            {
+                aimingInput = input;
+                aimSource = AimSource.Joystick;
+                mouseMovedLast = false;
+                firePoint.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
-        if (context.canceled && !usingMouse)
+        else if (context.canceled)
         {
             aimingInput = Vector2.zero;
+            firePoint.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -136,14 +164,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            // if the player is grappling, they will reel in towards the grapple point when they jump
             if (isGrappling)
             {
                 reelingIn = true;
             }
+            // default jump action
             if (isGrounded && canJump)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
+            // if against a wall, the player will perform a wall jump
             else if (wallSliding)
             {
                 isWallJumping = true;
@@ -170,6 +201,7 @@ public class PlayerMovement : MonoBehaviour
                     rigidBody.linearVelocityX = -wallJumpSpeed.x;
                 }
             }
+            // players can perform one additional jump midair
             else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
@@ -184,6 +216,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Grappling(InputAction.CallbackContext context)
     {
+        // on grapple, a joint will be created between the player and the grapple point
+        // and a rope be rendered between the grapple point and end of the fishing rod
         if (context.performed && canGrapple && grapplePoint != null && !isGrappling)
         {
             lineRenderer.SetPosition(1, rendererPoint.position);
@@ -212,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityY += 1;
             }
 
+            // if the player is going fast enough, they will maintain their momentum after releasing the grapple
             if (Mathf.Abs(rigidBody.linearVelocityX) > Mathf.Abs(movement) * moveSpeed)
             {
                 movement = rigidBody.linearVelocityX / moveSpeed;
@@ -229,6 +264,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Shooting(InputAction.CallbackContext context)
     {
+        // allows the player to hold down the shoot button
         if (context.performed)
         {
             isShooting = true;
@@ -242,11 +278,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Time.timeScale = 0.5f;
-        Debug.Log(respawnCoordinates);
         scene = SceneManager.GetActiveScene();
         rigidBody = GetComponent<Rigidbody2D>();
 
+        //determines spawn location, regardless of level
         float respawnX = 0;
         float respawnY = 0;
         if (scene.name == "levelOne")
@@ -267,6 +302,7 @@ public class PlayerMovement : MonoBehaviour
 
         respawnCoordinates = new Vector2(respawnX, respawnY);
 
+        // preemptively setting booleans.
         Debug.Log(respawnCoordinates);
         transform.position = respawnCoordinates;
         distanceJoint.enabled = false;
@@ -275,11 +311,14 @@ public class PlayerMovement : MonoBehaviour
         canGrapple = false;
         isWallJumping = false;
         isShooting = false;
+        hangOnWall = false;
+        wallSlideTimer = wallSlideCooldown;
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetCurrentHealth(currentHealth);
 
+        // checking save file to determine which projectile the player has equipped, and equipping it
         int projectileIndex = GameControl.gameControl.projectileIndex;
         if (GameControl.gameControl.projectiles.Contains(projectileIndex))
         {
@@ -289,13 +328,44 @@ public class PlayerMovement : MonoBehaviour
         {
             equippedProjectile = startingProjectile;
         }
+
+        //if there is a mouse on the device, this sets the initial position of the mouse
+        if (Mouse.current != null)
+        {
+            lastMouseScreenPos = Mouse.current.position.ReadValue();
+        }
+        // defaults aim source to joystick until mouse movement is detected
+        aimSource = AimSource.Joystick;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // determining whether cursor should be visible based on aim source
+        if (aimSource == AimSource.Joystick)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
+
+        // if the mouse has moved since the last frame, update the aim source to mouse and update the last mouse position
+        if (Mouse.current != null)
+        {
+            Vector2 currentMousePosition = Mouse.current.position.ReadValue();
+
+            if ((currentMousePosition - lastMouseScreenPos).sqrMagnitude > 0.0001f)
+            {
+                mouseMovedLast = true;
+                lastMouseScreenPos = currentMousePosition;
+                aimSource = AimSource.Mouse;
+            }
+        }
         UpdateAim();
 
+        // grounded check
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
         if (isGrounded && isWallJumping)
         {
@@ -304,14 +374,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
+            //resetting extra jumps and the previous ground position for when the player falls into spikes
             extraJumps = 1;
             previousGround = transform.position;
             animator.SetBool("isGrounded", true);
+            if (rigidBody.linearVelocityX > moveSpeed)
+            {
+                rigidBody.linearVelocityX = moveSpeed;
+            }
+            else if (rigidBody.linearVelocityX < -moveSpeed)
+            {
+                rigidBody.linearVelocityX = -moveSpeed;
+            }
+
+            if (!isMoving)
+            {
+                movement = 0;
+            }
         }
         else
         {
             animator.SetBool("isGrounded", false);
-
+            // changing animation based on the upwards velocity while midair
             if (rigidBody.linearVelocityY > 1)
             {
                 animator.SetFloat("yVelocity", 1);
@@ -324,11 +408,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetFloat("yVelocity", 0);
             }
-        }
-
-        if (isGrounded && !isMoving)
-        {
-            movement = 0;
         }
 
         if (moveTimer > 0)
@@ -356,19 +435,37 @@ public class PlayerMovement : MonoBehaviour
             TakeDamage(10);
             rigidBody.linearVelocityY = jumpSpeed;
         }
-
+        if (hangOnWall)
+        {
+            wallSlideTimer -= Time.deltaTime;
+        }
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
         if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 2.5)
         {
+            hangOnWall = true;
             animator.SetBool("isWallSliding", true);
             canJump = false;
             isWallJumping = false;
-            rigidBody.linearVelocityY = -wallSlideSpeed;
+            rigidBody.linearVelocityX = 0;
+
+            if (wallSlideTimer <= 0)
+            {
+                rigidBody.linearVelocityY = -wallSlideSpeed;
+            }
+            else
+            {
+                rigidBody.linearVelocityY = 0;
+            }
         }
-        else if (!isGrappling)
+        else if (!isGrappling && !wallSliding)
         {
             animator.SetBool("isWallSliding", false);
             canJump = true;
+            if (hangOnWall)
+            {
+                wallSlideTimer = wallSlideCooldown;
+                hangOnWall = false;
+            }
         }
 
         if (reelingIn)
@@ -438,7 +535,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (isShooting && projectileTimer == 0 && !wallSliding)
+        if (isShooting && projectileTimer == 0 && !wallSliding && (firePoint.position - transform.position).sqrMagnitude > 0.01f)
         {
             GameObject firedProjectile = Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
             firedProjectile.GetComponent<Projectile>().SetOrigin(gameObject);
@@ -472,25 +569,26 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Vector2 aimDirection;
+        Vector2 aimDirection = Vector2.zero;
 
-        if(usingMouse)
+        if (aimSource == AimSource.Mouse && Mouse.current != null)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(aimingInput);
-            aimDirection = (mousePosition - (Vector2)transform.position).normalized;
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(lastMouseScreenPos);
+            aimDirection = (mouseWorldPosition - transform.position).normalized;
         }
         else
         {
-            if (aimingInput.sqrMagnitude < 0.01f)
-            {
-                return;
-            }
             aimDirection = aimingInput.normalized;
         }
 
+        if (aimDirection.sqrMagnitude < 0.0001f)
+        {
+            firePoint.rotation = transform.rotation;
+            firePoint.position = Vector2.zero;
+        }
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        firePoint.position = (Vector2)transform.position + (aimDirection * 0.85f);
+        firePoint.rotation = Quaternion.Euler(0, 0, angle);
+        firePoint.position = (Vector2)transform.position + aimDirection * 0.85f;
     }
 
     public void TakeDamage(int damage)

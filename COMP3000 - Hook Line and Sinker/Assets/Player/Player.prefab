@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -7592221480266440253, guid: d5b0a5227c795f043ba68dde7f372ba6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -422,6 +422,9 @@ MonoBehaviour:
   moveCooldown: 0.2
   wallSliding: 0
   wallSlideSpeed: 3
+  wallSlideTimer: 0
+  wallSlideCooldown: 0.2
+  hangOnWall: 0
   groundCheckTransform: {fileID: 5781999453645310330}
   groundCheckRadius: 0.1
   groundCheckLayer:
@@ -443,6 +446,9 @@ MonoBehaviour:
   projectileTimer: 0
   projectileCooldown: 0.75
   isShooting: 0
+  lastMouseScreenPos: {x: 0, y: 0}
+  mouseMovedLast: 0
+  stickDeadzone: 0.2
   lineRenderer: {fileID: 6055942291539504646}
   distanceJoint: {fileID: 5041260808299645434}
   rendererPoint: {fileID: 4773615297164340765}

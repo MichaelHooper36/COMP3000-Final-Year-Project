@@ -7,7 +7,8 @@ public class HiddenPath : MonoBehaviour
     private PlayerMovement playerMovement;
     private bool playerInRange;
     private Vector2 originalPosition;
-    
+
+    public GameObject tutorial;
     public GameObject tileMap;
     public GameObject[] debris;
     private Disappear disappear;
@@ -16,6 +17,7 @@ public class HiddenPath : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
+        tutorial.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,8 +26,9 @@ public class HiddenPath : MonoBehaviour
         if (playerInRange && playerMovement != null)
         {
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
+            bool blockedByGround = hit.collider != null && !hit.collider.transform.IsChildOf(transform.parent);
 
-            if (hit.collider == null && playerMovement.isGrounded)
+            if (!blockedByGround && playerMovement.isGrounded)
             {
                 animator.SetBool("inRange", true);
                 playerMovement.canGrapple = true;
@@ -43,6 +46,7 @@ public class HiddenPath : MonoBehaviour
                 animator.SetBool("inRange", false);
                 Rigidbody2D rigidBody = transform.parent.GetComponent<Rigidbody2D>();
                 rigidBody.constraints = RigidbodyConstraints2D.None;
+                rigidBody.bodyType = RigidbodyType2D.Dynamic;
 
                 foreach (GameObject debrisPiece in debris)
                 {
@@ -50,6 +54,7 @@ public class HiddenPath : MonoBehaviour
                     if (debrisRigidBody != null)
                     {
                         debrisRigidBody.constraints = RigidbodyConstraints2D.None;
+                        debrisRigidBody.bodyType = RigidbodyType2D.Dynamic;
                     }
                 }
 
@@ -77,7 +82,7 @@ public class HiddenPath : MonoBehaviour
                     playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
 
-                if (hit.collider != null || !playerMovement.isGrounded)
+                if (blockedByGround)
                 {
                     playerMovement.canJump = true;
                     playerMovement.distanceJoint.enabled = false;
@@ -85,8 +90,7 @@ public class HiddenPath : MonoBehaviour
                     animator.SetBool("inRange", false);
                     playerMovement.canGrapple = false;
                     playerMovement.grapplePoint = null;
-                    rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                    rigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
+                    rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePosition;
                     playerMovement.animator.SetBool("isGrappling", false);
 
                     foreach (GameObject debrisPiece in debris)
@@ -94,7 +98,7 @@ public class HiddenPath : MonoBehaviour
                         Rigidbody2D debrisRigidBody = debrisPiece.GetComponent<Rigidbody2D>();
                         if (debrisRigidBody != null)
                         {
-                            debrisRigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
+                            debrisRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
                         }
                     }
                 }
@@ -102,7 +106,19 @@ public class HiddenPath : MonoBehaviour
             else
             {
                 Rigidbody2D rigidBody = transform.parent.GetComponent<Rigidbody2D>();
-                rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePosition;
+                rigidBody.bodyType = RigidbodyType2D.Kinematic;
+
+                foreach (GameObject debrisPiece in debris)
+                {
+                    Rigidbody2D debrisRigidBody = debrisPiece.GetComponent<Rigidbody2D>();
+                    if (debrisRigidBody != null)
+                    {
+                        debrisRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+                        debrisRigidBody.bodyType = RigidbodyType2D.Kinematic;
+                    }
+                }
+
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.None;
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
@@ -137,6 +153,7 @@ public class HiddenPath : MonoBehaviour
                     }
                 }
 
+                tutorial.SetActive(true);
                 Destroy(transform.parent.gameObject);
             }
         }
@@ -150,6 +167,7 @@ public class HiddenPath : MonoBehaviour
             if (playerMovement != null)
             {
                 playerInRange = false;
+                playerMovement.grapplePoint = null;
                 animator.SetBool("inRange", false);
                 playerMovement = null;
             }

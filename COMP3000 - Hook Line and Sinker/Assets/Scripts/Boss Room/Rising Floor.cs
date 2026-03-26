@@ -9,8 +9,8 @@ public class RisingFloor : MonoBehaviour
     public bool playerAtNextPhase;
 
     public float phaseOneY = 2.5f;
-    public float phaseTwoY = 29f;
-    public float phaseThreeY = 52f;
+    public float phaseTwoY = 37f;
+    public float phaseThreeY = 61f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,11 +47,11 @@ public class RisingFloor : MonoBehaviour
             transform.position = new Vector2(transform.position.x, transform.position.y + 1f * Time.deltaTime);
         }
 
-        if (transform.position.y >= phaseThreeY && boss.phaseThree)
+        if (transform.position.y >= phaseThreeY - 7.5f && boss.phaseThree)
         {
             isRising = false;
         }
-        else if (transform.position.y >= phaseTwoY && boss.phaseTwo)
+        else if (transform.position.y >= phaseTwoY - 7.5f && boss.phaseTwo)
         {
             isRising = false;
         }

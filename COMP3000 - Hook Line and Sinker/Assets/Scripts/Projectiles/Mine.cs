@@ -38,7 +38,7 @@ public class Mine : MonoBehaviour
         }
 
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= 5f)
+        if (elapsedTime >= 7.5f)
         {
             mineAnim.SetBool("isDestroyed", true);
         }

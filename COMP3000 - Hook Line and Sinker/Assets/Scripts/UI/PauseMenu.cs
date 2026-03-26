@@ -16,10 +16,13 @@ public class PauseMenu : MonoBehaviour
 
     public Texture2D crosshair;
     public Texture2D chopsticks;
+    public bool cursorPreviouslyActive;
 
     public GameObject mainUI;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+
+    public ScrollRect scrollRect;
     public GameObject projectileMenu;
     public GameObject projectiles;
 
@@ -105,19 +108,33 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (Time.timeScale == 1f)
+        if (Time.timeScale == 0f)
         {
-            Time.timeScale = 0f;
-            ChangerCursor(chopsticks);
-            pauseMenu.SetActive(true);
-        }
-        else
-        {
+            if (cursorPreviouslyActive == false)
+            {
+                Cursor.visible = false;
+            }
+
             Time.timeScale = 1f;
             ChangerCursor(crosshair);
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false);
             projectileMenu.SetActive(false);
+        }
+        else
+        {
+            if (Cursor.visible == true)
+            {
+                cursorPreviouslyActive = true;
+            }
+            else
+            {
+                cursorPreviouslyActive = false;
+                Cursor.visible = true;
+            }
+            Time.timeScale = 0f;
+            ChangerCursor(chopsticks);
+            pauseMenu.SetActive(true);
         }
     }
 
@@ -129,8 +146,29 @@ public class PauseMenu : MonoBehaviour
 
     public void Projectile()
     {
-        if (Time.timeScale == 1)
+        if (Time.timeScale == 0f)
         {
+            if (cursorPreviouslyActive == false)
+            {
+                Cursor.visible = false;
+            }
+
+            Time.timeScale = 1f;
+            ChangerCursor(crosshair);
+            projectileMenu.SetActive(false);
+        }
+        else
+        {
+            if (Cursor.visible == true)
+            {
+                cursorPreviouslyActive = true;
+            }
+            else
+            {
+                cursorPreviouslyActive = false;
+                Cursor.visible = true;
+            }
+
             ChangerCursor(chopsticks);
             Time.timeScale = 0f;
 
@@ -146,13 +184,8 @@ public class PauseMenu : MonoBehaviour
                 }
             }
 
+            scrollRect.verticalNormalizedPosition = 1f;
             projectileMenu.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            ChangerCursor(crosshair);
-            projectileMenu.SetActive(false);
         }
     }
 
@@ -196,12 +229,7 @@ public class PauseMenu : MonoBehaviour
             GameControl.gameControl.Load();
         }
 
-#if UNITY_EDITOR
         SceneManager.LoadScene("Title Screen");
-#else
-        string mainMenuPath = Path.Combine(Application.dataPath, "COMP3000 - Hook Line and Sinker.exe");
-        Process.Start(mainMenuPath, "Title Screen");
-#endif
     }
 
     public void QuitGame()

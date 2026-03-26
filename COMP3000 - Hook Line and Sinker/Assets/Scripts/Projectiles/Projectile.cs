@@ -40,12 +40,10 @@ public class Projectile : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Projectile hit ground.");
             Destroy(gameObject);
         }
         else if (collider.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Projectile hit enemy.");
             FishMovement fishMovement = collider.GetComponent<FishMovement>();
             if (fishMovement != null)
             {
@@ -72,18 +70,15 @@ public class Projectile : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Projectile hit player.");
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
-                Debug.Log("Projectile dealing damage to player.");
                 playerMovement.TakeDamage(playerDamage);
             }
             Destroy(gameObject);
         }
         else if (collider.gameObject.CompareTag("Mine"))
         {
-            Debug.Log("Projectile hit mine.");
             Mine mine = collider.GetComponent<Mine>();
             if (mine != null)
             {
