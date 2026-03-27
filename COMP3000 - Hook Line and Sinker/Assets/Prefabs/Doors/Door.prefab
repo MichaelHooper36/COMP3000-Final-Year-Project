@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6086200614135513773}
   - component: {fileID: 6412164461650628222}
   - component: {fileID: 7964849261226601325}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Door
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -199,5 +199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CloseDoor
   doorCollider: {fileID: 6086200614135513773}
   doorTrigger: {fileID: 6412164461650628222}
-  doorSprite: {fileID: 4972485261008353844}
+  grid: {fileID: 0}
+  boss: {fileID: 0}
   isClosed: 0

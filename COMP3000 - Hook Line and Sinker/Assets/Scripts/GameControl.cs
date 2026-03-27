@@ -9,6 +9,9 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl gameControl;
 
+    public enum Device { Keyboard, Controller };
+    public Device device;
+
     public List<int> projectiles = new List<int> { 0 };
     public int projectileIndex;
 
@@ -72,6 +75,9 @@ public class GameControl : MonoBehaviour
         using (FileStream file = File.Create(Application.persistentDataPath + "/gameInfo.dat"))
         {
             GameData data = new GameData();
+
+            data.device = device;
+
             data.projectiles = projectiles;
             data.projectileIndex = projectileIndex;
 
@@ -113,6 +119,8 @@ public class GameControl : MonoBehaviour
             GameData data = (GameData)bf.Deserialize(file);
             file.Close();
 
+            device = data.device;
+
             projectiles = data.projectiles;
             projectileIndex = data.projectileIndex;
 
@@ -145,6 +153,8 @@ public class GameControl : MonoBehaviour
 [Serializable]
 class GameData
 {
+    public GameControl.Device device;
+
     public List<int> projectiles;
     public int projectileIndex;
 

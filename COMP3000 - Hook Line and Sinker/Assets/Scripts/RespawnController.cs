@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class RespawnController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RespawnController : MonoBehaviour
     public Transform respawnPoint;
 
     public GameObject inventoryPoint;
+    private TextMeshProUGUI inventoryText;
     public bool inventoryPointActive = false;
     public PauseMenu pauseMenu;
 
@@ -47,6 +49,22 @@ public class RespawnController : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene();
+        inventoryText = inventoryPoint.GetComponentInChildren<TextMeshProUGUI>();
+        if (GameControl.gameControl.device == GameControl.Device.Controller)
+        {
+             if (inventoryText != null)
+             {
+                 inventoryText.text = "Y";
+             }
+        }
+        else
+        {
+             if (inventoryText != null)
+             {
+                 inventoryText.text = "E";
+             }
+        }
+        inventoryPoint.SetActive(false);
     }
 
     // Update is called once per frame
@@ -69,6 +87,11 @@ public class RespawnController : MonoBehaviour
             playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
+                if (!animator.GetBool("isActive"))
+                {
+                    playerMovement.Heal(playerMovement.maxHealth / 2);
+                }
+
                 if (scene.name == "levelOne")
                 {
                     GameControl.gameControl.levelOneRespawnX = respawnPoint.position.x;

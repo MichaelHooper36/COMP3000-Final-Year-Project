@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundCheckLayer;
     public Transform wallCheckTransform;
     public float wallCheckRadius;
+    public LayerMask wallCheckLayer;
     public bool isGrounded;
 
     public bool isWallJumping;
@@ -67,8 +69,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 aimingInput;
     public Vector2 lastMouseScreenPos;
     public bool mouseMovedLast;
-    public enum AimSource { Mouse, Joystick };
-    private AimSource aimSource;
     public float stickDeadzone = 0.2f;
 
     // grappling
@@ -82,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rigidBody;
     public Vector2 previousGround;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColour;
 
     void Awake()
     {
@@ -141,14 +144,13 @@ public class PlayerMovement : MonoBehaviour
     void Aiming(InputAction.CallbackContext context)
     {
         // determining aiming input for devices that aren't the mouse
-        if (context.performed)
+        if (context.performed && GameControl.gameControl.device != GameControl.Device.Keyboard)
         {
             Vector2 input = context.ReadValue<Vector2>();
 
             if (input.sqrMagnitude >= stickDeadzone * stickDeadzone)
             {
                 aimingInput = input;
-                aimSource = AimSource.Joystick;
                 mouseMovedLast = false;
                 firePoint.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             }
@@ -302,6 +304,9 @@ public class PlayerMovement : MonoBehaviour
 
         respawnCoordinates = new Vector2(respawnX, respawnY);
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColour = spriteRenderer.color;
+
         // preemptively setting booleans.
         Debug.Log(respawnCoordinates);
         transform.position = respawnCoordinates;
@@ -330,19 +335,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //if there is a mouse on the device, this sets the initial position of the mouse
-        if (Mouse.current != null)
+        if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             lastMouseScreenPos = Mouse.current.position.ReadValue();
         }
-        // defaults aim source to joystick until mouse movement is detected
-        aimSource = AimSource.Joystick;
     }
 
     // Update is called once per frame
     void Update()
     {
         // determining whether cursor should be visible based on aim source
-        if (aimSource == AimSource.Joystick)
+        if (GameControl.gameControl.device != GameControl.Device.Keyboard)
         {
             Cursor.visible = false;
         }
@@ -352,7 +355,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // if the mouse has moved since the last frame, update the aim source to mouse and update the last mouse position
-        if (Mouse.current != null)
+        if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Vector2 currentMousePosition = Mouse.current.position.ReadValue();
 
@@ -360,7 +363,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 mouseMovedLast = true;
                 lastMouseScreenPos = currentMousePosition;
-                aimSource = AimSource.Mouse;
             }
         }
         UpdateAim();
@@ -439,7 +441,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallSlideTimer -= Time.deltaTime;
         }
-        wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, groundCheckLayer);
+        wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, wallCheckLayer);
         if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 2.5)
         {
             hangOnWall = true;
@@ -489,6 +491,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (distanceJoint.enabled && grapplePoint != null)
         {
+            groundCheckTransform.gameObject.SetActive(false);
             lineRenderer.SetPosition(1, rendererPoint.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
 
@@ -534,6 +537,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            groundCheckTransform.gameObject.SetActive(true);
+            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        }
 
         if (isShooting && projectileTimer == 0 && !wallSliding && (firePoint.position - transform.position).sqrMagnitude > 0.01f)
         {
@@ -571,7 +579,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 aimDirection = Vector2.zero;
 
-        if (aimSource == AimSource.Mouse && Mouse.current != null)
+        if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(lastMouseScreenPos);
             aimDirection = (mouseWorldPosition - transform.position).normalized;
@@ -596,6 +604,7 @@ public class PlayerMovement : MonoBehaviour
         if (damage > 0 && enemyDamageTimer == 0)
         {
             currentHealth -= damage;
+            StartCoroutine(DamageFlash());
             healthBar.SetCurrentHealth(currentHealth);
             Debug.Log("Player Health: " + currentHealth);
             if (currentHealth <= 0)
@@ -627,6 +636,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Heal(int healAmount)
+    {
+        if (healAmount > 0)
+        {
+            currentHealth += healAmount;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            healthBar.SetCurrentHealth(currentHealth);
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -639,5 +661,16 @@ public class PlayerMovement : MonoBehaviour
         GameControl.gameControl.projectileIndex = projectileIndex;
         GameControl.gameControl.Save();
         GameControl.gameControl.Load();
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.25f);
+            spriteRenderer.color = originalColour;
+            yield return new WaitForSeconds(0.125f);
+        }
     }
 }

@@ -35,9 +35,17 @@ public class Mine : MonoBehaviour
         if (inRange)
         {
             radiusAnim.SetBool("inRange", true);
+            if (target != null)
+            {
+                playerMovement = target.GetComponent<PlayerMovement>();
+            }
+        }
+        else
+        {
+            playerMovement = null;
         }
 
-        elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime;
         if (elapsedTime >= 7.5f)
         {
             mineAnim.SetBool("isDestroyed", true);

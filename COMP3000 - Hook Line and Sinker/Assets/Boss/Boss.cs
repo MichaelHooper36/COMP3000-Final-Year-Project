@@ -11,6 +11,8 @@ public class Boss : MonoBehaviour
     public PauseMenu pauseMenu;
 
     public Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColour;
 
     public GameObject player;
     public GameObject mine;
@@ -55,6 +57,8 @@ public class Boss : MonoBehaviour
         phaseOne = true;
         attacking = false;
         invulnerable = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColour = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -88,6 +92,7 @@ public class Boss : MonoBehaviour
         if (!invulnerable)
         {
             currentHealth -= damage;
+            StartCoroutine(DamageFlash());
             healthBar.SetCurrentHealth(currentHealth);
             if (currentHealth <= 0)
             {
@@ -131,6 +136,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator PhaseTransition(Transform newPosition)
     {
+        spriteRenderer.color = originalColour;
         invulnerable = true;
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearDuration);
@@ -334,5 +340,16 @@ public class Boss : MonoBehaviour
             }
         }
         Teleport();
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.25f);
+            spriteRenderer.color = originalColour;
+            yield return new WaitForSeconds(0.125f);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FishMovement : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class FishMovement : MonoBehaviour
 
     private Animator animator;
     public bool attacking;
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer headSprite;
+    private Color originalColor;
 
     void Awake()
     {
@@ -39,7 +43,9 @@ public class FishMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        headSprite = firePoint.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -133,7 +139,7 @@ public class FishMovement : MonoBehaviour
         if (damage > 0)
         {
             currentHealth -= damage;
-            Debug.Log("Fish current health: " + currentHealth);
+            StartCoroutine(DamageFlash());
             if (currentHealth <= 0)
             {
                 Destroy(gameObject);
@@ -179,6 +185,19 @@ public class FishMovement : MonoBehaviour
         {
             transform.eulerAngles = new Vector2(0, 0);
             firePoint.transform.eulerAngles = new Vector2(0, 0);
+        }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            spriteRenderer.color = Color.red;
+            headSprite.color = Color.red;
+            yield return new WaitForSeconds(0.25f);
+            spriteRenderer.color = originalColor;
+            headSprite.color = originalColor;
+            yield return new WaitForSeconds(0.125f);
         }
     }
 }

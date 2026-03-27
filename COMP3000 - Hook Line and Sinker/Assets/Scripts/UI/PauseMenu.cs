@@ -14,8 +14,9 @@ public class PauseMenu : MonoBehaviour
     public Scene scene;
     public PlayerMovement playerMovement;
 
-    public Texture2D crosshair;
-    public Texture2D chopsticks;
+    public Sprite crosshair;
+    public Sprite chopsticks;
+    public Image cursorImage;
     public bool cursorPreviouslyActive;
 
     public GameObject mainUI;
@@ -25,6 +26,8 @@ public class PauseMenu : MonoBehaviour
     public ScrollRect scrollRect;
     public GameObject projectileMenu;
     public GameObject projectiles;
+    private int previousProjectile;
+    public GameObject equippedText;
 
     public TextMeshProUGUI timer;
     public float elapsedTime;
@@ -52,6 +55,14 @@ public class PauseMenu : MonoBehaviour
         if (context.performed)
         {
             Pause();
+        }
+    }
+
+    void Return(InputAction.CallbackContext context)
+    {
+        if (context.performed && pauseMenu.activeInHierarchy)
+        {
+            Back();
         }
     }
 
@@ -93,16 +104,15 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ChangerCursor(Texture2D texture)
+    public void ChangerCursor(Sprite texture)
     {
         if (texture == crosshair)
         {
-            Vector2 hotspot = new Vector2(texture.width / 2, texture.height / 2);
-            Cursor.SetCursor(texture, hotspot, CursorMode.Auto);
+            cursorImage.sprite = crosshair;
         }
         else
         {
-             Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+            cursorImage.sprite = chopsticks;
         }
     }
 
@@ -140,7 +150,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Settings()
     {
-        pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
@@ -155,6 +164,7 @@ public class PauseMenu : MonoBehaviour
 
             Time.timeScale = 1f;
             ChangerCursor(crosshair);
+            pauseMenu.SetActive(false);
             projectileMenu.SetActive(false);
         }
         else
@@ -177,6 +187,15 @@ public class PauseMenu : MonoBehaviour
                 if (GameControl.gameControl.projectiles.Contains(i))
                 {
                     projectiles.transform.GetChild(i).gameObject.SetActive(true);
+                    if (playerMovement.equippedProjectile == playerMovement.projectiles[i])
+                    {
+                        projectiles.transform.GetChild(i).GetComponent<Image>().color = Color.green;
+                        previousProjectile = i;
+                    }
+                    else
+                    {
+                        projectiles.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                    }
                 }
                 else
                 {
@@ -186,6 +205,7 @@ public class PauseMenu : MonoBehaviour
 
             scrollRect.verticalNormalizedPosition = 1f;
             projectileMenu.SetActive(true);
+            pauseMenu.SetActive(false);
         }
     }
 
@@ -194,13 +214,44 @@ public class PauseMenu : MonoBehaviour
         if (playerMovement != null && newProjectile != GameControl.gameControl.projectileIndex)
         {
             playerMovement.ChangeProjectile(newProjectile);
+            projectiles.transform.GetChild(previousProjectile).GetComponent<Image>().color = Color.white;
+            projectiles.transform.GetChild(newProjectile).GetComponent<Image>().color = Color.green;
+            previousProjectile = newProjectile;
+            switch (newProjectile)
+            {
+                case 0:
+                    equippedText.GetComponent<TextMeshProUGUI>().text = "Equipped: Default";
+                    break;
+                case 1:
+                    equippedText.GetComponent<TextMeshProUGUI>().text = "Equipped: Worm";
+                    break;
+                case 2:
+                    equippedText.GetComponent<TextMeshProUGUI>().text = "Equipped: Heavy Groundbait";
+                    break;
+                case 3:
+                    equippedText.GetComponent<TextMeshProUGUI>().text = "Equipped: Ol' Reliable";
+                    break;
+                default:
+                    equippedText.GetComponent<TextMeshProUGUI>().text = "Equipped: None";
+                    break;
+            }
         }
     }
 
     public void Back()
     {
-        pauseMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        if (settingsMenu.activeInHierarchy)
+        {
+            settingsMenu.SetActive(false);
+        }
+        else if (projectileMenu.activeInHierarchy)
+        {
+             projectileMenu.SetActive(false);
+        }
+        else if (pauseMenu.activeInHierarchy)
+        {
+            Pause();
+        }
     }
 
     public void MainMenu()

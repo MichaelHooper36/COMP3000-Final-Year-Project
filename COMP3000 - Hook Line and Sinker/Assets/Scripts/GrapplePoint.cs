@@ -21,7 +21,7 @@ public class GrapplePoint : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
 
-            if (hit.collider == null && !playerMovement.isGrounded)
+            if (hit.collider == null && !playerMovement.isGrounded && !playerMovement.wallSliding)
             {
                 animator.SetBool("inRange", true);
                 playerMovement.canGrapple = true;
@@ -34,7 +34,7 @@ public class GrapplePoint : MonoBehaviour
                 playerMovement.grapplePoint = null;
             }
 
-            if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded))
+            if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded || playerMovement.wallSliding))
             {
                 playerMovement.isGrappling = false;
                 playerMovement.canMove = true;

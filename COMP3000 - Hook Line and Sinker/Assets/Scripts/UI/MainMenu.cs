@@ -9,7 +9,8 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public Texture2D chopsticks;
+    public Sprite chopsticks;
+    public Image cursorImage;
 
     public GameObject mainMenu;
     public GameObject levelSelectMenu;
@@ -39,9 +40,9 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void ChangeCursor(Texture2D texture)
+    public void ChangeCursor(Sprite texture)
     {
-        Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+        cursorImage.sprite = texture;
     }
 
     public void LevelSelect()

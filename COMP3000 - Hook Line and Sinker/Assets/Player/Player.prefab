@@ -432,6 +432,9 @@ MonoBehaviour:
     m_Bits: 128
   wallCheckTransform: {fileID: 4511479749606911303}
   wallCheckRadius: 0.1
+  wallCheckLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isGrounded: 0
   isWallJumping: 0
   wallJumpSpeed: {x: 6, y: 8}

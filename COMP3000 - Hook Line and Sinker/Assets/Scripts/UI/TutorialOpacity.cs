@@ -12,11 +12,30 @@ public class TutorialOpacity : MonoBehaviour
     private Image image;
     private TextMeshProUGUI text;
 
+    public string keyboardPrompt;
+    public string controllerPrompt;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         image = transform.Find("Image")?.GetComponent<Image>();
         text = transform.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        GameControl.gameControl.Load();
+        if (GameControl.gameControl.device == GameControl.Device.Controller)
+        {
+            if (text != null && controllerPrompt != null)
+            {
+                text.text = controllerPrompt;
+            }
+        }
+        else
+        {
+            if (text != null && keyboardPrompt != null)
+            {
+                text.text = keyboardPrompt;
+            }
+        }
     }
 
     // Update is called once per frame
