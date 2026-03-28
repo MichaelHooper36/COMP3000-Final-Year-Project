@@ -116,6 +116,12 @@ public class PlayerMovement : MonoBehaviour
         inputSystem.Player.Jump.performed -= Jumping;
         inputSystem.Player.Swing.performed -= Grappling;
         inputSystem.Player.Attack.performed -= Shooting;
+
+        inputSystem.Player.Move.canceled -= Movement;
+        inputSystem.Player.Aim.canceled -= Aiming;
+        inputSystem.Player.Jump.canceled -= Jumping;
+        inputSystem.Player.Swing.canceled -= Grappling;
+        inputSystem.Player.Attack.canceled -= Shooting;
     }
 
     void Movement(InputAction.CallbackContext context)
@@ -266,6 +272,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Shooting(InputAction.CallbackContext context)
     {
+        Debug.Log(context.control.path);
         // allows the player to hold down the shoot button
         if (context.performed)
         {
@@ -441,8 +448,8 @@ public class PlayerMovement : MonoBehaviour
         {
             wallSlideTimer -= Time.deltaTime;
         }
-        wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, wallCheckLayer);
-        if (wallSliding && !isGrounded && !isGrappling && rigidBody.linearVelocityY < 2.5)
+        wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, wallCheckLayer) && !isGrounded;
+        if (wallSliding && !isGrappling && rigidBody.linearVelocityY < 2.5)
         {
             hangOnWall = true;
             animator.SetBool("isWallSliding", true);

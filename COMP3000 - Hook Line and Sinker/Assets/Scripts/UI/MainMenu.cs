@@ -9,7 +9,8 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public Sprite chopsticks;
+    public Sprite chopsticksSprite;
+    public Texture2D chopsticksCursor;
     public Image cursorImage;
 
     public GameObject mainMenu;
@@ -27,8 +28,15 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ChangeCursor(chopsticks);
-        Cursor.visible = true;
+        ChangeCursor(chopsticksSprite, chopsticksCursor);
+        if (GameControl.gameControl.device == GameControl.Device.Keyboard)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         mainMenu.SetActive(true);
         levelSelectMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -40,9 +48,10 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void ChangeCursor(Sprite texture)
+    public void ChangeCursor(Sprite sprite, Texture2D cursor)
     {
-        cursorImage.sprite = texture;
+        cursorImage.sprite = sprite;
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     public void LevelSelect()

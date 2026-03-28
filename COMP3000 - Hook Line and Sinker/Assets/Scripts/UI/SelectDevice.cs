@@ -4,6 +4,7 @@ using TMPro;
 public class SelectDevice : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown device_dropdown;
+    [SerializeField] private GameObject cursorImage;
 
     public void Start()
     {
@@ -22,10 +23,14 @@ public class SelectDevice : MonoBehaviour
         if (index == 1)
         {
             GameControl.gameControl.device = GameControl.Device.Controller;
+            cursorImage.SetActive(true);
+            Cursor.visible = false;
         }
         else
         {
             GameControl.gameControl.device = GameControl.Device.Keyboard;
+            cursorImage.SetActive(false);
+            Cursor.visible = true;
         }
         GameControl.gameControl.Save();
     }

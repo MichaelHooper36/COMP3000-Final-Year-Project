@@ -2942,6 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   device_dropdown: {fileID: 641779086}
+  cursorImage: {fileID: 1398086313}
 --- !u!1 &642121703
 GameObject:
   m_ObjectHideFlags: 0
@@ -7985,7 +7986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2876c7c61c4d05e49a2c46869eee5847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  chopsticks: {fileID: -2041922617186583742, guid: c8fc91ddf0c57d44196ca0862e939ee6, type: 3}
+  chopsticksSprite: {fileID: -2041922617186583742, guid: c8fc91ddf0c57d44196ca0862e939ee6, type: 3}
+  chopsticksCursor: {fileID: 2800000, guid: 78b9616600e82e64aa448aeadafad0a2, type: 3}
   cursorImage: {fileID: 1398086315}
   mainMenu: {fileID: 144183060}
   levelSelectMenu: {fileID: 1571793190}

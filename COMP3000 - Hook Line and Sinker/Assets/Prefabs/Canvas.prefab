@@ -2439,7 +2439,7 @@ MonoBehaviour:
   m_CursorSpeed: 1000
   m_ScrollSpeed: 45
   m_StickAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Stick
       m_Type: 0
@@ -2449,14 +2449,6 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 04e218ce-29f0-4b22-9abe-1886460c1a22
-        m_Path: <Mouse>/position
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Stick
-        m_Flags: 0
-      - m_Name: 
         m_Id: 5c7383f5-8668-4b91-b058-27a43e6b3a04
         m_Path: <Gamepad>/leftStick
         m_Interactions: 
@@ -2465,9 +2457,9 @@ MonoBehaviour:
         m_Action: Stick
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: -1654692200621890270, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    m_Reference: {fileID: 0}
   m_LeftButtonAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Left Button
       m_Type: 0
@@ -2477,14 +2469,6 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 98f377ba-c468-429a-bb5c-35f54e4cd068
-        m_Path: <Mouse>/leftButton
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Left Button
-        m_Flags: 0
-      - m_Name: 
         m_Id: 0ca649cb-e917-4294-b256-190406c90d5f
         m_Path: <Gamepad>/buttonSouth
         m_Interactions: 
@@ -2493,7 +2477,7 @@ MonoBehaviour:
         m_Action: Left Button
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 3001919216989983466, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    m_Reference: {fileID: 0}
   m_MiddleButtonAction:
     m_UseReference: 1
     m_Action:
@@ -2505,7 +2489,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2185481485913320682, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    m_Reference: {fileID: 0}
   m_RightButtonAction:
     m_UseReference: 1
     m_Action:
@@ -2517,7 +2501,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -4090225696740746782, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    m_Reference: {fileID: 0}
   m_ForwardButtonAction:
     m_UseReference: 1
     m_Action:
@@ -2585,7 +2569,7 @@ MonoBehaviour:
         m_Action: Scroll Wheel
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: 6240969308177333660, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    m_Reference: {fileID: 0}
 --- !u!1 &2044732253995140591
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,12 +5952,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964ed52553e955242984b6d0b65be936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  virtualMouseInput: {fileID: 1432123062248853624}
   scene:
     m_Handle: 0
   playerMovement: {fileID: 0}
-  crosshair: {fileID: 4117879819687600679, guid: 8fda9cea766e12a4c938cb957cfb51e2, type: 3}
-  chopsticks: {fileID: -2041922617186583742, guid: c8fc91ddf0c57d44196ca0862e939ee6, type: 3}
+  crosshairSprite: {fileID: 4117879819687600679, guid: 8fda9cea766e12a4c938cb957cfb51e2, type: 3}
+  crosshairCursor: {fileID: 2800000, guid: 455e54c4476a7fe4393abd7e3a851cde, type: 3}
+  chopsticksSprite: {fileID: -2041922617186583742, guid: c8fc91ddf0c57d44196ca0862e939ee6, type: 3}
+  chopsticksCursor: {fileID: 2800000, guid: 78b9616600e82e64aa448aeadafad0a2, type: 3}
   cursorImage: {fileID: 1207880892970510320}
+  virtualCursor: {fileID: 2039692844091043099}
   cursorPreviouslyActive: 0
   mainUI: {fileID: 5675307451759136629}
   pauseMenu: {fileID: 44426916565360704}

@@ -6,7 +6,6 @@ public class VirtualMouseUI : MonoBehaviour
 {
     [SerializeField] private RectTransform canvasTransform;
     private VirtualMouseInput virtualMouseInput;
-    private GameObject mouseImage;
 
     void Awake()
     {
@@ -16,17 +15,6 @@ public class VirtualMouseUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mouseImage = transform.GetChild(0).gameObject;
-         if (GameControl.gameControl.device == GameControl.Device.Controller)
-         {
-             mouseImage.SetActive(true);
-             Cursor.visible = false;
-         }
-         else
-         {
-             mouseImage.SetActive(false);
-             Cursor.visible = true;
-         }
     }
 
     // Update is called once per frame
@@ -34,17 +22,6 @@ public class VirtualMouseUI : MonoBehaviour
     {
         transform.localScale = Vector3.one * (1 / canvasTransform.localScale.x);
         transform.SetAsLastSibling();
-
-        if (GameControl.gameControl.device == GameControl.Device.Controller)
-        {
-            mouseImage.SetActive(true);
-            Cursor.visible = false;
-        }
-        else
-        {
-            mouseImage.SetActive(false);
-            Cursor.visible = true;
-        }
     }
 
     private void LateUpdate()

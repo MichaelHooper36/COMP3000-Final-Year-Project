@@ -144,7 +144,7 @@ MonoBehaviour:
   animator: {fileID: 3026308960463837407}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
 --- !u!95 &3026308960463837407
 Animator:
   serializedVersion: 7

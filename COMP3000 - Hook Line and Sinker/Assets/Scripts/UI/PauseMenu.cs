@@ -6,17 +6,24 @@ using System.Diagnostics;
 using System.IO;
 #endif
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.LowLevel;
 using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     public InputSystem_Actions menuInputs;
+    public VirtualMouseInput virtualMouseInput;
+
     public Scene scene;
     public PlayerMovement playerMovement;
 
-    public Sprite crosshair;
-    public Sprite chopsticks;
+    public Sprite crosshairSprite;
+    public Texture2D crosshairCursor;
+    public Sprite chopsticksSprite;
+    public Texture2D chopsticksCursor;
     public Image cursorImage;
+    public GameObject virtualCursor;
     public bool cursorPreviouslyActive;
 
     public GameObject mainUI;
@@ -70,7 +77,17 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene();
-        ChangerCursor(crosshair);
+        ChangerCursor(crosshairSprite);
+        if (GameControl.gameControl.device == GameControl.Device.Keyboard)
+        {
+            Cursor.visible = true;
+            virtualCursor.SetActive(false);
+        }
+        else
+        {
+            Cursor.visible = false;
+            virtualCursor.SetActive(false);
+        }
         mainUI.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
@@ -106,13 +123,28 @@ public class PauseMenu : MonoBehaviour
 
     public void ChangerCursor(Sprite texture)
     {
-        if (texture == crosshair)
+        if (texture == crosshairSprite)
         {
-            cursorImage.sprite = crosshair;
+            if (virtualCursor.activeInHierarchy)
+            {
+                cursorImage.sprite = crosshairSprite;
+            }
+            else
+            {
+                Vector2 cursorHotspot = new Vector2(crosshairCursor.width / 2, crosshairCursor.height / 2);
+                Cursor.SetCursor(crosshairCursor, cursorHotspot, CursorMode.Auto);
+            }
         }
         else
         {
-            cursorImage.sprite = chopsticks;
+            if (virtualCursor.activeInHierarchy)
+            {
+                cursorImage.sprite = chopsticksSprite;
+            }
+            else
+            {
+                Cursor.SetCursor(chopsticksCursor, Vector2.zero, CursorMode.Auto);
+            }
         }
     }
 
@@ -126,10 +158,15 @@ public class PauseMenu : MonoBehaviour
             }
 
             Time.timeScale = 1f;
-            ChangerCursor(crosshair);
+            ChangerCursor(crosshairSprite);
+            if (virtualCursor.activeInHierarchy)
+            {
+                virtualCursor.SetActive(false);
+            }
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(false);
             projectileMenu.SetActive(false);
+            playerMovement.inputSystem.Player.Enable();
         }
         else
         {
@@ -143,8 +180,27 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
             }
             Time.timeScale = 0f;
-            ChangerCursor(chopsticks);
+
+            if (GameControl.gameControl.device == GameControl.Device.Controller)
+            {
+                if (!virtualCursor.activeInHierarchy)
+                {
+                    virtualCursor.SetActive(true);
+                }
+
+                Vector2 centre = new Vector2(Screen.width / 2, Screen.height / 2);
+                cursorImage.gameObject.transform.position = centre;
+
+                if (virtualMouseInput != null)
+                {
+                    InputState.Change(virtualMouseInput.virtualMouse.position, centre);
+                    InputState.Change(virtualMouseInput.virtualMouse.delta, Vector2.zero);
+                }
+            }
+
+            ChangerCursor(chopsticksSprite);
             pauseMenu.SetActive(true);
+            playerMovement.inputSystem.Player.Disable();
         }
     }
 
@@ -163,9 +219,14 @@ public class PauseMenu : MonoBehaviour
             }
 
             Time.timeScale = 1f;
-            ChangerCursor(crosshair);
+            ChangerCursor(crosshairSprite);
+            if (virtualCursor.activeInHierarchy)
+            {
+                virtualCursor.SetActive(false);
+            }
             pauseMenu.SetActive(false);
             projectileMenu.SetActive(false);
+            playerMovement.inputSystem.Player.Enable();
         }
         else
         {
@@ -179,8 +240,26 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
             }
 
-            ChangerCursor(chopsticks);
             Time.timeScale = 0f;
+
+            if (GameControl.gameControl.device == GameControl.Device.Controller)
+            {
+                if (!virtualCursor.activeInHierarchy)
+                {
+                    virtualCursor.SetActive(true);
+                }
+
+                Vector2 centre = new Vector2(Screen.width / 2, Screen.height / 2);
+                cursorImage.gameObject.transform.position = centre;
+
+                if (virtualMouseInput != null)
+                {
+                    InputState.Change(virtualMouseInput.virtualMouse.position, centre);
+                    InputState.Change(virtualMouseInput.virtualMouse.delta, Vector2.zero);
+                }
+            }
+
+            ChangerCursor(chopsticksSprite);
 
             for (int i = 0; i < projectiles.transform.childCount; i++)
             {
@@ -206,6 +285,7 @@ public class PauseMenu : MonoBehaviour
             scrollRect.verticalNormalizedPosition = 1f;
             projectileMenu.SetActive(true);
             pauseMenu.SetActive(false);
+            playerMovement.inputSystem.Player.Disable();
         }
     }
 
