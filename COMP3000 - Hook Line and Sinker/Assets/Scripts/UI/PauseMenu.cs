@@ -77,7 +77,6 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene();
-        ChangerCursor(crosshairSprite);
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Cursor.visible = true;
@@ -88,6 +87,7 @@ public class PauseMenu : MonoBehaviour
             Cursor.visible = false;
             virtualCursor.SetActive(false);
         }
+        ChangerCursor(crosshairSprite);
         mainUI.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);

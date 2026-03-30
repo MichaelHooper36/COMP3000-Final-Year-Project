@@ -32,10 +32,12 @@ public class MainMenu : MonoBehaviour
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Cursor.visible = true;
+            cursorImage.gameObject.SetActive(false);
         }
         else
         {
             Cursor.visible = false;
+            cursorImage.gameObject.SetActive(true);
         }
         mainMenu.SetActive(true);
         levelSelectMenu.SetActive(false);

@@ -272,7 +272,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Shooting(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.path);
         // allows the player to hold down the shoot button
         if (context.performed)
         {
