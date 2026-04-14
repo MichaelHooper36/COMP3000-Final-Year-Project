@@ -430,7 +430,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.3, y: 0.8}
+  m_Size: {x: 1.4, y: 1.3}
   m_EdgeRadius: 0
 --- !u!50 &7947344672941263821
 Rigidbody2D:
@@ -477,7 +477,7 @@ MonoBehaviour:
   projectile: {fileID: 641419237439083857, guid: 36972d0693cbad64b8b4d41298f37a95, type: 3}
   firePoint: {fileID: 1512287120411275833}
   attackDistance: 4
-  attackCooldown: 1
+  attackCooldown: 2
   maxHealth: 50
   currentHealth: 0
   target: {fileID: 0}

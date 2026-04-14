@@ -49,12 +49,14 @@ public class PauseMenu : MonoBehaviour
     {
         menuInputs.UI.Enable();
         menuInputs.UI.Pause.performed += TogglePauseMenu;
+        menuInputs.UI.Return.performed += Return;
     }
 
     void OnDisable()
     {
         menuInputs.UI.Disable();
         menuInputs.UI.Pause.performed -= TogglePauseMenu;
+        menuInputs.UI.Return.performed -= Return;
     }
 
     void TogglePauseMenu(InputAction.CallbackContext context)
@@ -67,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 
     void Return(InputAction.CallbackContext context)
     {
-        if (context.performed && pauseMenu.activeInHierarchy)
+        if (context.performed)
         {
             Back();
         }
@@ -125,11 +127,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (texture == crosshairSprite)
         {
-            if (virtualCursor.activeInHierarchy)
+            if (virtualCursor.activeInHierarchy && GameControl.gameControl.device == GameControl.Device.Controller)
             {
                 cursorImage.sprite = crosshairSprite;
             }
-            else
+            else if (GameControl.gameControl.device == GameControl.Device.Keyboard)
             {
                 Vector2 cursorHotspot = new Vector2(crosshairCursor.width / 2, crosshairCursor.height / 2);
                 Cursor.SetCursor(crosshairCursor, cursorHotspot, CursorMode.Auto);
@@ -137,11 +139,11 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            if (virtualCursor.activeInHierarchy)
+            if (virtualCursor.activeInHierarchy && GameControl.gameControl.device == GameControl.Device.Controller)
             {
                 cursorImage.sprite = chopsticksSprite;
             }
-            else
+            else if (GameControl.gameControl.device == GameControl.Device.Keyboard)
             {
                 Cursor.SetCursor(chopsticksCursor, Vector2.zero, CursorMode.Auto);
             }
@@ -177,7 +179,10 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 cursorPreviouslyActive = false;
-                Cursor.visible = true;
+                if (GameControl.gameControl.device == GameControl.Device.Keyboard)
+                {
+                    Cursor.visible = true;
+                }
             }
             Time.timeScale = 0f;
 
@@ -237,7 +242,10 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 cursorPreviouslyActive = false;
-                Cursor.visible = true;
+                if (GameControl.gameControl.device == GameControl.Device.Keyboard)
+                {
+                    Cursor.visible = true;
+                }
             }
 
             Time.timeScale = 0f;
@@ -326,7 +334,7 @@ public class PauseMenu : MonoBehaviour
         }
         else if (projectileMenu.activeInHierarchy)
         {
-             projectileMenu.SetActive(false);
+            Projectile();
         }
         else if (pauseMenu.activeInHierarchy)
         {

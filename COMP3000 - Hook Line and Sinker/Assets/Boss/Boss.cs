@@ -107,7 +107,7 @@ public class Boss : MonoBehaviour
                 Destroy(closeDoor.gameObject);
                 Destroy(gameObject);
             }
-            else if (currentHealth <= maxHealth / 3 && phaseTwo)
+            else if (currentHealth <= maxHealth / 2 && phaseTwo)
             {
                 phaseThree = true;
                 phaseTwo = false;
@@ -119,7 +119,7 @@ public class Boss : MonoBehaviour
 
                 StartCoroutine(PhaseTransition(phaseThreeAttackZone.transform));
             }
-            else if (currentHealth <= maxHealth * 2 / 3 && phaseOne)
+            else if (currentHealth <= maxHealth * 3 / 4 && phaseOne)
             {
                 phaseOne = false;
                 phaseTwo = true;

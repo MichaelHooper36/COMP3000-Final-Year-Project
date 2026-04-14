@@ -106,6 +106,22 @@ public class FishMovement : MonoBehaviour
     {
         if (attackCooldown == 0)
         {
+            attacking = true;
+
+            int i = 0;
+            StartCoroutine(Shoot(i));
+
+            onCooldown = true;
+            attackCooldown = initialTimer;
+            Debug.Log("Fish fired projectile.");
+            canMove = true;
+        }
+    }
+
+    private IEnumerator Shoot(int i)
+    {
+        if (i < 3)
+        {
             Vector2 fireDirection = (target.position - transform.position).normalized;
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
             if (Mathf.Approximately(transform.eulerAngles.y, 180f))
@@ -117,14 +133,10 @@ public class FishMovement : MonoBehaviour
                 firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             }
             firePoint.position = (Vector2)transform.position + new Vector2(fireDirection.x * 0.04f, fireDirection.y * 0.017f);
-
-            attacking = true;
             GameObject firedProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
             firedProjectile.GetComponent<Projectile>().SetOrigin(gameObject);
-            onCooldown = true;
-            attackCooldown = initialTimer;
-            Debug.Log("Fish fired projectile.");
-            canMove = true;
+            yield return new WaitForSeconds(0.25f);
+            StartCoroutine(Shoot(i + 1));
         }
     }
 

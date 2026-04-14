@@ -476,7 +476,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (reelingIn)
+        if (reelingIn && (grapplePoint.position - rendererPoint.position).sqrMagnitude > 1f)
         {
             distanceJoint.distance -= 4f * Time.deltaTime;
         }
@@ -505,7 +505,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
 
-                if ((rigidBody.linearVelocityX > 0 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
+                if ((rigidBody.linearVelocityX > 1 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
                 {
                     if (angle < 22.5 && angle >= -22.5)
                     {
@@ -523,7 +523,7 @@ public class PlayerMovement : MonoBehaviour
                         transform.eulerAngles = new Vector3(0, 0, angle - 90f);
                     }
                 }
-                else if ((rigidBody.linearVelocityX < 0 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX > 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x > grapplePoint.position.x))
+                else if ((rigidBody.linearVelocityX < 1 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX > 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x > grapplePoint.position.x))
                 {
                     if (angle <= -157.5 || angle > 157.5)
                     {
