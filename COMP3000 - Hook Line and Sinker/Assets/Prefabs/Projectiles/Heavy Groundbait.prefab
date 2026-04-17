@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 6
-  enemyDamage: 25
-  playerDamage: 25
+  enemyDamage: 20
+  playerDamage: 20
