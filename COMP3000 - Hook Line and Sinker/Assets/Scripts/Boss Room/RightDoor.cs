@@ -22,6 +22,7 @@ public class RightDoor : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        // If the player walks through the right door and the left door is still open, close the right door.
         if (collider.gameObject.CompareTag("Player") && !leftDoor.leftDoorClosed)
         {
             CloseRightDoor();
@@ -30,6 +31,7 @@ public class RightDoor : MonoBehaviour
 
     public void CloseRightDoor()
     {
+        // Disables the door trigger and closes the door.
         if (!rightDoorCollider.enabled)
         {
             rightDoorCollider.enabled = true;
@@ -47,6 +49,7 @@ public class RightDoor : MonoBehaviour
 
     public void OpenRightDoor()
     {
+        // Enables the door trigger and opens the door.
         if (rightDoorCollider.enabled)
         {
             rightDoorCollider.enabled = false;

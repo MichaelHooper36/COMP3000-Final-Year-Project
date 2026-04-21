@@ -15,9 +15,11 @@ public class PauseMenu : MonoBehaviour
     public InputSystem_Actions menuInputs;
     public VirtualMouseInput virtualMouseInput;
 
+    // Other scripts.
     public Scene scene;
     public PlayerMovement playerMovement;
 
+    // Cursors.
     public Sprite crosshairSprite;
     public Texture2D crosshairCursor;
     public Sprite chopsticksSprite;
@@ -26,16 +28,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject virtualCursor;
     public bool cursorPreviouslyActive;
 
+    // Menus.
     public GameObject mainUI;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
+    // Projectile menu.
     public ScrollRect scrollRect;
     public GameObject projectileMenu;
     public GameObject projectiles;
     private int previousProjectile;
     public GameObject equippedText;
 
+    // Timer.
     public TextMeshProUGUI timer;
     public float elapsedTime;
     public bool timerOn;
@@ -78,7 +83,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scene = SceneManager.GetActiveScene();
+        // Checks the input device.
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Cursor.visible = true;
@@ -90,11 +95,15 @@ public class PauseMenu : MonoBehaviour
             virtualCursor.SetActive(false);
         }
         ChangerCursor(crosshairSprite);
+
+        // Initialises the menu states.
         mainUI.SetActive(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         projectileMenu.SetActive(false);
 
+        // Checks the current scene and gets the respective timer value.
+        scene = SceneManager.GetActiveScene();
         if (scene.name == "levelOne")
         {
             elapsedTime = GameControl.gameControl.levelOneTimer;
@@ -114,6 +123,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Increments the timer every second the game is not paused.
         if (timerOn)
         {
             elapsedTime += Time.deltaTime;
@@ -125,6 +135,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ChangerCursor(Sprite texture)
     {
+        // Changing the cursor to the crosshair.
         if (texture == crosshairSprite)
         {
             if (virtualCursor.activeInHierarchy && GameControl.gameControl.device == GameControl.Device.Controller)
@@ -137,6 +148,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.SetCursor(crosshairCursor, cursorHotspot, CursorMode.Auto);
             }
         }
+        // Changing the cursor to the chopsticks.
         else
         {
             if (virtualCursor.activeInHierarchy && GameControl.gameControl.device == GameControl.Device.Controller)
@@ -152,14 +164,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        // If the game is paussed, unpause it.
         if (Time.timeScale == 0f)
         {
+            // If the cursor was not active before pausing, hide it again when unpausing.
             if (cursorPreviouslyActive == false)
             {
                 Cursor.visible = false;
             }
 
             Time.timeScale = 1f;
+            // Removes the menus and re-enables player movement.
             ChangerCursor(crosshairSprite);
             if (virtualCursor.activeInHierarchy)
             {
@@ -170,8 +185,10 @@ public class PauseMenu : MonoBehaviour
             projectileMenu.SetActive(false);
             playerMovement.inputSystem.Player.Enable();
         }
+        // If the game is not paused, pause it.
         else
         {
+            // If the cursor is active before pausing, ensures it remains active when pausing.
             if (Cursor.visible == true)
             {
                 cursorPreviouslyActive = true;
@@ -186,6 +203,7 @@ public class PauseMenu : MonoBehaviour
             }
             Time.timeScale = 0f;
 
+            // If the player is using a controller, activates the virtual cursor and moves it to the centre of the screen.
             if (GameControl.gameControl.device == GameControl.Device.Controller)
             {
                 if (!virtualCursor.activeInHierarchy)
@@ -203,6 +221,7 @@ public class PauseMenu : MonoBehaviour
                 }
             }
 
+            // Displays the pause menu and disables player movement.
             ChangerCursor(chopsticksSprite);
             pauseMenu.SetActive(true);
             playerMovement.inputSystem.Player.Disable();
@@ -216,14 +235,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Projectile()
     {
+        // If the projectile menu is active, deactivate it.
         if (Time.timeScale == 0f)
         {
+            // If the cursor was not active before pausing, hide it again when closing the projectile menu.
             if (cursorPreviouslyActive == false)
             {
                 Cursor.visible = false;
             }
 
             Time.timeScale = 1f;
+            // Removes the menus and re-enables player movement.
             ChangerCursor(crosshairSprite);
             if (virtualCursor.activeInHierarchy)
             {
@@ -233,8 +255,10 @@ public class PauseMenu : MonoBehaviour
             projectileMenu.SetActive(false);
             playerMovement.inputSystem.Player.Enable();
         }
+        // If the projectile menu is not active, activate it.
         else
         {
+            //If the cursor is active before projectil-ing, ensures it remains active when projectil-ing.
             if (Cursor.visible == true)
             {
                 cursorPreviouslyActive = true;
@@ -247,9 +271,9 @@ public class PauseMenu : MonoBehaviour
                     Cursor.visible = true;
                 }
             }
-
             Time.timeScale = 0f;
 
+            // If the player is using a controller, activates the virtual cursor and moves it to the centre of the screen.
             if (GameControl.gameControl.device == GameControl.Device.Controller)
             {
                 if (!virtualCursor.activeInHierarchy)
@@ -269,6 +293,7 @@ public class PauseMenu : MonoBehaviour
 
             ChangerCursor(chopsticksSprite);
 
+            // Enables the buttons for the collected projectiles and highlights the currently equipped projectile.
             for (int i = 0; i < projectiles.transform.childCount; i++)
             {
                 if (GameControl.gameControl.projectiles.Contains(i))
@@ -297,6 +322,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Changes the equipped projectile, highlights the newly equipped projectile and updates the equipped text.
     public void EquipProjectile(int newProjectile)
     {
         if (playerMovement != null && newProjectile != GameControl.gameControl.projectileIndex)
@@ -326,6 +352,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Returns to the previously open menu, if applicable, or unpauses the game if the pause menu is currently open.
     public void Back()
     {
         if (settingsMenu.activeInHierarchy)
@@ -342,6 +369,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Saves the timer value and returns to the main menu.
     public void MainMenu()
     {
         if (Time.timeScale == 0f)
@@ -371,6 +399,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Title Screen");
     }
 
+    // Saves the timer value and quits the game.
     public void QuitGame()
     {
         if (Time.timeScale == 0f)

@@ -25,6 +25,7 @@ public class HiddenPath : MonoBehaviour
     {
         if (playerInRange && playerMovement != null)
         {
+            // Check if there is a wall in the way.
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
             bool blockedByGround = hit.collider != null && !hit.collider.transform.IsChildOf(transform.parent);
 
@@ -43,6 +44,7 @@ public class HiddenPath : MonoBehaviour
 
             if (playerMovement.distanceJoint.enabled)
             {
+                // If player is grappling, allows the wall and debris to move with the player.
                 animator.SetBool("inRange", false);
                 Rigidbody2D rigidBody = transform.parent.GetComponent<Rigidbody2D>();
                 rigidBody.constraints = RigidbodyConstraints2D.None;
@@ -63,6 +65,7 @@ public class HiddenPath : MonoBehaviour
                 playerMovement.lineRenderer.SetPosition(0, transform.position);
                 playerMovement.distanceJoint.connectedAnchor = transform.position;
 
+                // If the player moves, the wall moves.
                 if (playerMovement.rigidBody.linearVelocityX > 0 && transform.position.x < playerMovement.transform.position.x)
                 {
                     rigidBody.linearVelocityX = 1f;
@@ -84,6 +87,7 @@ public class HiddenPath : MonoBehaviour
 
                 if (blockedByGround)
                 {
+                    // If a wall is in the way, the player stops grappling and the wall and debris stop moving.
                     playerMovement.canJump = true;
                     playerMovement.distanceJoint.enabled = false;
                     playerMovement.lineRenderer.enabled = false;
@@ -105,6 +109,7 @@ public class HiddenPath : MonoBehaviour
             }
             else
             {
+                // Stops the wall and debris from moving when the player is not grappling.
                 Rigidbody2D rigidBody = transform.parent.GetComponent<Rigidbody2D>();
                 rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePosition;
                 rigidBody.bodyType = RigidbodyType2D.Kinematic;
@@ -125,6 +130,7 @@ public class HiddenPath : MonoBehaviour
 
             if (transform.position.x > originalPosition.x + 0.5f || transform.position.x < originalPosition.x - 0.5f || transform.position.y < originalPosition.y - 0.5f)
             {
+                // If the wall has moved far enough, the player stops grappling.
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.None;
                 playerMovement.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 playerMovement.isGrappling = false;
@@ -137,6 +143,7 @@ public class HiddenPath : MonoBehaviour
                 playerMovement.grapplePoint = null;
                 playerMovement.animator.SetBool("isGrappling", false);
 
+                // Make the wall and debris disappear.
                 disappear = tileMap.GetComponent<Disappear>();
                 if (disappear != null)
                 {
@@ -161,6 +168,7 @@ public class HiddenPath : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider)
     {
+        // When the player is out of range, the player cannot grapple.
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
@@ -176,6 +184,7 @@ public class HiddenPath : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        // Obtains the player's movement script when in range.
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();

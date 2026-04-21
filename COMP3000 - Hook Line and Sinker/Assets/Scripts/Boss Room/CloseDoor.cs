@@ -23,6 +23,7 @@ public class CloseDoor : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        // Freezes the player's velocity when they go through the door.
         if (collider.gameObject.CompareTag("Player"))
         {
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
@@ -38,6 +39,7 @@ public class CloseDoor : MonoBehaviour
 
     public void CloseTheDoor()
     {
+        // Disables the door trigger and shuts the door.
         if (!doorCollider.enabled)
         {
             doorCollider.enabled = true;
@@ -55,6 +57,7 @@ public class CloseDoor : MonoBehaviour
 
     public void OpenDoor()
     {
+        // Enables the door trigger and opens the door.
         if (doorCollider.enabled)
         {
             doorCollider.enabled = false;

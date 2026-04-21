@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
     public CloseDoor closeDoor;
     public PauseMenu pauseMenu;
 
-    // interaction with enemies and damage invulnerability frames
+    // Interaction with enemies and damage invulnerability frames
     public LayerMask enemyLayer;
     public float enemyDamageCooldown;
     public float enemyDamageTimer;
 
-    // movement and jumping
+    // Movement and jumping
     public float moveSpeed;
     public float jumpSpeed;
     public int extraJumps;
@@ -37,14 +37,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveTimer;
     public float moveCooldown;
 
-    // wallsliding
+    // Wallsliding
     public bool wallSliding;
     public float wallSlideSpeed;
     public float wallSlideTimer;
     public float wallSlideCooldown;
     public bool hangOnWall;
 
-    // wall jump and grounded detection
+    // Wall jump and grounded detection
     public Transform groundCheckTransform;
     public float groundCheckRadius;
     public LayerMask groundCheckLayer;
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallJumping;
     public Vector2 wallJumpSpeed;
 
-    // bait
+    // Bait
     public Transform firePoint;
     public GameObject startingProjectile;
     public List<GameObject> projectiles;
@@ -65,13 +65,13 @@ public class PlayerMovement : MonoBehaviour
     public float projectileCooldown;
     public bool isShooting;
 
-    // determining aim direction and source
+    // Determining aim direction and source
     private Vector2 aimingInput;
     public Vector2 lastMouseScreenPos;
     public bool mouseMovedLast;
     public float stickDeadzone = 0.2f;
 
-    // grappling
+    // Grappling
     public LineRenderer lineRenderer;
     public DistanceJoint2D distanceJoint;
     public Transform rendererPoint;
@@ -126,14 +126,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement(InputAction.CallbackContext context)
     {
-        // if movement has been inputted, this will determine the direction and speed of the player's movement
+        // If movement has been inputted, this will determine the direction and speed of the player's movement.
         if (context.performed && Mathf.Abs(rigidBody.linearVelocityX) <= wallJumpSpeed.x)
         {
             isMoving = true;
             animator.SetBool("isMoving", true);
             movement = context.ReadValue<Vector2>().x;
         }
-        // if movement is cancelled, player movement will stop and running animation will stop
+        // If movement is cancelled, player movement will stop and running animation will stop.
         else if (context.canceled && !isWallJumping)
         {
             movement = 0;
@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Aiming(InputAction.CallbackContext context)
     {
-        // determining aiming input for devices that aren't the mouse
+        // Determining aiming input for devices that aren't the mouse.
         if (context.performed && GameControl.gameControl.device != GameControl.Device.Keyboard)
         {
             Vector2 input = context.ReadValue<Vector2>();
@@ -172,17 +172,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            // if the player is grappling, they will reel in towards the grapple point when they jump
-            if (isGrappling)
+            // If the player is grappling, they will reel in towards the grapple point when they jump.
+            if (isGrappling && grapplePoint != null)
             {
                 reelingIn = true;
             }
-            // default jump action
+            // Default jump action.
             if (isGrounded && canJump)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
             }
-            // if against a wall, the player will perform a wall jump
+            // If against a wall, the player will perform a wall jump.
             else if (wallSliding)
             {
                 isWallJumping = true;
@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
                     rigidBody.linearVelocityX = -wallJumpSpeed.x;
                 }
             }
-            // players can perform one additional jump midair
+            // Players can perform one additional jump midair.
             else if (extraJumps > 0 && canJump && !wallSliding && !isGrappling)
             {
                 rigidBody.linearVelocityY = jumpSpeed;
@@ -224,8 +224,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Grappling(InputAction.CallbackContext context)
     {
-        // on grapple, a joint will be created between the player and the grapple point
-        // and a rope be rendered between the grapple point and end of the fishing rod
+        // On grapple, a joint will be created between the player and the grapple point.
+        // And a rope will be rendered between the grapple point and end of the fishing rod.
         if (context.performed && canGrapple && grapplePoint != null && !isGrappling)
         {
             lineRenderer.SetPosition(1, rendererPoint.position);
@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.linearVelocityY += 1;
             }
 
-            // if the player is going fast enough, they will maintain their momentum after releasing the grapple
+            // If the player is going fast enough, they will maintain their momentum after releasing the grapple.
             if (Mathf.Abs(rigidBody.linearVelocityX) > Mathf.Abs(movement) * moveSpeed)
             {
                 movement = rigidBody.linearVelocityX / moveSpeed;
@@ -272,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Shooting(InputAction.CallbackContext context)
     {
-        // allows the player to hold down the shoot button
+        // Allows the player to hold down the shoot button.
         if (context.performed)
         {
             isShooting = true;
@@ -283,13 +283,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Update after the MonoBehaviour is created.
     void Start()
     {
         scene = SceneManager.GetActiveScene();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        //determines spawn location, regardless of level
+        // Determines spawn location, regardless of level.
         float respawnX = 0;
         float respawnY = 0;
         if (scene.name == "levelOne")
@@ -313,7 +313,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColour = spriteRenderer.color;
 
-        // preemptively setting booleans.
+        // Preemptively setting booleans.
         Debug.Log(respawnCoordinates);
         transform.position = respawnCoordinates;
         distanceJoint.enabled = false;
@@ -329,7 +329,7 @@ public class PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetCurrentHealth(currentHealth);
 
-        // checking save file to determine which projectile the player has equipped, and equipping it
+        // Checking save file to determine which projectile the player has equipped, and equipping it.
         int projectileIndex = GameControl.gameControl.projectileIndex;
         if (GameControl.gameControl.projectiles.Contains(projectileIndex))
         {
@@ -340,17 +340,17 @@ public class PlayerMovement : MonoBehaviour
             equippedProjectile = startingProjectile;
         }
 
-        //if there is a mouse on the device, this sets the initial position of the mouse
+        // If there is a mouse on the device, this sets the initial position of the mouse.
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             lastMouseScreenPos = Mouse.current.position.ReadValue();
         }
     }
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
-        // determining whether cursor should be visible based on aim source
+        // Determining whether cursor should be visible based on aim source.
         if (GameControl.gameControl.device != GameControl.Device.Keyboard)
         {
             Cursor.visible = false;
@@ -360,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
             Cursor.visible = true;
         }
 
-        // if the mouse has moved since the last frame, update the aim source to mouse and update the last mouse position
+        // If the mouse has moved since the last frame, update the aim source to mouse and update the last mouse position.
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Vector2 currentMousePosition = Mouse.current.position.ReadValue();
@@ -373,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
         }
         UpdateAim();
 
-        // grounded check
+        // Grounded check.
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundCheckLayer);
         if (isGrounded && isWallJumping)
         {
@@ -382,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
-            //resetting extra jumps and the previous ground position for when the player falls into spikes
+            // Resetting extra jumps and the previous ground position for when the player falls into spikes.
             extraJumps = 1;
             previousGround = transform.position;
             animator.SetBool("isGrounded", true);
@@ -403,7 +403,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("isGrounded", false);
-            // changing animation based on the upwards velocity while midair
+            // Changing animation based on the upwards velocity while midair.
             if (rigidBody.linearVelocityY > 1)
             {
                 animator.SetFloat("yVelocity", 1);
@@ -418,6 +418,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Stops the player from moving for a brief time after wall jumping.
         if (moveTimer > 0)
         {
             moveTimer -= Time.deltaTime;
@@ -437,16 +438,20 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        // If the player touches an enemy, they will take damage and will be moved upwards slightly.
         Collider2D enemyCollider = Physics2D.OverlapCircle(transform.position, 0.6f, enemyLayer);
         if (enemyCollider != null)
         {
             TakeDamage(10);
             rigidBody.linearVelocityY = jumpSpeed;
         }
+
+        // Starts timer from when the player first touches a wall.
         if (hangOnWall)
         {
             wallSlideTimer -= Time.deltaTime;
         }
+        // If a player touches a wall and is midair, they will stick to the wall.
         wallSliding = Physics2D.OverlapCircle(wallCheckTransform.position, wallCheckRadius, wallCheckLayer) && !isGrounded;
         if (wallSliding && !isGrappling && rigidBody.linearVelocityY < 2.5)
         {
@@ -456,6 +461,7 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = false;
             rigidBody.linearVelocityX = 0;
 
+            // If enough time has past while on the wall, the player will begin sliding down the wall.
             if (wallSlideTimer <= 0)
             {
                 rigidBody.linearVelocityY = -wallSlideSpeed;
@@ -476,11 +482,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (reelingIn && (grapplePoint.position - rendererPoint.position).sqrMagnitude > 1f)
+        // The player can reel themselves in while grappling, reducing the distance between them and the grapple point.
+        if (reelingIn && grapplePoint != null && (grapplePoint.position - rendererPoint.position).sqrMagnitude > 0.1f)
         {
             distanceJoint.distance -= 4f * Time.deltaTime;
         }
 
+        // Determines the player's speed and direction when not grappling or wall jumping.
         if (!isGrappling && !isWallJumping)
         {
             rigidBody.linearVelocityX = movement * moveSpeed;
@@ -497,12 +505,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (distanceJoint.enabled && grapplePoint != null)
         {
-            groundCheckTransform.gameObject.SetActive(false);
+            // Actively updates the rope to follow the player.
             lineRenderer.SetPosition(1, rendererPoint.position);
             lineRenderer.SetPosition(0, grapplePoint.position);
 
             if (isGrappling)
             {
+                // Rotates the player and changes the animation based on the player's position and direction relative to the grapple point.
                 float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
 
                 if ((rigidBody.linearVelocityX > 1 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
@@ -545,10 +554,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            groundCheckTransform.gameObject.SetActive(true);
+            // Resets the player's rotation when not grappling.
             transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
         }
 
+        // As long as the fire button is held, the player will shoot projectiles in the fire point's direction with a cooldown between each shot.
         if (isShooting && projectileTimer == 0 && !wallSliding && (firePoint.position - transform.position).sqrMagnitude > 0.01f)
         {
             GameObject firedProjectile = Instantiate(equippedProjectile, firePoint.position, firePoint.rotation);
@@ -557,6 +567,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player fired projectile.");
         }
 
+        // Resets shooting cooldown timer.
         if (projectileTimer > 0)
         {
             projectileTimer -= Time.deltaTime;
@@ -566,6 +577,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Resets cooldown timer for when the player can take damage from enemies again.
         if (enemyDamageTimer > 0)
         {
             enemyDamageTimer -= Time.deltaTime;
@@ -585,11 +597,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 aimDirection = Vector2.zero;
 
+        // If the selected device is a keyboard, the fire point will be rotated to face the mouse cursor.
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(lastMouseScreenPos);
             aimDirection = (mouseWorldPosition - transform.position).normalized;
         }
+        // If the selected device isn't a keyboard, the fire point will be rotated based on the aiming input.
         else
         {
             aimDirection = aimingInput.normalized;
@@ -609,14 +623,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (damage > 0 && enemyDamageTimer == 0)
         {
+            // Health is reduced and a flash of red will play to show the player has been hurt.
             currentHealth -= damage;
             StartCoroutine(DamageFlash());
             healthBar.SetCurrentHealth(currentHealth);
             Debug.Log("Player Health: " + currentHealth);
             if (currentHealth <= 0)
             {
-                Debug.Log("Player Died.");
-
+                // If the player dies, the current scene will be reloaded and the player will respawn at the last respawn point.
                 if (scene.name == "levelOne")
                 {
                     GameControl.gameControl.levelOneTimer = pauseMenu.elapsedTime;
@@ -644,6 +658,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Heal(int healAmount)
     {
+        // Heals the player.
         if (healAmount > 0)
         {
             currentHealth += healAmount;
@@ -661,6 +676,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
     }
 
+    // Changes the player's equipped projectile from the list of projectiles based on the index given.
     public void ChangeProjectile(int projectileIndex)
     {
         equippedProjectile = projectiles[projectileIndex];
@@ -669,6 +685,7 @@ public class PlayerMovement : MonoBehaviour
         GameControl.gameControl.Load();
     }
 
+    // Flashes the player's sprite red twice.
     private IEnumerator DamageFlash()
     {
         for (int i = 0; i < 2; i++)

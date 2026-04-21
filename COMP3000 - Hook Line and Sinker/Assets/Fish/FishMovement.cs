@@ -3,10 +3,12 @@ using System.Collections;
 
 public class FishMovement : MonoBehaviour
 {
+    // Parameters for moving between two points
     public Transform leftBoundry;
     public Transform rightBoundry;
     public float movementSpeed;
 
+    // Parameters for attacking the player
     public GameObject projectile;
     public Transform firePoint;
     public float attackDistance;
@@ -14,9 +16,11 @@ public class FishMovement : MonoBehaviour
     private float initialTimer;
     private bool onCooldown;
 
+    // Health
     public float maxHealth;
     public float currentHealth;
 
+    // Determining target and range
     [HideInInspector] public Transform target;
     private float targetDistance;
     [HideInInspector] public bool inRange;
@@ -24,6 +28,7 @@ public class FishMovement : MonoBehaviour
     public GameObject hotZone;
     public GameObject triggerArea;
 
+    // Animation and visual feedback
     private Animator animator;
     public bool attacking;
     private SpriteRenderer spriteRenderer;
@@ -32,6 +37,7 @@ public class FishMovement : MonoBehaviour
 
     void Awake()
     {
+        // Initialize variables and set the initial target.
         SelectTarget();
         onCooldown = true;
         initialTimer = attackCooldown;
@@ -43,6 +49,7 @@ public class FishMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Get the Animator and SpriteRenderer components.
         spriteRenderer = GetComponent<SpriteRenderer>();
         headSprite = firePoint.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
@@ -51,6 +58,7 @@ public class FishMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Handle attack cooldown.
         if (onCooldown)
         {
             attackCooldown -= Time.deltaTime;
@@ -79,6 +87,7 @@ public class FishMovement : MonoBehaviour
 
     void EnemyLogic()
     {
+        // Calculate the distance to the target and determine whether to attack or stop attacking.
         targetDistance = Vector2.Distance(transform.position, target.position);
 
         if (targetDistance > attackDistance)
@@ -95,6 +104,7 @@ public class FishMovement : MonoBehaviour
 
     void Move()
     {
+        // Move towards the target.
         if (canMove)
         {
             Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
@@ -104,6 +114,7 @@ public class FishMovement : MonoBehaviour
 
     void FireProjectile() 
     {
+        // If the attack is not on cooldown, start the attack sequence.
         if (attackCooldown == 0)
         {
             attacking = true;
@@ -120,6 +131,7 @@ public class FishMovement : MonoBehaviour
 
     private IEnumerator Shoot(int i)
     {
+        // Shoot a projectile towards the target, then wait and repeat until 3 projectiles have been fired.
         if (i < 3)
         {
             Vector2 fireDirection = (target.position - transform.position).normalized;
@@ -148,6 +160,7 @@ public class FishMovement : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // Reduce health by the damage amount, flash red, and destroy the fish if health drops to 0 or below.
         if (damage > 0)
         {
             currentHealth -= damage;
@@ -156,17 +169,20 @@ public class FishMovement : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            // If a player hits the fish, the fish will select the player as a target and flip to face them.
             Flip();
         }
     }
 
     private bool WithinBorders()
     {
+        // Check if the fish is within the left and right boundaries.
         return transform.position.x > leftBoundry.position.x && transform.position.x < rightBoundry.position.x;
     }
 
     public void SelectTarget()
     {
+        // Select the target based on which boundary is farther from the fish's current position.
         float distanceToLeft = Vector2.Distance(transform.position, leftBoundry.position);
         float distanceToRight = Vector2.Distance(transform.position, rightBoundry.position);
 
@@ -188,6 +204,7 @@ public class FishMovement : MonoBehaviour
 
     public void Flip()
     {
+        // Flip the fish to face the target.
         if (transform.position.x > target.position.x)
         {
             transform.eulerAngles = new Vector2(0, 180);
@@ -202,6 +219,7 @@ public class FishMovement : MonoBehaviour
 
     private IEnumerator DamageFlash()
     {
+        // Flashes red twice when the fish takes damage.
         for (int i = 0; i < 2; i++)
         {
             spriteRenderer.color = Color.red;

@@ -19,6 +19,7 @@ public class GrapplePoint : MonoBehaviour
     {
         if (playerInRange && playerMovement != null)
         {
+            // Checks if there is a wall between the player and the grapple point.
             RaycastHit2D hit = Physics2D.Linecast(playerMovement.transform.position, transform.position, groundLayer);
 
             if (hit.collider == null && !playerMovement.isGrounded)
@@ -36,6 +37,7 @@ public class GrapplePoint : MonoBehaviour
 
             if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded))
             {
+                // If there is a wall in the way while grappling, the player stops grappling.
                 playerMovement.isGrappling = false;
                 playerMovement.canMove = true;
                 playerMovement.canJump = true;
@@ -56,6 +58,7 @@ public class GrapplePoint : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
+        // Resets the player's grapple point and ability to grapple when exiting the area.
         if (collider.name == "Player")
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
@@ -69,6 +72,7 @@ public class GrapplePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        // Obtains the player's movement script when entering the area.
         if (collider.name == "Player")
         {
             playerMovement = collider.GetComponent<PlayerMovement>();

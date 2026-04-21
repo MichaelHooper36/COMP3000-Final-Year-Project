@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
         
     }
 
+    // Determines what object fired the projectile.
     public virtual void SetOrigin(GameObject projectileOrigin)
     {
         this.projectileOrigin = projectileOrigin;
@@ -37,18 +38,19 @@ public class Projectile : MonoBehaviour
         {
             return; // Ignore collision with the object that fired the projectile
         }
-
+        // If the projectile hits the ground, destroy the projectile
         if (collider.gameObject.CompareTag("Ground"))
         {
             Destroy(gameObject);
         }
         else if (collider.gameObject.CompareTag("Enemy"))
         {
+            // If the projectile hits an enemy, deal damage to the enemy and destroy the projectile
             FishMovement fishMovement = collider.GetComponent<FishMovement>();
             if (fishMovement != null)
             {
                 fishMovement.TakeDamage(enemyDamage);
-
+                // If the player damaged the enemy, the player becomes the enemy target.
                 if (fishMovement.triggerArea.activeInHierarchy && projectileOrigin.CompareTag("Player"))
                 {
                     fishMovement.triggerArea.SetActive(false);
@@ -68,6 +70,7 @@ public class Projectile : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        // If the projectile hits the player, deal damage to the player and destroy the projectile
         else if (collider.gameObject.CompareTag("Player"))
         {
             PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
@@ -77,6 +80,7 @@ public class Projectile : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        // If the projectile hits a mine, trigger the mine's explosion animation and destroy the projectile
         else if (collider.gameObject.CompareTag("Mine"))
         {
             Mine mine = collider.GetComponent<Mine>();

@@ -48,6 +48,7 @@ public class RespawnController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Checks the current level and sets the text to the correct device input.
         scene = SceneManager.GetActiveScene();
         inventoryText = inventoryPoint.GetComponentInChildren<TextMeshProUGUI>();
         if (GameControl.gameControl.device == GameControl.Device.Controller)
@@ -70,6 +71,7 @@ public class RespawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If this game object is the current respawn point, set the animation to active, otherwise set it to inactive.
         if (scene.name == "levelOne" && respawnPoint.position.x == GameControl.gameControl.levelOneRespawnX && respawnPoint.position.y == GameControl.gameControl.levelOneRespawnY)
         {
             animator.SetBool("isActive", true);
@@ -84,14 +86,17 @@ public class RespawnController : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            // Obtains the player's movement script when in range.
             playerMovement = collider.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
                 if (!animator.GetBool("isActive"))
                 {
+                    // Heals the player if this is a new respawn point.
                     playerMovement.Heal(playerMovement.maxHealth / 2);
                 }
 
+                // Sets the respawn point to this location and saves it to the game control script.
                 if (scene.name == "levelOne")
                 {
                     GameControl.gameControl.levelOneRespawnX = respawnPoint.position.x;
@@ -123,6 +128,7 @@ public class RespawnController : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            // Sets the player's movement script to null when out of range.
             playerMovement = null;
             inventoryPoint.SetActive(false);
             inventoryPointActive = false;

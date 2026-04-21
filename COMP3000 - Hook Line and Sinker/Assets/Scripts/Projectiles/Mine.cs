@@ -25,12 +25,14 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // When the target is set by the boss, the mine will float towards it.
         if (target != null)
         {
             Vector2 direction = (target.transform.position - transform.position).normalized;
             rigidBody.linearVelocity = direction * speed.magnitude;
         }
 
+        // If the player is within range of the mine, the timer animation will start.
         inRange = Physics2D.OverlapCircle(transform.position, 3f, playerLayer);
         if (inRange)
         {
@@ -45,7 +47,8 @@ public class Mine : MonoBehaviour
             playerMovement = null;
         }
 
-            elapsedTime += Time.deltaTime;
+        // The mine will explode after enough time, even if the player is not in range.
+        elapsedTime += Time.deltaTime;
         if (elapsedTime >= 7.5f)
         {
             mineAnim.SetBool("isDestroyed", true);
@@ -57,6 +60,7 @@ public class Mine : MonoBehaviour
         this.target = target;
     }
 
+    // Called by the animation. If the player is in range, the player will take damage.
     public void Explode()
     {
         if (inRange && playerMovement != null)
@@ -65,6 +69,7 @@ public class Mine : MonoBehaviour
         }
     }
 
+    // Called by the animation, destroys the mine.
     public void DestroyMine()
     {
         Destroy(gameObject);

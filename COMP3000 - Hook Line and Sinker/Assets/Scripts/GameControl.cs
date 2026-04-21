@@ -40,6 +40,7 @@ public class GameControl : MonoBehaviour
 
     void Awake()
     {
+        // Ensures the game data carries over between scenes.
         if (gameControl == null)
         {
             DoNotDestroyOnLoad(gameObject);
@@ -71,6 +72,7 @@ public class GameControl : MonoBehaviour
 
     public void Save()
     {
+        // Saves the game data to a file.
         BinaryFormatter bf = new BinaryFormatter();
         using (FileStream file = File.Create(Application.persistentDataPath + "/gameInfo.dat"))
         {
@@ -111,6 +113,7 @@ public class GameControl : MonoBehaviour
 
     public void Load()
     {
+        // Loads the game data from a file.
         if (File.Exists(Application.persistentDataPath + "/gameInfo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();

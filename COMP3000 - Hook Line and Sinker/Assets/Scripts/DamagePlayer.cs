@@ -22,6 +22,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // Reset the enemy damage timer and apply damage to the player
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
@@ -38,11 +39,13 @@ public class DamagePlayer : MonoBehaviour
                 }
                 else if (risingFloor != null && risingFloor.isRising)
                 {
+                    // If the ground is in the boss room, calls the FindSafeGround function.
                     Transform safeGround = FindSafeGround();
                     playerMovement.transform.position = new Vector2(safeGround.position.x, safeGround.position.y + (safeGround.localScale.y / 2) + 2);
                 }
                 else 
                 {
+                    // If the ground is not in the boss room, respawns the player at their previous grounded position.
                     playerMovement.transform.position = new Vector2(playerMovement.previousGround.x, playerMovement.previousGround.y + 1);
                 }
 
@@ -54,6 +57,7 @@ public class DamagePlayer : MonoBehaviour
                 {
                     playerMovement.transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
+                // Resets the player's velocity, to avoid the player being launched immediately after moving.
                 playerMovement.movement = 0f;
                 playerMovement.rigidBody.linearVelocityX = 0f;
                 playerMovement.rigidBody.linearVelocityY = 0f;
@@ -76,6 +80,7 @@ public class DamagePlayer : MonoBehaviour
 
     Transform FindSafeGround()
     {
+        // Finds the closest safe ground platform above the rising floor that is within the boss room.
         GameObject[] listOfPlatforms = GameObject.FindGameObjectsWithTag("Ground");
         Transform closestPlatform = null;
         float closestDistance = float.MaxValue;

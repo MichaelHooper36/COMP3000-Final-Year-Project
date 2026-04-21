@@ -10,6 +10,7 @@ public class WormCollectable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // If the projectile has already been collected, destroy the collectable.
         if (GameControl.gameControl.projectiles.Contains(projectileIndex))
         {
             Destroy(gameObject);
@@ -24,6 +25,7 @@ public class WormCollectable : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        // If the player picks up the collectable, they equip the projectile and the collectable is destroyed.
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();

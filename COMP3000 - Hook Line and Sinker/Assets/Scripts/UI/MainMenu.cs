@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Opens the main menu on launch and determines which device is being used.
         ChangeCursor(chopsticksSprite, chopsticksCursor);
         if (GameControl.gameControl.device == GameControl.Device.Keyboard)
         {
@@ -50,12 +51,14 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    // Changes both the cursor image and the actual cursor.
     public void ChangeCursor(Sprite sprite, Texture2D cursor)
     {
         cursorImage.sprite = sprite;
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
+    // Opens the level select menu and displays the continue buttons and personal bests.
     public void LevelSelect()
     {
         if (GameControl.gameControl.levelOneTimer != 0)

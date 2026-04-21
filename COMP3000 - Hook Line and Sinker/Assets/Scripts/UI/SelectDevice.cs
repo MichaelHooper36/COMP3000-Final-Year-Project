@@ -8,6 +8,7 @@ public class SelectDevice : MonoBehaviour
 
     public void Start()
     {
+        // Displays the current device selection in the dropdown menu when the scene starts.
         if (GameControl.gameControl == null || device_dropdown == null)
         {
             return;
@@ -20,6 +21,7 @@ public class SelectDevice : MonoBehaviour
 
     public void SelectActiveDevice(int index)
     {
+        // Selects the desired device between pc and controller.
         if (index == 1)
         {
             GameControl.gameControl.device = GameControl.Device.Controller;

@@ -17,6 +17,7 @@ public class Worm : Projectile
     // Update is called once per frame
     void Update()
     {
+        // Moves the projectile up and down to simulate a worm-like movement.
         elapsedTime += Time.deltaTime;
         float offset = Mathf.Lerp(minUp, maxUp, (Mathf.Sin(elapsedTime * alternationSpeed) + 1) / 2);
         if (rigidBody.linearVelocityX < 0)

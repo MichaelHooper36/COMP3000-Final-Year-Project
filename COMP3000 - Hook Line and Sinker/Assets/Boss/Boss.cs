@@ -6,37 +6,44 @@ public class Boss : MonoBehaviour
 {
     public Rigidbody2D rigidBody;
 
+    // References to other scripts.
     public CloseDoor closeDoor;
     public RisingFloor risingFloor;
     public PauseMenu pauseMenu;
 
+    // Visual elements.
     public Animator animator;
     private SpriteRenderer spriteRenderer;
     private Color originalColour;
-
+    
+    // References to player and mine objects.
     public GameObject player;
     public GameObject mine;
     public GameObject[] phaseOneMineLocations;
     public GameObject[] phaseTwoMineLocations;
     public GameObject[] phaseThreeMineLocations;
-
+    
+    // Health and invulnerability.
     public int maxHealth;
     public int currentHealth;
     public GameObject bossHealth;
     public HealthBar healthBar;
     public bool invulnerable;
 
+    // Determining what phase the boss is in.
     public bool phaseOne;
     public bool phaseTwo;
     public bool phaseThree;
     public bool dead;
 
+    // Teleportation and attack timing.
     public float teleportInterval = 4f;
     public float teleportTimer;
     public bool attacking;
     public float disappearDuration = 2f;
     public float reappearDuration = 2f;
 
+    // Spawn locations.
     public GameObject[] phaseOneSpawns;
     public GameObject phaseOneAttackZone;
     public GameObject[] phaseTwoSpawns;
@@ -53,6 +60,7 @@ public class Boss : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Initialize health and phase states.
         currentHealth = maxHealth;
         phaseOne = true;
         attacking = false;
@@ -64,6 +72,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Only starts the boss fight once the player goes through the door.
         if (closeDoor.isClosed && !dead)
         {
             bossHealth.SetActive(true);
@@ -72,6 +81,7 @@ public class Boss : MonoBehaviour
 
             if (!attacking)
             {
+                // Countdown to the next teleport and attack.
                 teleportTimer -= Time.deltaTime;
 
                 if (teleportTimer <= 0f)
@@ -91,11 +101,13 @@ public class Boss : MonoBehaviour
     {
         if (!invulnerable)
         {
+            // Reduces health by the damage taken and flashes red.
             currentHealth -= damage;
             StartCoroutine(DamageFlash());
             healthBar.SetCurrentHealth(currentHealth);
             if (currentHealth <= 0)
             {
+                // If the boss dies, opens the door, starts the rising floor, and saves the time taken for the level.
                 phaseThree = false;
                 dead = true;
                 pauseMenu.timerOn = false;
@@ -109,6 +121,7 @@ public class Boss : MonoBehaviour
             }
             else if (currentHealth <= maxHealth / 2 && phaseTwo)
             {
+                // Transitions to phase three, starting the rising floor and teleporting to the phase three attack zone.
                 phaseThree = true;
                 phaseTwo = false;
                 risingFloor.isRising = true;
@@ -121,6 +134,7 @@ public class Boss : MonoBehaviour
             }
             else if (currentHealth <= maxHealth * 3 / 4 && phaseOne)
             {
+                // Transitions to phase two, starting the rising floor and teleporting to the phase two attack zone.
                 phaseOne = false;
                 phaseTwo = true;
                 risingFloor.isRising = true;
@@ -136,6 +150,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator PhaseTransition(Transform newPosition)
     {
+        // Plays the disappear and reappear animations, before teleporting to the new position.
         spriteRenderer.color = originalColour;
         invulnerable = true;
         animator.SetTrigger("disappear");
@@ -152,6 +167,8 @@ public class Boss : MonoBehaviour
 
     private IEnumerator MineSpawner()
     {
+        // Teleports to the attack zone in the current phase and starts the mine spawning animation.
+        // Animation called the SpawnMines function.
         invulnerable = true;
         if (phaseOne && Vector2.Distance(transform.position, phaseOneAttackZone.transform.position) > 2f)
         {
@@ -193,12 +210,14 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Teleportation()
     {
+        // Plays the disappear and reappear animations, before teleporting to a spawn location in the current phase.
         invulnerable = true;
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearDuration);
 
         if (phaseThree)
         {
+            // Randomly selects a phase three spawn location, excluding the one closest to the player, and teleports to it.
             Vector3 closestSpawn = Vector3.zero;
             foreach (GameObject spawnLocation in phaseThreeSpawns)
             {
@@ -234,6 +253,7 @@ public class Boss : MonoBehaviour
         }
         else if (phaseTwo)
         {
+            // Randomly selects a phase two spawn location, excluding the one closest to the player, and teleports to it.
             Vector3 closestSpawn = Vector3.zero;
             foreach (GameObject spawnLocation in phaseTwoSpawns)
             {
@@ -271,6 +291,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
+            // Randomly selects a phase one spawn location, excluding the one closest to the player, and teleports to it.
             Vector3 closestSpawn = Vector3.zero;
             foreach (GameObject spawnLocation in phaseOneSpawns)
             {
@@ -315,6 +336,7 @@ public class Boss : MonoBehaviour
 
     public void SpawnMines()
     {
+        // Spawns a mine at each spawn location in the current phase.
         if (phaseOne)
         {
             foreach (GameObject spawnLocation in phaseOneMineLocations)

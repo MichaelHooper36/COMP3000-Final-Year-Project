@@ -20,6 +20,7 @@ public class Disappear : MonoBehaviour
 
     public void DisappearObject()
     {
+        // Finds the Tilemap component that contains the visuals for the debris.
         tilemap = transform.Find("Tilemap")?.GetComponent<Tilemap>();
         Debug.Log("DisappearObject called. Tilemap found: " + (tilemap != null));
         if (tilemap != null)
@@ -33,6 +34,7 @@ public class Disappear : MonoBehaviour
         float startingOpacity = tilemap.color.a;
         float elapsedTime = 0f;
 
+        // Gradually reduces the tilemap's over time.
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -43,6 +45,7 @@ public class Disappear : MonoBehaviour
             yield return null;
         }
 
+        // Once the tilemap is invisible, the object is destroyed.
         if (tilemap.color.a <= 0f)
         {
             BoxCollider2D collider = transform.parent.GetComponent<BoxCollider2D>();

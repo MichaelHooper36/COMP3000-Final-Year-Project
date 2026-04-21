@@ -22,6 +22,8 @@ public class EndGame : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        // Stops the player from moving while the animation plays.
+        // The EndLevel function is called at the end of the animation.
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
@@ -34,6 +36,7 @@ public class EndGame : MonoBehaviour
 
     public void EndLevel()
     {
+        // Saves the new time if it's a new personal best and resets the respawn point to the level's starting point.
         if (scene.name == "levelOne")
         {
             Debug.Log("Level One Complete!");
@@ -92,6 +95,7 @@ public class EndGame : MonoBehaviour
             GameControl.gameControl.Load();
         }
 
+        // Once data is saved, the player is taken back to the main menu.
         SceneManager.LoadScene("Title Screen");
     }
 }

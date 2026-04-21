@@ -16,6 +16,7 @@ public class OutOfWater : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        // When out of water, the player will fall faster.
         if (collider.gameObject.CompareTag("Player"))
         {
             Rigidbody2D rigidBody = collider.GetComponent<Rigidbody2D>();
@@ -25,6 +26,7 @@ public class OutOfWater : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
+        // When back in water, the player's gravity will return to normal.
         if (collider.gameObject.CompareTag("Player"))
         {
             Rigidbody2D rigidBody = collider.GetComponent<Rigidbody2D>();
