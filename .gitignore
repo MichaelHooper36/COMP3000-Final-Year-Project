@@ -46,8 +46,6 @@ desktop.ini
 *.xcworkspace/
 *.app
 *.ipa
-*.exe
-*.dll
 *.mp4
 *.zip
 *.tar

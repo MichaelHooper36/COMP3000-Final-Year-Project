@@ -38,8 +38,11 @@ public class HiddenPath : MonoBehaviour
             else
             {
                 animator.SetBool("inRange", false);
-                playerMovement.canGrapple = false;
-                playerMovement.grapplePoint = null;
+                if (playerMovement.grapplePoint == transform)
+                {
+                    playerMovement.canGrapple = false;
+                    playerMovement.grapplePoint = null;
+                }
             }
 
             if (playerMovement.distanceJoint.enabled)
@@ -172,7 +175,7 @@ public class HiddenPath : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
+            if (playerMovement != null && playerMovement.grapplePoint == transform)
             {
                 playerInRange = false;
                 playerMovement.grapplePoint = null;

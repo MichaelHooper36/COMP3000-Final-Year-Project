@@ -31,8 +31,11 @@ public class GrapplePoint : MonoBehaviour
             else
             {
                 animator.SetBool("inRange", false);
-                playerMovement.canGrapple = false;
-                playerMovement.grapplePoint = null;
+                if (playerMovement.grapplePoint == transform)
+                {
+                    playerMovement.canGrapple = false;
+                    playerMovement.grapplePoint = null;
+                }
             }
 
             if (playerMovement.isGrappling && (hit.collider != null || playerMovement.isGrounded))
@@ -62,11 +65,14 @@ public class GrapplePoint : MonoBehaviour
         if (collider.name == "Player")
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
-            playerMovement.grapplePoint = null;
-            playerMovement.canGrapple = false;
-            animator.SetBool("inRange", false);
-            playerInRange = false;
-            playerMovement = null;
+            if (playerMovement != null)
+            {
+                playerMovement.grapplePoint = null;
+                playerMovement.canGrapple = false;
+                animator.SetBool("inRange", false);
+                playerInRange = false;
+                playerMovement = null;
+            }
         }
     }
 
