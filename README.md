@@ -1,6 +1,6 @@
 # COMP3000-Final-Year-Project
 ## Installation Instructions
-Copy everything in the application folder and run the .exe file. All save data will be stored in the AppData folder in your C: drive.
+Go to https://github.com/MichaelHooper36/COMP3000-Final-Year-Project/releases/tag/v0.1.0 and install the zip file. Once installed, you can either run the executable (.exe) file from the zip folder or extract the folder and run the .exe file from the extracted folder.
 ## 1. Introduction
 ### 1.1 Summary
 A physics-based 2d platformer made for any age. Use your fishing rod to grapple around the map and find fish to defeat and cook.
