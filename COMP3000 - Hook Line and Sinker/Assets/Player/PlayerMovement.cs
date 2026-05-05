@@ -251,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (rigidBody.linearVelocityY > 2)
             {
-                rigidBody.linearVelocityY += 1;
+                rigidBody.linearVelocityY += 2;
             }
 
             // If the player is going fast enough, they will maintain their momentum after releasing the grapple.
@@ -440,7 +440,7 @@ public class PlayerMovement : MonoBehaviour
 
         // If the player touches an enemy, they will take damage and will be moved upwards slightly.
         Collider2D enemyCollider = Physics2D.OverlapCircle(transform.position, 0.6f, enemyLayer);
-        if (enemyCollider != null)
+        if (enemyCollider != null && enemyDamageTimer == 0)
         {
             TakeDamage(10);
             rigidBody.linearVelocityY = jumpSpeed;
@@ -514,7 +514,9 @@ public class PlayerMovement : MonoBehaviour
                 // Rotates the player and changes the animation based on the player's position and direction relative to the grapple point.
                 float angle = Mathf.Atan2((grapplePoint.position.y - transform.position.y), (grapplePoint.position.x - transform.position.x)) * Mathf.Rad2Deg;
 
-                if ((rigidBody.linearVelocityX > 1 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
+                if ((rigidBody.linearVelocityX > 1 && transform.position.y <= grapplePoint.position.y) || 
+                    (rigidBody.linearVelocityX < 0 && transform.position.y > grapplePoint.position.y) || 
+                    (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x < grapplePoint.position.x))
                 {
                     if (angle < 22.5 && angle >= -22.5)
                     {
@@ -532,7 +534,9 @@ public class PlayerMovement : MonoBehaviour
                         transform.eulerAngles = new Vector3(0, 0, angle - 90f);
                     }
                 }
-                else if ((rigidBody.linearVelocityX < 1 && transform.position.y <= grapplePoint.position.y) || (rigidBody.linearVelocityX > 0 && transform.position.y > grapplePoint.position.y) || (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x > grapplePoint.position.x))
+                else if ((rigidBody.linearVelocityX < 1 && transform.position.y <= grapplePoint.position.y) || 
+                    (rigidBody.linearVelocityX > 0 && transform.position.y > grapplePoint.position.y) || 
+                    (rigidBody.linearVelocityX == 0 && rigidBody.linearVelocityY < 0 && transform.position.x > grapplePoint.position.x))
                 {
                     if (angle <= -157.5 || angle > 157.5)
                     {
@@ -691,9 +695,9 @@ public class PlayerMovement : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(enemyDamageCooldown / 3);
             spriteRenderer.color = originalColour;
-            yield return new WaitForSeconds(0.125f);
+            yield return new WaitForSeconds(enemyDamageCooldown / 6);
         }
     }
 }

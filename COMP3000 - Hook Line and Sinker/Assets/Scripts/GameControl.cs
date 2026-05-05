@@ -111,6 +111,14 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public void ClearSaveData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/gameInfo.dat"))
+        {
+            File.Delete(Application.persistentDataPath + "/gameInfo.dat");
+        }
+    }
+
     public void Load()
     {
         // Loads the game data from a file.

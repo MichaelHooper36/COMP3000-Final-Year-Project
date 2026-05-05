@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlayerMovement" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBYsQwBKVCIsASmIBAiJAYw4AjCMAYSJmABFmIByKEE=</HashCode>
+      <FileName>Assets\Player\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile">
+    <Position X="3.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAgACAAAAAIAAAACAAAAEAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameControl" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GameControl.Device" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAQAhIICBCAAAAEgAwDABAAAABACAACBQARAAAAigEA=</HashCode>
+      <FileName>Assets\Scripts\GameControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameData" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAABAICBAAAAAEgAwDAAAAAABAAAACBQARAAAAigAA=</HashCode>
+      <FileName>Assets\Scripts\GameControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Worm">
+    <Position X="3.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAASAAAAAAAAAAAAAAAAAAAIAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\Worm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectileDamage">
+    <Position X="1.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\ProjectileDamage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectileMovement">
+    <Position X="6" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAQAAACAASAAABAoAAAAAAAAAUAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\ProjectileMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mine" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIEBAAASAAgBAAIAAAAAgAAAAAIQAAAQAAAAIAAAI=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\Mine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WormCollectable" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAACAAABAgAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\Collectable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExplosionRadius" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\ExplosionRadius.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RisingFloor" Collapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAABAAQAAAAEAAAAAAAhAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Boss Room\Rising Floor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RightDoor" Collapsed="true">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA1AAAAAACAAAAAAAAAAAAAAAEAAAAAABAAAAAECAAg=</HashCode>
+      <FileName>Assets\Scripts\Boss Room\RightDoor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeftDoor" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgCACAAAAAAAAAAAAgAAEACABAAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Boss Room\LeftDoor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CloseDoor" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAACIAAAAAAABABEAAQUAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Boss Room\CloseDoor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishHotzoneCheck" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAIAAEA=</HashCode>
+      <FileName>Assets\Fish\FishHotzoneCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishMovement" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAYgAACJAaBgBCACIIAAAQEEAAUNACCICEAAgAKCAEA=</HashCode>
+      <FileName>Assets\Fish\FishMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishTriggerCheck" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Assets\Fish\FishTriggerCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DamagePlayer" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAACAAgAAAAAAAAAAABEAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\DamagePlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Disappear" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAACAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Disappear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EndGame" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAACAAABAAAAAAAIAAAEAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\EndGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FollowPlayer" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAYAABAAACAAAAAAIAAAAAAAAAAAAAABAAIAAAAAAAE=</HashCode>
+      <FileName>Assets\Scripts\FollowPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GrapplePoint" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAACAACAAABAgAAAAAAAAAUAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GrapplePoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HiddenPath" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BARAAACAACAAABAgAAAAAAAAAUAAAACIAQIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\HiddenPath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OutOfWater" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\OutOfWater.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RespawnController" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAADAACAAEBAAAABAAKQAAEABAAAIAAAAACAACEA=</HashCode>
+      <FileName>Assets\Scripts\RespawnController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthBar" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAIAAAAAAAAAAAAAAAAAAEAEACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\HealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAACCCAAAIAAAAECIQCAAIAEA4AgEFAABBAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseMenu" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQjgABCiSAAATgAIAJEEIQQAAAgAAAIgABAEBAAKEA=</HashCode>
+      <FileName>Assets\Scripts\UI\PauseMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SelectDevice" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAEAAAAgAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\SelectDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorialOpacity" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAQAAACABAAAAABAAAAAAEAAAAAAJEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\TutorialOpacity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VirtualMouseUI" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAgAACAAIAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\VirtualMouseUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAYKIAhrBChQODAAAACCAQAEAAAMAoAZgAAAhgCQAEA=</HashCode>
+      <FileName>Assets\Boss\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -134,6 +134,7 @@ public class FishMovement : MonoBehaviour
         // Shoot a projectile towards the target, then wait and repeat until 3 projectiles have been fired.
         if (i < 3)
         {
+            Flip();
             Vector2 fireDirection = (target.position - transform.position).normalized;
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
             if (Mathf.Approximately(transform.eulerAngles.y, 180f))

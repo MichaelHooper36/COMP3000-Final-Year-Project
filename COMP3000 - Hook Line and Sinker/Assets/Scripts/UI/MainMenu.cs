@@ -152,6 +152,12 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void Clear()
+    {
+        GameControl.gameControl.ClearSaveData();
+        GameControl.gameControl.Load();
+    }
+
     public void BackToMainMenu()
     {
         levelSelectMenu.SetActive(false);

@@ -175,7 +175,7 @@ public class HiddenPath : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             playerMovement = collider.GetComponent<PlayerMovement>();
-            if (playerMovement != null && playerMovement.grapplePoint == transform)
+            if (playerMovement != null)
             {
                 playerInRange = false;
                 playerMovement.grapplePoint = null;
